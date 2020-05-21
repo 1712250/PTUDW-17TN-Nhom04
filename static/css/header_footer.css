@@ -1,0 +1,152 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.navbar {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 500;
+	font-size: 1rem;
+	background-color: #408aff;
+	padding-left: 4rem;
+	padding-right: 4rem;
+}
+
+.navbar-brand img {
+	height: 2.5rem;
+}
+
+.navbar .nav-item .nav-link {
+	color: #e9e8e8;
+	text-transform: capitalize;
+	padding: 0.5rem;
+}
+
+.navbar .nav-item {
+	margin-left: 1rem;
+	white-space: nowrap;
+}
+
+.navbar .nav-item .nav-link:hover {
+	color: #ffffff;
+}
+
+.navbar form {
+	margin-left: 1rem;
+}
+
+.navbar form button {
+	width: 2.5rem;
+	padding: 0.3rem;
+	margin-left: -3rem;
+	outline: none;
+	border: none;
+	background-color: transparent;
+}
+
+.navbar form svg {
+	height: 1rem;
+	margin-bottom: 0.2rem;
+	fill: #408aff;
+}
+
+.footer {
+	background-color: #e5e5e5;
+	padding-bottom: 2rem;
+	padding-left: 4rem;
+	padding-right: 4rem;
+}
+
+.footer > div > div {
+	margin-top: 3rem;
+}
+
+.company {
+	width: 18rem;
+}
+
+.footer .contact {
+	display: flex;
+	font-size: 0.8rem;
+	margin-top: 0.8rem;
+	justify-content: space-between;
+}
+
+.footer .nav-footer-links {
+	font-size: 1.1rem;
+	font-weight: 600;
+	list-style: none;
+}
+
+.footer li:first-child {
+	margin-top: 0.5rem;
+}
+
+.footer .nav-footer-link {
+	font-size: 0.9rem;
+	font-weight: 500;
+	text-decoration: none;
+	color: #000;
+}
+
+.footer .subscribe {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.footer .subscribe .socials {
+	justify-content: center;
+	align-items: center;
+}
+
+.footer .subscribe .socials img {
+	height: 3rem;
+	margin: 0.6rem;
+}
+
+.footer .subscribe p {
+	font-size: 1.1rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.footer .subscribe p:nth-child(3) {
+	font-size: 0.8rem;
+	font-weight: normal;
+}
+
+.footer .subscribe div:last-child {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer .subscribe a {
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+}
+
+.footer .subscribe img {
+	height: 0.9rem;
+}
+
+#account {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	color: white;
+	margin: 0 0;
+}
+
+#account .nav-item .nav-link svg {
+	height: 2rem;
+	fill: #e9e8e8;
+}
+
+#account .nav-item .nav-link svg:hover {
+	fill: #fff;
+}
