@@ -1,4 +1,4 @@
-# Obuks
+# Obks
 Old books for new generations
 
 ## What is this?
