@@ -8,6 +8,10 @@
 	font-family: "Open Sans", sans-serif !important;
 }
 
+html {
+	font-size: 1vw;
+}
+
 .navbar {
 	font-weight: 500;
 	font-size: 1rem;
