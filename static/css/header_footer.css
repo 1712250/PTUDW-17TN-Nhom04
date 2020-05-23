@@ -8,10 +8,6 @@
 	font-family: "Open Sans", sans-serif !important;
 }
 
-html {
-	font-size: 1vw;
-}
-
 .navbar {
 	font-weight: 500;
 	font-size: 1rem;
@@ -28,6 +24,13 @@ html {
 	color: #e9e8e8;
 	text-transform: capitalize;
 	padding: 0.5rem;
+}
+
+.navbar .nav-item .nav-link .cart-badge {
+	position: relative;
+	top: -0.6rem;
+	left: -0.8rem;
+	font-size: 0.7rem;
 }
 
 .navbar .nav-item {
