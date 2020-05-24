@@ -15,7 +15,9 @@ A website for exchanging books between those who love them. Also, a project for 
 - [ ] Browse Page
 
 ### Hoang-Viet Nguyen
-
+ - [ ] Book You Buy
+ - [ ] Orders
+ - [ ] Account Info
 ### Huu-Vinh Pham
 - [ ] Details book.
 - [ ] Your cart.
