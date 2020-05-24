@@ -44,14 +44,23 @@
 	box-shadow: 0px 0px 5px #c4c4c4;
 }
 
+.list-books .card img {
+	height: 15rem;
+}
+
 .list-books .card .book-name {
 	font-size: 1rem;
-	font-weight: lighter;
+	font-weight: 600;
+	color: #0000ff;
+	height: 1.2rem;
+	margin-bottom: 0.5rem;
 }
 
 .list-books .card .book-author {
 	font-size: 1rem;
 	font-weight: lighter;
+	height: 1.4rem;
+	margin: 0;
 }
 
 .list-books .card .book-price {
@@ -60,7 +69,7 @@
 	color: rgb(153, 19, 19);
 }
 
-.list-books .card button {
+.list-books .card .btn {
 	border-style: solid;
 	border-width: 1px;
 	border-color: #ffc354;
@@ -71,7 +80,7 @@
 	text-transform: uppercase;
 }
 
-.list-books .card button:hover {
+.list-books .card .btn:hover {
 	background-color: #ffc354;
 	color: black;
 }
