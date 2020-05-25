@@ -97,7 +97,129 @@
     <!-- Body -->
     <div class="body container-fluid px-3 px-lg-5 py-4">
         <div class="row m-0">
-            <div class="books-filter col-3 bg-light"></div>
+            <div class="books-filter-container col-3 px-0">
+                <div class="books-filter">
+                    <div class="genres-and-tags">
+                        <div class="select-container">
+                            <p class="label">Genre</p>
+                            <select class="select-genres px-2 py-1 w-100">
+                                <option value="all genres">All genres</option>
+                            </select>
+                        </div>
+                        <div class="tags-container mt-3"></div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="rating-container">
+                        <p class="label">Rating</p>
+                        <div onclick="toggleTag('rating', '5 stars', true)">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <span>from 5 stars</span>
+                        </div>
+                        <div onclick="toggleTag('rating', '4 stars', true)">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-black-50"></i>
+                            <span>from 4 stars</span>
+                        </div>
+                        <div onclick="toggleTag('rating', '3 stars', true)">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-black-50"></i>
+                            <i class="fas fa-star text-black-50"></i>
+                            <span>from 3 stars</span>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="price-container">
+                        <p class="label">Price</p>
+                        <form>
+                            <input class="price-input min" type="text" placeholder="min">
+                            <span> - </span>
+                            <input class="price-input max" type="text" placeholder="max">
+                            <button class="price-btn btn btn-outline-primary">OK</button>
+                        </form>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="conditions-container">
+                        <p class="label">Conditions</p>
+                        <form class="custom-checkbox list-conditions d-flex">
+                            <div>
+                                <label for="New">
+                                    <input id="New" type="checkbox" value="New"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>New</span>
+                                </label>
+                                <label for="LikeNew">
+                                    <input id="LikeNew" type="checkbox" value="Like new"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>Like new</span>
+                                </label>
+                                <label for="VeryGood">
+                                    <input id="VeryGood" type="checkbox" value="Very good"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>Very good</span>
+                                </label>
+                                <button class="btn btn-outline-primary" onclick="updatePage()">OK</button>
+                            </div>
+                            <div>
+                                <label for="Good">
+                                    <input id="Good" type="checkbox" value="Good"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>Good</span>
+                                </label>
+                                <label for="Acceptable">
+                                    <input id="Acceptable" type="checkbox" value="Acceptable"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>Acceptable</span>
+                                </label>
+                                <label for="ABitOld">
+                                    <input id="ABitOld" type="checkbox" value="A bit old"
+                                        onchange="toggleTag('condition', this.value, false)" />
+                                    <span>A bit Old</span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="languages-container">
+                        <p class="label">Languages</p>
+                        <form class="custom-checkbox list-languages d-flex">
+                            <div>
+                                <label for="Vietnamese">
+                                    <input id="Vietnamese" type="checkbox" value="Vietnamese"
+                                        onchange="toggleTag('language', this.value, false)" />
+                                    <span>Vietnamese</span>
+                                </label>
+                                <label for="English">
+                                    <input id="English" type="checkbox" value="English"
+                                        onchange="toggleTag('language', this.value, false)" />
+                                    <span>English</span>
+                                </label>
+                                <button class="btn btn-outline-primary" onclick="updatePage()">OK</button>
+                            </div>
+                            <div>
+                                <label for="German">
+                                    <input id="German" type="checkbox" value="German"
+                                        onchange="toggleTag('language', this.value, false)" />
+                                    <span>German</span>
+                                </label>
+                                <label for="Chinese">
+                                    <input id="Chinese" type="checkbox" value="Chinese"
+                                        onchange="toggleTag('language', this.value, false)" />
+                                    <span>Chinese</span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="list-books-container col-9 shadow-sm text-nowrap py-2 px-4">
                 <ul class="nav justify-content-between">
                     <p class="text-muted m-0 mr-2">Sort by</p>
@@ -136,7 +258,7 @@
                     <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item rounded"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
@@ -212,6 +334,10 @@
         </div>
     </div>
     <!-- !Footer -->
+
+    <!-- Snackbar -->
+    <div id="snackbar">Some text some message..</div>
+    <!-- !Snackbar -->
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
