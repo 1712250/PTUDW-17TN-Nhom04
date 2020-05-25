@@ -12,7 +12,7 @@ A website for exchanging books between those who love them. Also, a project for 
 ### Hoang-Vu Le
 - [x] Header, Footer
 - [ ] Login/Sign Up
-- [ ] Browse Page
+- [x] Browse Page
 
 ### Hoang-Viet Nguyen
  - [ ] Book You Buy
