@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/header_footer.css">
-    <link rel="stylesheet" href="../static/css/books.css">
-    <link rel="icon" href="../static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/header_footer.css">
+    <link rel="stylesheet" href="/static/css/books.css">
+    <link rel="icon" href="/static/images/favicon.png">
     <title>Browse</title>
 </head>
 
 <body id="body">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark px-3 px-lg-5 ">
-        <a href="#" class="navbar-brand py-2 mr-lg-2 mr-0">
-            <img src="../static/images/logo-inline.svg" alt="Logo">
+        <a href="/index.html" class="navbar-brand py-2 mr-lg-2 mr-0">
+            <img src="/static/images/logo-inline.svg" alt="Logo">
         </a>
         <ul class="ml-auto mr-2 mr-lg-2 order-lg-12" id="account">
             <li class="nav-item">
@@ -166,8 +166,9 @@
                                         onchange="toggleTag('condition', this.value, false)" />
                                     <span>Very good</span>
                                 </label>
-                                <button class="btn btn-outline-primary" onclick="updatePage()">OK</button>
+                                <button class="btn btn-outline-primary">OK</button>
                             </div>
+                            <span class="px-1"></span>
                             <div>
                                 <label for="Good">
                                     <input id="Good" type="checkbox" value="Good"
@@ -182,7 +183,7 @@
                                 <label for="ABitOld">
                                     <input id="ABitOld" type="checkbox" value="A bit old"
                                         onchange="toggleTag('condition', this.value, false)" />
-                                    <span>A bit Old</span>
+                                    <span>A bit old</span>
                                 </label>
                             </div>
                         </form>
@@ -202,8 +203,9 @@
                                         onchange="toggleTag('language', this.value, false)" />
                                     <span>English</span>
                                 </label>
-                                <button class="btn btn-outline-primary" onclick="updatePage()">OK</button>
+                                <button class="btn btn-outline-primary">OK</button>
                             </div>
+                            <span class="px-1"></span>
                             <div>
                                 <label for="German">
                                     <input id="German" type="checkbox" value="German"
@@ -276,7 +278,7 @@
             <div class="col-12 col-md-6 col-lg-4 order-lg-1">
                 <div class="row justify-content-center">
                     <div class="company">
-                        <img class="footer-logo" src="../static/images/logo-block.svg" alt="Logo">
+                        <img class="footer-logo" src="/static/images/logo-block.svg" alt="Logo">
                         <div class="contact">
                             <div>
                                 2299 Kenmore Ave<br>Buffalo, NY 14207</p>
@@ -319,15 +321,15 @@
             <div class="col-12 col-md-6 col-lg-4 order-lg-3">
                 <div class="subscribe">
                     <div class="socials">
-                        <img src="../static/images/instagram.svg" alt="Instagram">
-                        <img src="../static/images/tweet.svg" alt="Tweet">
-                        <img src="../static/images/facebook.svg" alt="Facebook">
+                        <img src="/static/images/instagram.svg" alt="Instagram">
+                        <img src="/static/images/tweet.svg" alt="Tweet">
+                        <img src="/static/images/facebook.svg" alt="Facebook">
                     </div>
                     <p>STAY CONNECTED!</p>
                     <p>Subscribe to our newsletter for promotions & more.</p>
                     <div>
                         <a href="#">SUBSCRIBE NOW</a>
-                        <img src="../static/images/right-arrow.svg" alt="Right Arrow">
+                        <img src="/static/images/right-arrow.svg" alt="Right Arrow">
                     </div>
                 </div>
             </div>
@@ -349,7 +351,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
-    <script src="../static/js/books.js"></script>
+    <script src="/static/js/books.js"></script>
 </body>
 
 </html>

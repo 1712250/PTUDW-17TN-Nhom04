@@ -3,7 +3,11 @@ const cartBadge = document.querySelector(".cart-badge");
 const pagination = document.querySelector(".pagination");
 const listGenres = document.querySelector(".select-genres");
 const listTags = document.querySelector(".tags-container");
+const listConditions = document.querySelector(".list-conditions");
+const listLanguages = document.querySelector(".list-languages");
 const btnPrice = document.querySelector(".price-btn");
+const btnCondition = document.querySelector(".list-conditions button");
+const btnLanguage = document.querySelector(".list-languages button");
 let queries = { page: 1 };
 
 const books = [
@@ -60,10 +64,31 @@ const genres = [
 document.addEventListener("DOMContentLoaded", () => {
 	// Add event listener
 	btnPrice.addEventListener("click", btnPriceClicked);
+	btnCondition.addEventListener("click", btnConditionClicked);
+	btnLanguage.addEventListener("click", btnLanguageClicked);
+
+	// Parse URL
+	parseURL();
+
+	// Keep scroll
+	if (location.href.indexOf("page_y") != -1) {
+		document.getElementsByTagName("html")[0].scrollTop = queries.page_y - 1;
+		delete queries.page_y;
+	}
+
 	// Render
-	handleQueriesURL();
-	renderBooks({ currentPage: 1, totalPages: 1, books: books });
-	renderSelect();
+	renderFilter();
+	renderSelect(genres);
+	renderBooks(books);
+
+	queries = [];
+
+	// Return object {
+	// 	genres: [],
+	// 	totalPages: 1,
+	// 	books: []
+	// }
+
 	// fetch("/api/books", {
 	// 	method: "POST",
 	// 	headers: {
@@ -73,25 +98,35 @@ document.addEventListener("DOMContentLoaded", () => {
 	// })
 	// 	.then((r) => r.json())
 	// 	.then((data) => {
-	// 		renderBooks(data);
+	// 		renderSearch(data.genres);
+	// 		renderBooks(data.books);
+	// 		renderPagination(queries.page, data.totalPages);
 	// 	})
 	// 	.catch((error) => {
 	// 		console.error("Error:", error);
 	// 	});
 });
 
-function handleQueriesURL() {
-	if (location.search.length > 0)
-		queries = Object.fromEntries(
-			location.search
-				.slice(1)
-				.split("&")
-				.map((u) => u.split("="))
-		);
+function parseURL() {
+	if (location.search.length > 0) queries = {};
+	location.search
+		.slice(1)
+		.split("&")
+		.map((u) => u.split("="))
+		.forEach(([key, value]) => {
+			if (key) {
+				if (key.endsWith("[]")) {
+					key = key.slice(0, -2);
+					if (!queries[key]) queries[key] = [];
+					queries[key].push(value);
+				} else queries[key] = value;
+			}
+		});
 	if (!queries.page) {
 		queries.page = 1;
 	}
 }
+
 function createText(text) {
 	return document.createTextNode(text);
 }
@@ -108,7 +143,7 @@ function addToCart(bookId) {
 	cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
 }
 
-function renderSelect() {
+function renderSelect(genres) {
 	const options = genres.map((genre) =>
 		createElement("option", { value: genre.toLowerCase }, createText(genre))
 	);
@@ -148,15 +183,53 @@ function addTag(field, tag) {
 	);
 }
 
-function renderTags(tags) {
-	tags.forEach((tag) => addTag("field", tag));
+function normalizeTag(tag) {
+	return tag.replace(/-/g, " ").replace(/(^\w)/, function (v) {
+		return v.toUpperCase();
+	});
+}
+
+function checkbox(key, tag) {
+	let list;
+	if (key === "condition") {
+		list = listConditions;
+	} else {
+		list = listLanguages;
+	}
+
+	for (let checkbox of list.getElementsByTagName("input")) {
+		if (checkbox.value === tag) {
+			checkbox.checked = "true";
+		}
+	}
+}
+
+function renderFilter() {
+	for (let [key, value] of Object.entries(queries)) {
+		if (key === "page") {
+		} else if (key === "minPrice") {
+			document.querySelector(".price-input.min").value = value;
+		} else if (key == "maxPrice") {
+			document.querySelector(".price-input.max").value = value;
+		} else {
+			if (Array.isArray(value)) {
+				value.forEach((tag) => {
+					tag = normalizeTag(tag);
+					toggleTag(key, tag, false);
+					checkbox(key, tag);
+				});
+			} else {
+				value = normalizeTag(value);
+				toggleTag(key, value, false);
+				checkbox(key, value);
+			}
+		}
+	}
 }
 
 function renderPagination(currentPage, totalPages) {}
 
-function renderBooks({ currentPage, totalPages, books }) {
-	console.log(books);
-	renderPagination(currentPage, totalPages);
+function renderBooks(books) {
 	const bookElements = books.map((book) =>
 		createElement(
 			"a",
@@ -215,7 +288,33 @@ function removeElement(target) {
 	updatePage();
 }
 
-function updatePage() {}
+function updatePage() {
+	for (let tag of listTags.children) {
+		let key = tag.dataset.field;
+		let value = tag.children[0].innerText
+			.replace(/\s+/g, "-")
+			.toLowerCase();
+		if (key === "condition" || key === "language") {
+			if (!queries[key]) queries[key] = [];
+			queries[key].push(value);
+		} else {
+			queries[key] = value;
+		}
+	}
+
+	let url = location.origin + location.pathname + "?";
+	for (let [key, value] of Object.entries(queries)) {
+		if (Array.isArray(value)) {
+			key = key + "[]";
+			value.forEach((param) => (url = url + key + "=" + param + "&"));
+		} else {
+			url = url + key + "=" + value + "&";
+		}
+	}
+
+	var page_y = document.getElementsByTagName("html")[0].scrollTop;
+	location.href = url + "page_y=" + page_y;
+}
 
 function btnPriceClicked(e) {
 	e.preventDefault();
@@ -225,16 +324,27 @@ function btnPriceClicked(e) {
 	const maxPrice = parseFloat(
 		document.querySelector(".price-input.max").value
 	);
+
 	if (!minPrice && !maxPrice) {
 		showSnackbar("Please type min price or max price!");
 		return;
 	}
-	if (!minPrice) {
+	if (minPrice) {
 		queries.minPrice = minPrice;
 	}
-	if (!maxPrice) {
+	if (maxPrice) {
 		queries.maxPrice = maxPrice;
 	}
+	updatePage();
+}
+
+function btnConditionClicked(e) {
+	e.preventDefault();
+	updatePage();
+}
+
+function btnLanguageClicked(e) {
+	e.preventDefault();
 	updatePage();
 }
 
@@ -248,6 +358,5 @@ function showSnackbar(msg) {
 }
 
 function toggleCondition(target) {
-	console.log(target);
 	toggleTag("condition", target.value, false);
 }

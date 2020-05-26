@@ -76,7 +76,7 @@
 }
 
 .custom-checkbox > div {
-	margin-right: 1rem;
+	width: 50%;
 }
 
 .custom-checkbox label {
