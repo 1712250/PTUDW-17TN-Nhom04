@@ -1,0 +1,42 @@
+ 
+.header-content
+{
+    margin: 0 auto;
+    height: 10%;
+ 
+}
+.table-header
+{
+    font-size: 15px;
+    color: black;
+}
+#content-data
+{
+    padding-bottom: 5em;
+}
+.page-item
+{
+    border-radius: 50px;
+    padding: 10px;
+}
+.page-link {
+    color: black
+}
+.pagination>li>a 
+{ border-radius: 60% !important;margin: 0 3px;
+    width: 2.2em;}
+.pagination>li>a.active
+{
+    background-color: blue;
+    color: #ffffff;
+} 
+#dropdown-book
+{
+    margin: 0 auto;
+}  
+#price_book >.nav-link
+{
+    padding: 0;
+    color: blue;
+}
+ 

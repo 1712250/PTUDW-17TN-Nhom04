@@ -1,0 +1,70 @@
+.body
+{
+    margin-right: 1em;
+    margin-left: 1em;
+    height: 100%;
+    margin-bottom: 50px;
+}
+#sidebar{
+    margin-right: 5px;
+}
+ .sidebar-header .user-pic {
+   float: left;
+   width: 100%;
+   margin-right: 0.5em;
+   overflow: auto;
+ }
+
+.sidebar-header .user-pic img {
+   object-fit: cover;
+   height: 100%;
+   width: 100%;
+ }
+
+ .user-name
+ {
+     font-size: 15px;
+     font-weight: bold;
+
+ }
+ .user-email
+ {
+     font-size: 10px;
+     color: gray;
+
+ }
+ .row
+ {
+     height: 100%
+ }
+ #sidebar
+ {
+     color: gray;
+ }
+ .sidebar-menu
+ {
+     margin-top: 1em;
+ }
+  .fa
+ {
+   padding: 10px;
+ }
+.hovergrey:hover
+{
+   border-radius: 10px;
+   background-color: lightgray;
+}
+.hovergrey
+{
+   margin-bottom: 3px;
+}
+a:hover
+{
+    text-decoration: none;
+}
+.active 
+{
+   border-radius: 10px;
+   background-color: lightgray;
+
+}
