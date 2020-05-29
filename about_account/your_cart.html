@@ -1,21 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
     <link rel="stylesheet" href="../static/css/header_footer.css">
-    <link rel="stylesheet" href="../static/css/nav_sidebar.css">
-    <link rel="stylesheet" href="../static/css/orders.css">
     <link rel="icon" href="../static/images/favicon.png">
-    <title>Orders</title>
+    <link rel="stylesheet" href="../static/css/your_cart.css"
+    <title>Your cart</title>
 </head>
-  <body>
-      <!-- Header -->
+
+<body>
+    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark px-3 px-lg-5 ">
         <a href="#" class="navbar-brand py-2 mr-lg-2 mr-0">
             <img src="../static/images/logo-inline.svg" alt="Logo">
@@ -54,7 +53,7 @@
                 </div>
             </li>
         </ul>
-       
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -89,232 +88,220 @@
             </form>
         </div>
     </nav>
+    <!-- !Navigation -->
 
 
-    <!--Sidebar-->
-<div class="body  container-fluid px-3 px-lg-5">
-    
-    <div class="row mt-3 justify-content-center">
-        <nav id="sidebar" class="sidebar-wrapper col-2 border shadow rounded-lg ">
-             <!--Sidebar Header -->
-            <div class="sidebar-header m-2 d-flex">
-                <div class="user-pic rounded-circle">
-                    <img class="img-responsive img-rounded" src="../static/images/account_icon.jpg"/>
-                </div>
+    <!-- Body -->
+    <div class="container-fluid px-3 px-lg-5">
+        <table class="table" style="margin-top: 100px; font-weight: bold;">
+            <thead class="thead-light">
+                <tr>
+                <th style="text-align: center; font-size: 40px;font-weight: bold;"># </th>
+                <th style="text-align: center; font-size: 40px;font-weight: bold; ">IMAGE</th>
+                <th style="text-align: center; font-size: 40px;font-weight: bold;">PRODUCT</th>
+                <th style="text-align: center; font-size: 40px;font-weight: bold;">QUANTITY</th>
+                <th style="text-align: center; font-size: 40px;font-weight: bold;">TOTAL</th>
+                <th style="text-align: center; font-size: 40px;font-weight: bold;">REMOVE</th>
 
-                <div class="user-info mt-3">
-                    <div class="user-name align-bottom text-dark" >Lê Hoàng Vũ</div>
-                    <div class="user-email align-middle">lhvubtqn@gmail.com</div>
-                </div>
-            </div>
-             <!--Sidebar Menu -->
-            <ul class="sidebar-menu list-unstyled">
-                 <li class="sidebar-account hovergrey active">
-                    <a href="#">
-                        <i class="fa fa-user text-dark "></i>
-                      <span class="text-dark">Account infomation</span>
-                    </a>
-                 </li>
-                 <li class="sidebar-orders hovergrey">
-                    <a href="#">
-                        <i class="fa fa-book text-dark"></i>
-                      <span class="text-dark ">Orders</span>
-                    </a>
-                </li>
-                <li class="sidebar-bookyoubuy hovergrey">
-                    <a href="#">
-                        <i class="fa fa-shopping-cart text-dark "></i>
-                      <span class="text-dark">Books You Buy</span>
-                    </a>
-                </li>
-       
-            </ul>
-        </nav>
-
-    <!--Orders Info -->
-    <div class="content border col-8 shadow rounded-lg" id="content-data">
-        <div class="row header-content mt-5 ml-3">
-            <div class="col-2 float-left text-dark "> <h6 class="font-weight-bold"> ORDERS</h2></div>
-            <div class="col-10">
-                <nav aria-label="...">
-                    <ul class="pagination  float-right">
-                      <li class="disabled">
-                        <a class="page-link active" href="#" tabindex="-1">1</a>
-                      </li>
-                      <li class=""><a class="page-link" href="#">2</a></li>
-                      <li class=" "><a class="page-link" href="#">3</a></li>
-                      <li class=" "><a class="page-link" href="#">></a></li>
-                    </ul>
-                  </nav>
-            </div>
-        </div>
-        <div class="container-table container-fluid m-3" >
-            <div class="row table-header">
-                <div class="col-2"> Orders</div>
-                <div class="col-2"> Buying Date</div>
-                <div class="col-4"> Books</div>
-                <div class="col-2">Price</div>
-                <div class="col-2">Staus</div>
-            </div>
-            <hr/>
-            <div class="row table-header" id="item0">
-                <div class="col-2 text-primary" id="id_book">1001201</div>
-                <div class="col-2" id="date_book">18/04/2020</div>
-                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
-                <div class="col-2" id="price_book">12.00$</div>
-                <div class="col-2" id="status_book">Incoming</div>
-            </div>
-            <hr/>
-            <div class="row table-header" id="item1">
-                <div class="col-2 text-primary" id="id_book">1010110</div>
-                <div class="col-2" id="date_book">15/04/2020</div>
-                <div class="col-4" id="detail_book">If I have one day left</div>
-                <div class="col-2 " id="price_book" data-toggle="dropdown">
-                <a class="nav-link text-primary" href="#" id="navbarDropdown" data-toggle="dropdown">Exchanged</a>
-                 <!--Dropdown menu-->
-                 <div id="dropdown-book" class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">List books you've exchaged for this transaction</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">A day in Sanfransisco</a>
-                    <a class="dropdown-item" href="#">No more promises</a>
-                    <a class="dropdown-item" href="#">Life is a journey</a>
-                </div>
+                </tr>
+            </thead>
+            <tbody  >
+                <tr >
+                <th scope="row" style="font-size: 30px;">1</th>
+                <td >
+                    <img src="../static/images/Screen Shot 2020-04-25 at 9.41 1.svg" style="height: 150px;"> 
+                </td>
+                <td style="font-weight: bold; text-align: center; font-size: 30px;">
+                    Natoque penatibus
+                </td>
+                <td class="row"  >
+                    <button class="col btn-quantity btn-quantity-sub">-</button>
+                    <div class="col" style="text-align: center; font-size: 30px;">1</div>
+                    <button class="col btn-quantity btn-quantity-plus">+</button>
+                </td>
+                <td style="font-weight: bold; text-align: center;color: blue;font-size: 30px; ">
+                    $165.00
+                </td>
+                <td >
+                    <img src="../static/images/Remove.svg" style="width: 100px;height: 100px;"> 
+                </td>
+                </tr>
+                <tr >
+                <th scope="row" style="font-size: 30px;">2</th>
+                <td >
+                    <img src="../static/images/Book 3.svg" style="height: 150px;;"> 
+                </td>
+                <td style="font-weight: bold; text-align: center;font-size: 30px;">
+                    Quisque fringilla
+                </td>
+                <td class="row"  >
+                    <button class="col btn-quantity btn-quantity-sub">-</button>
+                    <div class="col" style="text-align: center; font-size: 30px;">1</div>
+                    <button class="col btn-quantity btn-quantity-plus">+</button>
+                </td>
+                <td style="font-weight: bold; text-align: center;color: blue; font-size: 30px;">
+                    $125.00
+                </td>
+                <td >
+                    <img src="../static/images/Remove.svg" style="width: 100px;height: 100px;" > 
+                </td>
+                </tr>
+                <tr >
+                <th scope="row" style="font-size: 30px;">3</th>
+                <td >
+                    <img src="../static/images/Book 2.svg" style="height: 150px;"> 
+                </td>
+                <td style="font-weight: bold; text-align: center; font-size: 30px;">
+                    Quisque fringilla
+                </td>
+                <td class="row"  >
+                    <button class="col btn-quantity btn-quantity-sub">-</button>
+                    <div class="col" style="text-align: center; font-size: 30px;">1</div>
+                    <button class="col btn-quantity btn-quantity-plus">+</button>
+                </td>
+                <td style="font-weight: bold; text-align: center;color: blue;font-size: 30px; ">
+                    $120.00
+                </td>
+                <td >
+                    <img src="../static/images/Remove.svg" style="width: 100px;height: 100px;" > 
+                </td>
+                </tr>
                 
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-7 card">
+                <ul class="card " style="font-weight: bold; font-size: 40px; margin: 10px;">
+                    <li class="inner row" style="margin:10px;">
+                        <span class="col-8">PROVISIONAL SUM</span>
+                        <span class="col-3">$410</span>
+                    </li>
+                </ul>
+                <div class="card" style="margin:10px;">
+                    <p class="coupon-title" style="font-weight: bold; font-size: 40px; margin: 10px;">PROMOS CODE </p>
+                    <div class="row" style="margin: 10px; height: 50px;">
+                        <input type="text" class="col-8" placeholder="INPUT HERE..." value="">
+                        <button type="button " class="col-4 cart__submit" disabled="">SUBMIT</button>
+                    </div>
                 </div>
-                <div class="col-2" id="status_book">Incoming</div>
+                <li class="inner row" style="font-weight: bold; font-size: 40px; margin: 10px;">
+                    <span class="col-8">TOTAL</span>
+                    <span class="col-3">$410</span>
+                </li>
+                <button type="button" class="cart__submit">ORDER</button>
+                
+                
             </div>
-            <hr/>
-            <div class="row table-header" id="item2">
-                <div class="col-2 text-primary" id="id_book">1515251</div>
-                <div class="col-2" id="date_book">18/09/2019</div>
-                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
-                <div class="col-2 " id="price_book">12.00$</div>
-                <div class="col-2" id="status_book">Delivered</div>
-            </div>
-            <hr/>
-            <div class="row table-header" id="item3">
-                <div class="col-2 text-primary" id="id_book">1001201</div>
-                <div class="col-2" id="date_book">18/04/2020</div>
-                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
-                <div class="col-2" id="price_book">12.00$</div>
-                <div class="col-2" id="status_book">Incoming</div>
-            </div>
-            <hr/>
-            <div class="row table-header" id="item4">
-                <div class="col-2 text-primary" id="id_book">1001201</div>
-                <div class="col-2" id="date_book">18/04/2020</div>
-                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
-                <div class="col-2" id="price_book">12.00$</div>
-                <div class="col-2" id="status_book">Incoming</div>
-            </div>
-            <hr/>
- 
-            
+        </div>
+        <div class="col-12 mt-5 justify-content-center text-center">
+            <a class="justify-content-center text-center" href="#"> NOT WHAT YOU LOOKING FOR? BROWSE MORE>></a>
         </div>
     </div>
-    <!-- BROWSE MORE -->
-    <div class="col-12 mt-5 justify-content-center text-center">
-        <a class="justify-content-center text-center" href="#"> NOT WHAT YOU LOOKING FOR? BROWSE MORE>></a>
-    </div>
+    <!-- !Body -->
 
+    <!-- Carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../static/images/review.svg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/review.svg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/review.svg" class="d-block w-100">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span aria-hidden="true"><img src="../static/images/control-prev.svg" alt="Previous"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span aria-hidden="true"><img src="../static/images/control-next.svg" alt="Next"></span>
+        </a>
     </div>
-</div> 
-<!--  Carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="../static/images/review.svg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="../static/images/review.svg" class="d-block w-100">
-        </div>
-        <div class="carousel-item">
-            <img src="../static/images/review.svg" class="d-block w-100">
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span aria-hidden="true"><img src="../static/images/control-prev.svg" alt="Previous"></span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span aria-hidden="true"><img src="../static/images/control-next.svg" alt="Next"></span>
-    </a>
-</div>
+    <!-- !Carousel -->
 
-<!-- !Carousel -->
-
-<!-- Footer -->
-<div class="footer container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 order-lg-1">
-            <div class="row justify-content-center">
-                <div class="company">
-                    <img class="footer-logo" src="../static/images/logo-block.svg" alt="Logo">
-                    <div class="contact">
-                        <div>
-                            2299 Kenmore Ave<br>Buffalo, NY 14207</p>
-                        </div>
-                        <div style="margin-left: 1rem;">
-                            Email: help@obooks.com <br>
-                            Phone: 1-888-402-7323
+    <!-- Footer -->
+    <div class="footer container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 order-lg-1">
+                <div class="row justify-content-center">
+                    <div class="company">
+                        <img class="footer-logo" src="../static/images/logo-block.svg" alt="Logo">
+                        <div class="contact">
+                            <div>
+                                2299 Kenmore Ave<br>Buffalo, NY 14207</p>
+                            </div>
+                            <div style="margin-left: 1rem;">
+                                Email: help@obooks.com <br>
+                                Phone: 1-888-402-7323
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-4 order-3 order-lg-2">
-            <div class="row mt-2">
-                <div class="col offset-auto col-lg-6 offset-lg-0 justify">
-                    <div class="row justify-content-center">
-                        <ul class="nav-footer-links">
-                            HELP
-                            <li><a href="#" class="nav-footer-link">About Us</a></li>
-                            <li><a href="#" class="nav-footer-link">Customer Service</a></li>
-                            <li><a href="#" class="nav-footer-link">Ordering</a></li>
-                            <li><a href="#" class="nav-footer-link">Shipping</a></li>
-                            <li><a href="#" class="nav-footer-link">Contact Us</a></li>
-                        </ul>
+            <div class="col-12 col-lg-4 order-3 order-lg-2">
+                <div class="row mt-2">
+                    <div class="col offset-auto col-lg-6 offset-lg-0 justify">
+                        <div class="row justify-content-center">
+                            <ul class="nav-footer-links">
+                                HELP
+                                <li><a href="#" class="nav-footer-link">About Us</a></li>
+                                <li><a href="#" class="nav-footer-link">Customer Service</a></li>
+                                <li><a href="#" class="nav-footer-link">Ordering</a></li>
+                                <li><a href="#" class="nav-footer-link">Shipping</a></li>
+                                <li><a href="#" class="nav-footer-link">Contact Us</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col col-lg-6 offset-lg-0">
-                    <div class="row justify-content-center">
-                        <ul class="nav-footer-links">
-                            ACCOUNT
-                            <li><a href="#" class="nav-footer-link">Logout</a></li>
-                            <li><a href="#" class="nav-footer-link">Past Orders</a></li>
-                            <li><a href="#" class="nav-footer-link">Edit Profile</a></li>
-                            <li><a href="#" class="nav-footer-link">Shop</a></li>
-                        </ul>
+                    <div class="col col-lg-6 offset-lg-0">
+                        <div class="row justify-content-center">
+                            <ul class="nav-footer-links">
+                                ACCOUNT
+                                <li><a href="#" class="nav-footer-link">Logout</a></li>
+                                <li><a href="#" class="nav-footer-link">Past Orders</a></li>
+                                <li><a href="#" class="nav-footer-link">Edit Profile</a></li>
+                                <li><a href="#" class="nav-footer-link">Shop</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 order-lg-3">
-            <div class="subscribe">
-                <div class="socials">
-                    <img src="../static/images/instagram.svg" alt="Instagram">
-                    <img src="../static/images/tweet.svg" alt="Tweet">
-                    <img src="../static/images/facebook.svg" alt="Facebook">
-                </div>
-                <p>STAY CONNECTED!</p>
-                <p>Subscribe to our newsletter for promotions & more.</p>
-                <div>
-                    <a href="#">SUBSCRIBE NOW</a>
-                    <img src="../static/images/right-arrow.svg" alt="Right Arrow">
+            <div class="col-12 col-md-6 col-lg-4 order-lg-3">
+                <div class="subscribe">
+                    <div class="socials">
+                        <img src="../static/images/instagram.svg" alt="Instagram">
+                        <img src="../static/images/tweet.svg" alt="Tweet">
+                        <img src="../static/images/facebook.svg" alt="Facebook">
+                    </div>
+                    <p>STAY CONNECTED!</p>
+                    <p>Subscribe to our newsletter for promotions & more.</p>
+                    <div>
+                        <a href="#">SUBSCRIBE NOW</a>
+                        <img src="../static/images/right-arrow.svg" alt="Right Arrow">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- !Footer -->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- !Footer -->
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -12,34 +12,3 @@
     font-weight: bold;
     border-radius: 8px;
 }
-/*! CSS Used from: https://salt.tikicdn.com/desktop/dist/category.css?v=nvms_200528122705 */
-a{background-color:transparent;}
-a:active,a:hover{outline:0;}
-@media print{
-*,:after,:before{background:0 0!important;color:#000!important;-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important;}
-a,a:visited{text-decoration:underline;}
-a[href]:after{content:" (" attr(href) ")";}
-}
-*,:after,:before{-webkit-box-sizing:border-box;box-sizing:border-box;}
-a{text-decoration:none;}
-a:focus,a:hover{color:#23527c;}
-a:focus{outline:-webkit-focus-ring-color auto 5px;outline-offset:-2px;}
-ul{margin-top:0;}
-ul{margin-bottom:10px;}
-a{color:#007ff0;}
-a:focus,a:hover{color:rgba(0,127,240,.8);text-decoration:none;}
-::-moz-placeholder{text-overflow:ellipsis;}
-.list-pager{margin-top:15px;margin-bottom:0;text-align:right;}
-.list-pager ul{list-style:none;margin:0;text-align:right;padding:0;}
-.list-pager ul li .current,.list-pager ul li a.normal{display:inline-block;margin:0 5px;border-radius:50%;width:27px;height:27px;text-align:center;font-size:12px;line-height:28px;}
-.list-pager ul li{font-weight:400;display:inline-block;vertical-align:top;}
-.list-pager ul li .current{font-weight:400;background:#189eff;color:#fff;}
-.list-pager ul li a.normal{font-weight:500;background:#f7f7f7;color:#333;text-decoration:none;}
-.list-pager ul li a.normal:hover{background:#c1e7ff;}
-.list-pager ul li a.next{margin:0 5px;color:#393939;text-align:center;height:27px;width:27px;line-height:27px;background:#fff;display:inline-block;text-decoration:none;}
-.list-pager ul li a.next{font-size:14px;border:1px solid #c6c6c6;border-radius:50%;padding:0 6px 0 8px;}
-i.ico{speak:none;font-weight:400;font-variant:normal;text-transform:none;line-height:1;font-style:normal;}
-i.ico{font-family:icomoon!important;}
-.ico-arrow-next:before{content:"";}
-/*! CSS Used fontfaces */
-@font-face{font-family:icomoon;src:url(https://salt.tikicdn.com/desktop/fonts/icon-fonts/icomoon.ttf?3lknfu) format("truetype"),url(https://salt.tikicdn.com/desktop/fonts/icon-fonts/icomoon.woff?3lknfu) format("woff"),url(https://salt.tikicdn.com/desktop/fonts/icon-fonts/icomoon.svg?3lknfu#icomoon) format("svg");font-weight:400;font-style:normal;}
