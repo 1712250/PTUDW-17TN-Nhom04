@@ -1,3 +1,7 @@
+.avoid-clicks {
+	pointer-events: none;
+}
+
 .books-filter {
 	border-style: solid;
 	border-width: 1px;

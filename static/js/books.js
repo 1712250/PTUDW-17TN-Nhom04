@@ -8,7 +8,7 @@ const listLanguages = document.querySelector(".list-languages");
 const btnPrice = document.querySelector(".price-btn");
 const btnCondition = document.querySelector(".list-conditions button");
 const btnLanguage = document.querySelector(".list-languages button");
-let queries = { page: 1 };
+const searchForm = document.querySelector("div.search-container > form");
 
 const books = [
 	{
@@ -66,9 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	btnPrice.addEventListener("click", btnPriceClicked);
 	btnCondition.addEventListener("click", btnConditionClicked);
 	btnLanguage.addEventListener("click", btnLanguageClicked);
+	searchForm.addEventListener("submit", onSearchSubmit);
 
 	// Parse URL
-	parseURL();
+	const queries = parseURL();
 
 	// Keep scroll
 	if (location.href.indexOf("page_y") != -1) {
@@ -77,11 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	// Render
-	renderFilter();
+	renderFilter(queries);
 	renderSelect(genres);
 	renderBooks(books);
-
-	queries = [];
 
 	// Return object {
 	// 	genres: [],
@@ -103,12 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	// 		renderPagination(queries.page, data.totalPages);
 	// 	})
 	// 	.catch((error) => {
-	// 		console.error("Error:", error);
+	// 		// console.error("Error:", error);
 	// 	});
 });
 
 function parseURL() {
-	if (location.search.length > 0) queries = {};
+	const queries = {};
+	// if (location.search.length > 0) queries = {};
 	location.search
 		.slice(1)
 		.split("&")
@@ -125,6 +125,7 @@ function parseURL() {
 	if (!queries.page) {
 		queries.page = 1;
 	}
+	return queries;
 }
 
 function createText(text) {
@@ -193,8 +194,10 @@ function checkbox(key, tag) {
 	let list;
 	if (key === "condition") {
 		list = listConditions;
-	} else {
+	} else if (key === "language") {
 		list = listLanguages;
+	} else {
+		return;
 	}
 
 	for (let checkbox of list.getElementsByTagName("input")) {
@@ -204,12 +207,14 @@ function checkbox(key, tag) {
 	}
 }
 
-function renderFilter() {
+function renderFilter(queries) {
 	for (let [key, value] of Object.entries(queries)) {
-		if (key === "page") {
+		if (key === "sortBy") {
+		} else if (key === "search") {
+		} else if (key === "page") {
 		} else if (key === "minPrice") {
 			document.querySelector(".price-input.min").value = value;
-		} else if (key == "maxPrice") {
+		} else if (key === "maxPrice") {
 			document.querySelector(".price-input.max").value = value;
 		} else {
 			if (Array.isArray(value)) {
@@ -288,7 +293,7 @@ function removeElement(target) {
 	updatePage();
 }
 
-function updatePage() {
+function updatePage(queries = {}) {
 	for (let tag of listTags.children) {
 		let key = tag.dataset.field;
 		let value = tag.children[0].innerText
@@ -298,7 +303,7 @@ function updatePage() {
 			if (!queries[key]) queries[key] = [];
 			queries[key].push(value);
 		} else {
-			queries[key] = value;
+			if (!queries[key]) queries[key] = value;
 		}
 	}
 
@@ -329,13 +334,15 @@ function btnPriceClicked(e) {
 		showSnackbar("Please type min price or max price!");
 		return;
 	}
+
+	queries = {};
 	if (minPrice) {
 		queries.minPrice = minPrice;
 	}
 	if (maxPrice) {
 		queries.maxPrice = maxPrice;
 	}
-	updatePage();
+	updatePage(queries);
 }
 
 function btnConditionClicked(e) {
@@ -359,4 +366,20 @@ function showSnackbar(msg) {
 
 function toggleCondition(target) {
 	toggleTag("condition", target.value, false);
+}
+
+function sortByClicked(sortOrder) {
+	updatePage({ sortBy: sortOrder });
+}
+
+function onSearchSubmit(e) {
+	e.preventDefault();
+	const input = searchForm.querySelector("input");
+	updatePage({
+		search: input.value.trim().split(/\s+/).join("-").toLowerCase(),
+	});
+}
+
+function onRatingClicked(rating) {
+	updatePage({ rating: rating.replace(/\s+/g, "-") });
 }
