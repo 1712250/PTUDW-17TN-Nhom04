@@ -61,6 +61,15 @@
 	fill: #408aff;
 }
 
+.navbar .dropdown-menu .btn {
+	background-color: #ffc354;
+	color: black;
+	font-size: 1rem;
+	font-weight: 500;
+	padding: 0.5rem;
+	text-align: center;
+}
+
 .footer {
 	background-color: #e5e5e5;
 	padding-bottom: 2rem;
@@ -159,4 +168,29 @@
 
 #account .nav-item .nav-link svg:hover {
 	fill: #fff;
+}
+
+.font-size-small {
+	font-size: 0.8rem;
+}
+
+.background-primary {
+	background-color: #408aff;
+}
+
+.background-secondary {
+	background-color: #ffc354;
+}
+
+.button-facebook {
+	background-color: #4267b2;
+}
+
+.button-google {
+	background-color: #df4b38;
+}
+
+.button-hover:hover {
+	content: "";
+	opacity: 0.9;
 }

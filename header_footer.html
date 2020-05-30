@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="./static/css/header_footer.css">
     <link rel="icon" href="./static/images/favicon.png">
     <title>Header</title>
@@ -33,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link pr-2 pr-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <!-- <a class="nav-link pr-2 pr-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -49,7 +50,17 @@
                     <a class="dropdown-item" href="#">My Shop</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Log Out</a>
-                </div>
+                </div> -->
+                <!-- When not logged in -->
+                <a class="nav-link pr-2 pr-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="modal"
+                    data-target="#exampleModal" aria-haspopup="true" aria-expanded="false">
+                    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M30 15C30 6.70967 23.2912 0 15 0C6.70967 0 0 6.70876 0 15C0 23.2169 6.65268 30 15 30C23.313 30 30 23.2546 30 15ZM15 1.75781C22.3018 1.75781 28.2422 7.69821 28.2422 15C28.2422 17.6711 27.4477 20.2384 25.9744 22.413C20.0583 16.0492 9.95247 16.0378 4.02557 22.413C2.55226 20.2384 1.75781 17.6711 1.75781 15C1.75781 7.69821 7.69821 1.75781 15 1.75781ZM5.12192 23.8184C10.3821 17.9182 19.6193 17.9196 24.8779 23.8184C19.6001 29.7231 10.402 29.7249 5.12192 23.8184Z" />
+                        <path
+                            d="M15 15.8789C17.9077 15.8789 20.2734 13.5132 20.2734 10.6055V8.84766C20.2734 5.93994 17.9077 3.57422 15 3.57422C12.0923 3.57422 9.72656 5.93994 9.72656 8.84766V10.6055C9.72656 13.5132 12.0923 15.8789 15 15.8789ZM11.4844 8.84766C11.4844 6.90903 13.0614 5.33203 15 5.33203C16.9386 5.33203 18.5156 6.90903 18.5156 8.84766V10.6055C18.5156 12.5441 16.9386 14.1211 15 14.1211C13.0614 14.1211 11.4844 12.5441 11.4844 10.6055V8.84766Z" />
+                    </svg>
+                </a>
             </li>
         </ul>
 
@@ -91,8 +102,174 @@
 
 
     <!-- Body -->
-    <div class="container-fluid px-3 px-lg-5">Some content to scroll</div>
+    <div class="container-fluid px-3 px-lg-5">
+
+    </div>
     <!-- !Body -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 50vw">
+            <div class="modal-content">
+                <div class="modal-body mx-3">
+                    <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login-form" role="tab"
+                                aria-controls="login-form" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sign-up-tab" data-toggle="tab" href="#sign-up-form" role="tab"
+                                aria-controls="sign-up-form" aria-selected="false">Sign up</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="login-form" role="tabpanel"
+                            aria-labelledby="login-tab">
+                            <form>
+                                <div class="form-group row justify-content-center">
+                                    <label class="font-size-small col-2 text-align-left align-self-center p-0 m-0"
+                                        for="exampleInputEmail1">Email
+                                        address</label>
+                                    <input type="email" class="form-control font-size-small col-9"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label class="font-size-small col-2 text-align-left align-self-center p-0 m-0"
+                                        for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control font-size-small col-9"
+                                        id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="font-size-small mb-3 d-flex justify-content-center">
+                                    <div>Forget password? <a href="#">Click here</a></div>
+                                </div>
+                                <button type="submit"
+                                    class="btn my-1 background-secondary button-hover w-100">Login</button>
+                                <button type="submit" class="btn my-1 button-facebook button-hover w-100 text-white"><i
+                                        class="fab fa-facebook-f"></i> Login with Facebook</button>
+                                <button type="submit" class="btn my-1 button-google button-hover w-100 text-white"><i
+                                        class="fab fa-google"></i> Login with Google</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="sign-up-form" role="tabpanel" aria-labelledby="sign-up-tab">
+                            <form class="font-size-small">
+                                <div class="form-group row ml-1">
+                                    <label for="fullName"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Full
+                                        Name </label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control font-size-small font-size-small"
+                                            id="fullName" placeholder="Le Hoang Vu">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label for="phoneNumber"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Phone
+                                        Number</label>
+                                    <div class="input-group col-9">
+                                        <input type="text" class="form-control font-size-small my-auto" id="phoneNumber"
+                                            placeholder="Type your phone number">
+                                        <div class="input-group-append">
+                                            <button type="submit"
+                                                class="btn my-1 background-secondary button-hover font-size-small">Send
+                                                activation code</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label for="activeCode"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Activation
+                                        Code</label>
+                                    <div class="col-9">
+                                        <input type="text" class="form-control font-size-small" id="activeCode"
+                                            placeholder="Type yout activation code sent to the phone number above">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label for="email"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Email</label>
+                                    <div class="col-9">
+                                        <input type="email" class="form-control font-size-small" id="email"
+                                            placeholder="lhvubtqn@gmail.com">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label
+                                        class="col-3 col-form-label mt-2 justify-content-left px-0 mx-0">Gender</label>
+                                    <div class="col-9">
+                                        <div class="form-check form-check-inline mt-3 justify-between-center">
+                                            <input class="form-check-input" name="gender" type="radio" id="Male"
+                                                value="Male">
+                                            <label class="form-check-label" for="Male">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="gender" type="radio" id="Female"
+                                                value="Female">
+                                            <label class="form-check-label" for="Female">Female</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="gender" type="radio" id="Another"
+                                                value="Another">
+                                            <label class="form-check-label" for="Another">Another</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label class="col-3 col-form-label mt-2 justify-content-left px-0 mx-0">Day of
+                                        Birth</label>
+                                    <div class="form-group col-3">
+                                        <select id="inputState" class="form-control font-size-small">
+                                            <option selected>Day</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <select id="inputState" class="form-control font-size-small">
+                                            <option selected>Month</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <select id="inputState" class="form-control font-size-small">
+                                            <option selected>Year</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label for="password"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Password</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control font-size-small" id="password"
+                                            placeholder="Password length from 6 to 32 characters">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row ml-1">
+                                    <label for="retype"
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0">Retype</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control font-size-small" id="retype"
+                                            placeholder="Retype your new password">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn my-1 background-secondary button-hover w-100">Sign
+                                    up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- !Modal -->
 
     <!-- Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
