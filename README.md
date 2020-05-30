@@ -11,7 +11,7 @@ A website for exchanging books between those who love them. Also, a project for 
 ## Tasks
 ### Hoang-Vu Le
 - [x] Header, Footer
-- [ ] Login/Sign Up
+- [x] Login/Sign Up
 - [x] Browse Page
 
 ### Hoang-Viet Nguyen
