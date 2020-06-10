@@ -19,6 +19,6 @@ A website for exchanging books between those who love them. Also, a project for 
  - [x] Orders
  - [x] Account Info
 ### Huu-Vinh Pham
-- [ ] Details book.
+- [x] Details book.
 - [x] Your cart.
 - [x] Book You Buy.
