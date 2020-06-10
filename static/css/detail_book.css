@@ -82,3 +82,137 @@
     font-size: 20px;
     background-color:#E0E0E0;
 }
+.infor-book
+{
+    margin-top: 3rem;
+}
+#namebook
+{
+    font-weight: bold;
+    font-size: 28px;
+}
+.count-reviews {
+    border-right:1px solid black;
+ 
+    font-size: 18px;
+}
+.addreview
+{
+    font-size: 18px;
+}
+.addreview:hover{
+    color: blue
+}
+.price
+{
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+}
+.price::before
+{
+    content: "$";
+}
+.btn-color
+{
+   height: 1.5rem;
+   width: 2rem;
+}
+.add-form {
+    height: 2em;
+}
+.input-group
+{
+    width: 8rem;
+    height: 2.5rem;
+}
+.count-books
+{
+    width: 2rem;
+}
+.btn-add-cart
+{
+    border-radius: 30px;
+    font-size: 12px;
+    height: 2.5rem;
+     
+}
+.btn-circle {
+    width: 2rem;
+    height: 2rem;
+    padding: 6px 0px;
+    border-radius: 5rem;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.42857;
+    border-color: black;
+}
+.btn-heart i:hover, .btn-heart:hover
+{
+ 
+     color: red;
+     border-color: red;
+}
+.btn-reload i:hover, .btn-reload:hover
+{
+ 
+     color: green;
+     border-color: green;
+}
+.btn-contact i:hover, .btn-contact:hover
+{
+ 
+     color: blue;
+     border-color: blue;
+}
+#myCarousel 
+{ border-radius: 10px;
+    width: 90%;
+    position: relative;
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+
+    margin-left: 5%;
+    margin-right: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+ 
+.carousel-item .img-fluid 
+{
+    height:35rem;
+    width: 100rem;
+ 
+}
+.carousel-selector-img 
+{
+    height:3rem;
+    width: 50rem;
+    background-color: black;
+ 
+}
+#myCarousel .list-inline {
+    white-space:nowrap;
+    overflow-x:auto;
+    width: 100%;
+    height: 100%;
+}
+ 
+#myCarousel .carousel-indicators {
+    position: static;
+    left: initial;
+    width: initial;
+    margin-left: initial;
+}
+
+#myCarousel .carousel-indicators > li {
+    width: initial;
+    height: initial;
+    text-indent: initial;
+}
+
+#myCarousel .carousel-indicators > li.active img {
+    opacity: 0.7;
+}
