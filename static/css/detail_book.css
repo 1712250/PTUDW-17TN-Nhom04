@@ -1,0 +1,218 @@
+.card
+{   border-width: 0px;
+    width: 20em;
+    height: 30em;
+    margin-left: 10px;
+     
+}
+.card:hover{
+    border-width: 1px;
+    border-color: black;
+}
+.icon-img
+{
+    width: 20em;
+    height: 25em; 
+}
+.img-book
+{
+ 
+    position:relative;
+}
+.top-right-mark
+{
+    display: block;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    border-top: solid  50px red;
+    border-right: solid 50px red;
+    border-left: solid 50px transparent;
+    border-bottom: solid 50px transparent;
+    text-align: center;
+ 
+}
+.text
+{
+    -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 25px; 
+}
+.text-float
+{   display: flex;
+    position: absolute;
+    background-color: white;
+    display: inline;
+    padding: 2px;
+    bottom: 5%;
+    right: 5%;
+    justify-content: center;
+}
+.text-price
+{
+    text-align: center;
+    margin-left: 5px;
+    font-size: 14px;
+}
+.text-underline
+{
+    text-decoration: line-through;
+    margin-left: 5px;
+    color: grey;
+}
+.title-book
+{
+    font-weight: bold;
+    margin-top: 5px;
+}
+.star-line
+{
+    margin-top: 5px;
+}
+.txt-related{
+    text-align: center;
+    margin: 40px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.btn-product-tag{
+    font-size: 20px;
+    background-color:#E0E0E0;
+}
+.infor-book
+{
+    margin-top: 3rem;
+}
+#namebook
+{
+    font-weight: bold;
+    font-size: 28px;
+}
+.count-reviews {
+    border-right:1px solid black;
+ 
+    font-size: 18px;
+}
+.addreview
+{
+    font-size: 18px;
+}
+.addreview:hover{
+    color: blue
+}
+.price
+{
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+}
+.price::before
+{
+    content: "$";
+}
+.btn-color
+{
+   height: 1.5rem;
+   width: 2rem;
+}
+.add-form {
+    height: 2em;
+}
+.input-group
+{
+    width: 8rem;
+    height: 2.5rem;
+}
+.count-books
+{
+    width: 2rem;
+}
+.btn-add-cart
+{
+    border-radius: 30px;
+    font-size: 12px;
+    height: 2.5rem;
+     
+}
+.btn-circle {
+    width: 2rem;
+    height: 2rem;
+    padding: 6px 0px;
+    border-radius: 5rem;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.42857;
+    border-color: black;
+}
+.btn-heart i:hover, .btn-heart:hover
+{
+ 
+     color: red;
+     border-color: red;
+}
+.btn-reload i:hover, .btn-reload:hover
+{
+ 
+     color: green;
+     border-color: green;
+}
+.btn-contact i:hover, .btn-contact:hover
+{
+ 
+     color: blue;
+     border-color: blue;
+}
+#myCarousel 
+{ border-radius: 10px;
+    width: 90%;
+    position: relative;
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+
+    margin-left: 5%;
+    margin-right: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+ 
+.carousel-item .img-fluid 
+{
+    height:35rem;
+    width: 100rem;
+ 
+}
+.carousel-selector-img 
+{
+    height:3rem;
+    width: 50rem;
+    background-color: black;
+ 
+}
+#myCarousel .list-inline {
+    white-space:nowrap;
+    overflow-x:auto;
+    width: 100%;
+    height: 100%;
+}
+ 
+#myCarousel .carousel-indicators {
+    position: static;
+    left: initial;
+    width: initial;
+    margin-left: initial;
+}
+
+#myCarousel .carousel-indicators > li {
+    width: initial;
+    height: initial;
+    text-indent: initial;
+}
+
+#myCarousel .carousel-indicators > li.active img {
+    opacity: 0.7;
+}
