@@ -10,7 +10,7 @@ A website for exchanging books between those who love them. Also, a project for 
 
 You need node to run this project. Install node [here](https://nodejs.org/en/download/).
 
-If you already have node, open terminal and run this:
+If you already have node, clone this repository, then open terminal in the repository and run this:
 
 ```
     npm install
