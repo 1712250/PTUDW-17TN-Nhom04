@@ -170,6 +170,7 @@
 	border: none;
 	font-size: 0.75rem;
 	padding: 0.4rem;
+	height: 2rem;
 }
 
 .list-books-container .nav .search-container button {
@@ -177,6 +178,7 @@
 	font-size: 0.875rem;
 	background-color: #e5e5e5;
 	width: 2rem;
+	height: 2.05rem;
 }
 
 .list-books .book {

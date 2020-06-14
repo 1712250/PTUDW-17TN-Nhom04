@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="/css/nav_sidebar.css">
+<link rel="stylesheet" href="/css/orders.css">
+
+<div class="row mt-3 justify-content-center">
+    <nav id="sidebar" class="sidebar-wrapper col-2 border shadow rounded-lg ">
+        <!--Sidebar Header -->
+        <div class="sidebar-header m-2 d-flex">
+            <div class="user-pic rounded-circle">
+                <img class="img-responsive img-rounded" src="/images/account_icon.jpg" />
+            </div>
+
+            <div class="user-info mt-3">
+                <div class="user-name align-bottom text-dark">Lê Hoàng Vũ</div>
+                <div class="user-email align-middle">lhvubtqn@gmail.com</div>
+            </div>
+        </div>
+        <!--Sidebar Menu -->
+        <ul class="sidebar-menu list-unstyled">
+            <li class="sidebar-account hovergrey active">
+                <a href="#">
+                    <i class="fa fa-user text-dark "></i>
+                    <span class="text-dark">Account infomation</span>
+                </a>
+            </li>
+            <li class="sidebar-orders hovergrey">
+                <a href="#">
+                    <i class="fa fa-book text-dark"></i>
+                    <span class="text-dark ">Orders</span>
+                </a>
+            </li>
+            <li class="sidebar-bookyoubuy hovergrey">
+                <a href="#">
+                    <i class="fa fa-shopping-cart text-dark "></i>
+                    <span class="text-dark">Books You Buy</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <!--Orders Info -->
+    <div class="content border col-8 shadow rounded-lg" id="content-data">
+        <div class="row header-content mt-5 ml-3">
+            <div class="col-2 float-left text-dark ">
+                <h6 class="font-weight-bold"> ORDERS</h2>
+            </div>
+            <div class="col-10">
+                <nav aria-label="...">
+                    <ul class="pagination  float-right">
+                        <li class="disabled">
+                            <a class="page-link active" href="#" tabindex="-1">1</a>
+                        </li>
+                        <li class=""><a class="page-link" href="#">2</a></li>
+                        <li class=" "><a class="page-link" href="#">3</a></li>
+                        <li class=" "><a class="page-link" href="#">></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="container-table container-fluid m-3">
+            <div class="row table-header">
+                <div class="col-2"> Orders</div>
+                <div class="col-2"> Buying Date</div>
+                <div class="col-4"> Books</div>
+                <div class="col-2">Price</div>
+                <div class="col-2">Staus</div>
+            </div>
+            <hr />
+            <div class="row table-header" id="item0">
+                <div class="col-2 text-primary" id="id_book">1001201</div>
+                <div class="col-2" id="date_book">18/04/2020</div>
+                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
+                <div class="col-2" id="price_book">12.00$</div>
+                <div class="col-2" id="status_book">Incoming</div>
+            </div>
+            <hr />
+            <div class="row table-header" id="item1">
+                <div class="col-2 text-primary" id="id_book">1010110</div>
+                <div class="col-2" id="date_book">15/04/2020</div>
+                <div class="col-4" id="detail_book">If I have one day left</div>
+                <div class="col-2 " id="price_book" data-toggle="dropdown">
+                    <a class="nav-link text-primary" href="#" id="navbarDropdown" data-toggle="dropdown">Exchanged</a>
+                    <!--Dropdown menu-->
+                    <div id="dropdown-book" class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">List books you've exchaged for this transaction</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">A day in Sanfransisco</a>
+                        <a class="dropdown-item" href="#">No more promises</a>
+                        <a class="dropdown-item" href="#">Life is a journey</a>
+                    </div>
+
+                </div>
+                <div class="col-2" id="status_book">Incoming</div>
+            </div>
+            <hr />
+            <div class="row table-header" id="item2">
+                <div class="col-2 text-primary" id="id_book">1515251</div>
+                <div class="col-2" id="date_book">18/09/2019</div>
+                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
+                <div class="col-2 " id="price_book">12.00$</div>
+                <div class="col-2" id="status_book">Delivered</div>
+            </div>
+            <hr />
+            <div class="row table-header" id="item3">
+                <div class="col-2 text-primary" id="id_book">1001201</div>
+                <div class="col-2" id="date_book">18/04/2020</div>
+                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
+                <div class="col-2" id="price_book">12.00$</div>
+                <div class="col-2" id="status_book">Incoming</div>
+            </div>
+            <hr />
+            <div class="row table-header" id="item4">
+                <div class="col-2 text-primary" id="id_book">1001201</div>
+                <div class="col-2" id="date_book">18/04/2020</div>
+                <div class="col-4" id="detail_book">Days of the Dead... and two more</div>
+                <div class="col-2" id="price_book">12.00$</div>
+                <div class="col-2" id="status_book">Incoming</div>
+            </div>
+            <hr />
+
+
+        </div>
+    </div>
+    <!-- BROWSE MORE -->
+    <div class="col-12 mt-5 justify-content-center text-center">
+        <a class="justify-content-center text-center" href="#"> NOT WHAT YOU LOOKING FOR? BROWSE MORE>></a>
+    </div>
+</div>

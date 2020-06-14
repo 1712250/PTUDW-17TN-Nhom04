@@ -17,7 +17,7 @@ const books = [
 		name: "What do I talk about happiness g",
 		author: "Rosy Nguyen",
 		price: "$123",
-		img: "../static/images/book.svg",
+		img: "/images/book.svg",
 	},
 	{
 		id: 2,
@@ -25,7 +25,7 @@ const books = [
 		name: "What do I talk",
 		author: "Rosy Nguyen Nguyen Nguyen",
 		price: "$12",
-		img: "../static/images/book.svg",
+		img: "/images/book.svg",
 	},
 	{
 		id: 3,
@@ -34,7 +34,7 @@ const books = [
 			"What do I talk What do I talk What do I talk What do I talk vWhat do I talk",
 		author: "Rosy",
 		price: "$12",
-		img: "../static/images/book.svg",
+		img: "/images/book.svg",
 	},
 	{
 		id: 4,
@@ -43,7 +43,7 @@ const books = [
 			"What do I talk What do I talk What do I talk What do I talk vWhat do I talk",
 		author: "Rosy",
 		price: "$12",
-		img: "../static/images/book.svg",
+		img: "/images/book.svg",
 	},
 ];
 
