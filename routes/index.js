@@ -20,6 +20,10 @@ router.get("/browse", (req, res, next) => {
 	res.render("browse_books", { title: "Browse" });
 });
 
+router.get("/browse/book", (req, res, next) => {
+	res.render("book_detail", { title: "Book detail" });
+});
+
 router.get("/cart", (req, res, next) => {
 	res.render("your_cart", { title: "Your Cart" });
 });

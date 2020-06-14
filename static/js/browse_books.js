@@ -240,7 +240,7 @@ function renderBooks(books) {
 			"a",
 			{
 				class: "d-block col-12 col-sm-6 col-lg-4 col-xl-3",
-				href: "/books/detail.html?id=" + book.id,
+				href: "/browse/book?id=" + book.id,
 			},
 			createElement(
 				"div",
@@ -260,7 +260,7 @@ function renderBooks(books) {
 					createElement(
 						"a",
 						{
-							href: "/books/author.html?id=" + book.authorId,
+							href: "/browse/author?id=" + book.authorId,
 						},
 						createElement(
 							"p",
