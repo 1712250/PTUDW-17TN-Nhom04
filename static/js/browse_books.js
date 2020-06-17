@@ -1,7 +1,7 @@
 const listBooks = document.querySelector(".list-books");
 const cartBadge = document.querySelector(".cart-badge");
 const pagination = document.querySelector(".pagination");
-const listGenres = document.querySelector(".select-genres");
+const listGenres = document.querySelector(".books-filter .select-genres");
 const listTags = document.querySelector(".tags-container");
 const listConditions = document.querySelector(".list-conditions");
 const listLanguages = document.querySelector(".list-languages");
@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	searchForm
 		.querySelector("div > button")
 		.addEventListener("click", onSearchSubmit);
+	listGenres.addEventListener("click", onGenreSelected);
 
 	// Parse URL
 	const queries = parseURL();
@@ -150,7 +151,11 @@ function addToCart(bookId) {
 
 function renderSelect(genres) {
 	const options = genres.map((genre) =>
-		createElement("option", { value: genre.toLowerCase }, createText(genre))
+		createElement(
+			"option",
+			{ value: genre.toLowerCase() },
+			createText(genre)
+		)
 	);
 	listGenres.append(...options);
 }
@@ -386,4 +391,8 @@ function onSearchSubmit(e) {
 
 function onRatingClicked(rating) {
 	updatePage({ rating: rating.replace(/\s+/g, "-") });
+}
+
+function onGenreSelected(e) {
+	updatePage({ genre: e.target.value.replace(/\s+/g, "-") });
 }
