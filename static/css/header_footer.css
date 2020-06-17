@@ -42,23 +42,24 @@
 	color: #ffffff;
 }
 
-.navbar form {
+.navbar .input-group {
+	width: 15rem;
 	margin-left: 1rem;
 }
 
-.navbar form button {
-	width: 2.5rem;
-	padding: 0.3rem;
-	margin-left: -3rem;
-	outline: none;
+.navbar .input-group > input,
+.navbar .input-group > div > button {
 	border: none;
-	background-color: transparent;
+	background-color: white;
 }
 
-.navbar form svg {
-	height: 1rem;
-	margin-bottom: 0.2rem;
-	fill: #408aff;
+.navbar .input-group > input:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.navbar .input-group i {
+	color: #408aff;
 }
 
 .navbar .dropdown-menu .btn {

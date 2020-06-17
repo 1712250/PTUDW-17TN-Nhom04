@@ -45,9 +45,9 @@
             <div class="price-container">
                 <p class="label">Price</p>
                 <form>
-                    <input class="price-input min" type="text" placeholder="min">
+                    <input class="form-control price-input min" type="text" placeholder="min">
                     <span> - </span>
-                    <input class="price-input max" type="text" placeholder="max">
+                    <input class="form-control price-input max" type="text" placeholder="max">
                     <button class="price-btn btn btn-outline-primary">OK</button>
                 </form>
             </div>
@@ -162,10 +162,13 @@
 
             </li>
             <div class="search-container ml-2">
-                <form>
-                    <input type="text" placeholder="Search in this list">
-                    <button type="submit"><i class="fas fa-search avoid-clicks"></i></button>
-                </form>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search in this list">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary button-hover" type="button"><i
+                                class="fas fa-search avoid-clicks"></i></button>
+                    </div>
+                </div>
             </div>
         </ul>
         <div class="dropdown-divider"></div>

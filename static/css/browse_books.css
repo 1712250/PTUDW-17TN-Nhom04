@@ -156,29 +156,18 @@
 	width: 1rem;
 }
 
-.list-books-container .nav .search-container {
-	display: flex;
-	justify-content: center;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 2px;
-	border-color: #e5e5e5;
-}
-
 .list-books-container .nav .search-container input,
 .list-books-container .nav .search-container button {
-	border: none;
 	font-size: 0.75rem;
 	padding: 0.4rem;
 	height: 2rem;
 }
 
 .list-books-container .nav .search-container button {
-	color: #808080;
-	font-size: 0.875rem;
-	background-color: #e5e5e5;
-	width: 2rem;
-	height: 2.05rem;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+	border: none;
+	background-color: #999999;
 }
 
 .list-books .book {

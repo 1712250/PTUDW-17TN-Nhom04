@@ -8,7 +8,9 @@ const listLanguages = document.querySelector(".list-languages");
 const btnPrice = document.querySelector(".price-btn");
 const btnCondition = document.querySelector(".list-conditions button");
 const btnLanguage = document.querySelector(".list-languages button");
-const searchForm = document.querySelector("div.search-container > form");
+const searchForm = document.querySelector(
+	"div.search-container > .input-group"
+);
 
 const books = [
 	{
@@ -66,7 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	btnPrice.addEventListener("click", btnPriceClicked);
 	btnCondition.addEventListener("click", btnConditionClicked);
 	btnLanguage.addEventListener("click", btnLanguageClicked);
-	searchForm.addEventListener("submit", onSearchSubmit);
+	searchForm
+		.querySelector("div > button")
+		.addEventListener("click", onSearchSubmit);
 
 	// Parse URL
 	const queries = parseURL();
