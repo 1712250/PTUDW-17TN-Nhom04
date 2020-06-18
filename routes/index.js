@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const checkout = require("./checkout");
 
 router.get("/", (req, res, next) => {
 	res.render("homepage", { title: "Obooks" });
@@ -9,11 +10,11 @@ router.get("/account", (req, res, next) => {
 });
 
 router.get("/account/books", (req, res, next) => {
-	res.render("book_you_buy", { title: "Your books" });
+	res.render("book_you_buy", { title: "Your Books" });
 });
 
-router.get("/account/cart", (req, res, next) => {
-	res.render("your_cart", { title: "Your cart" });
+router.get("/account/orders", (req, res, next) => {
+	res.render("orders", { title: "Your Orders" });
 });
 
 router.get("/browse", (req, res, next) => {
@@ -21,15 +22,9 @@ router.get("/browse", (req, res, next) => {
 });
 
 router.get("/browse/book", (req, res, next) => {
-	res.render("book_detail", { title: "Book detail" });
+	res.render("book_detail", { title: "Book Detail" });
 });
 
-router.get("/cart", (req, res, next) => {
-	res.render("your_cart", { title: "Your Cart" });
-});
-
-router.get("/account/orders", (req, res, next) => {
-	res.render("orders", { title: "Orders" });
-});
+router.use("/checkout", checkout);
 
 module.exports = router;
