@@ -36,33 +36,11 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link pr-2 pr-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M30 15C30 6.70967 23.2912 0 15 0C6.70967 0 0 6.70876 0 15C0 23.2169 6.65268 30 15 30C23.313 30 30 23.2546 30 15ZM15 1.75781C22.3018 1.75781 28.2422 7.69821 28.2422 15C28.2422 17.6711 27.4477 20.2384 25.9744 22.413C20.0583 16.0492 9.95247 16.0378 4.02557 22.413C2.55226 20.2384 1.75781 17.6711 1.75781 15C1.75781 7.69821 7.69821 1.75781 15 1.75781ZM5.12192 23.8184C10.3821 17.9182 19.6193 17.9196 24.8779 23.8184C19.6001 29.7231 10.402 29.7249 5.12192 23.8184Z" />
-                        <path
-                            d="M15 15.8789C17.9077 15.8789 20.2734 13.5132 20.2734 10.6055V8.84766C20.2734 5.93994 17.9077 3.57422 15 3.57422C12.0923 3.57422 9.72656 5.93994 9.72656 8.84766V10.6055C9.72656 13.5132 12.0923 15.8789 15 15.8789ZM11.4844 8.84766C11.4844 6.90903 13.0614 5.33203 15 5.33203C16.9386 5.33203 18.5156 6.90903 18.5156 8.84766V10.6055C18.5156 12.5441 16.9386 14.1211 15 14.1211C13.0614 14.1211 11.4844 12.5441 11.4844 10.6055V8.84766Z" />
-                    </svg>
-                </a>
-                <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/account">My Account</a>
-                    <a class="dropdown-item" href="/account/books">My Books</a>
-                    <a class="dropdown-item" href="/account/orders">My Orders</a>
-                    <a class="dropdown-item" href="#">My Shop</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Log Out</a>
-                </div>
-                <!-- When not logged in -->
-                <!-- <a class="nav-link pr-2 pr-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="modal"
-                    data-target="#exampleModal" aria-haspopup="true" aria-expanded="false">
-                    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M30 15C30 6.70967 23.2912 0 15 0C6.70967 0 0 6.70876 0 15C0 23.2169 6.65268 30 15 30C23.313 30 30 23.2546 30 15ZM15 1.75781C22.3018 1.75781 28.2422 7.69821 28.2422 15C28.2422 17.6711 27.4477 20.2384 25.9744 22.413C20.0583 16.0492 9.95247 16.0378 4.02557 22.413C2.55226 20.2384 1.75781 17.6711 1.75781 15C1.75781 7.69821 7.69821 1.75781 15 1.75781ZM5.12192 23.8184C10.3821 17.9182 19.6193 17.9196 24.8779 23.8184C19.6001 29.7231 10.402 29.7249 5.12192 23.8184Z" />
-                        <path
-                            d="M15 15.8789C17.9077 15.8789 20.2734 13.5132 20.2734 10.6055V8.84766C20.2734 5.93994 17.9077 3.57422 15 3.57422C12.0923 3.57422 9.72656 5.93994 9.72656 8.84766V10.6055C9.72656 13.5132 12.0923 15.8789 15 15.8789ZM11.4844 8.84766C11.4844 6.90903 13.0614 5.33203 15 5.33203C16.9386 5.33203 18.5156 6.90903 18.5156 8.84766V10.6055C18.5156 12.5441 16.9386 14.1211 15 14.1211C13.0614 14.1211 11.4844 12.5441 11.4844 10.6055V8.84766Z" />
-                    </svg>
-                </a> -->
+                <% if (loggedIn) { %>
+                <%-     include("account"); %>
+                <% } else { %>
+                <%-     include("login"); %>
+                <% } %>
             </li>
         </ul>
 
@@ -109,8 +87,7 @@
     <!-- !Body -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document" style="max-width: 50vw">
             <div class="modal-content">
                 <div class="modal-body mx-3">
@@ -144,8 +121,8 @@
                                 <div class="font-size-small mb-3 d-flex justify-content-center">
                                     <div>Forget password? <a href="#">Click here</a></div>
                                 </div>
-                                <button type="submit"
-                                    class="btn my-1 background-secondary button-hover w-100">Login</button>
+                                <button type="submit" class="btn my-1 background-secondary button-hover w-100"
+                                    onclick="doLogin()">Login</button>
                                 <button type="submit" class="btn my-1 button-facebook button-hover w-100 text-white"><i
                                         class="fab fa-facebook-f"></i> Login with Facebook</button>
                                 <button type="submit" class="btn my-1 button-google button-hover w-100 text-white"><i
@@ -373,6 +350,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <script src="/js/auth.js"></script>
     <%- script %>
 </body>
 

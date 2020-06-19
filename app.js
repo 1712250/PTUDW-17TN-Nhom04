@@ -20,6 +20,10 @@ app.use(express.json());
 // routers
 const ApiRouter = require("./apis/index");
 const ViewRouter = require("./routes/index");
+app.use("**", (req, res, next) => {
+	res.locals.loggedIn = req.headers.cookie != undefined;
+	next();
+});
 app.use("/", ViewRouter);
 app.use("/api", ApiRouter);
 
