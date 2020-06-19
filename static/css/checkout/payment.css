@@ -1,0 +1,132 @@
+.phase {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: none;
+	text-align: center;
+	padding-top: 0.2rem;
+}
+
+.phase-title {
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.phase-text {
+	font-size: 0.9rem;
+	color: white;
+}
+
+.progress {
+	position: relative;
+	bottom: 1.5rem;
+	z-index: -1;
+}
+
+.choose-form {
+	width: 70%;
+}
+
+.choose-form > .payment-title {
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #555555;
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.choose-form > .options {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #e5e5e5;
+	padding: 1rem;
+	font-size: 0.9rem;
+}
+
+.choose-form > .options > .option {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.choose-form > .options > .option > input {
+	position: absolute;
+	opacity: 0;
+	height: 0;
+	width: 0;
+}
+
+.choose-form > .options > .option > span {
+	height: 1.2rem;
+	width: 1.2rem;
+	background-color: #fff;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #aaa;
+	border-radius: 50%;
+}
+
+.choose-form > .options > .option > label {
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.choose-form > .options > .option:hover > span {
+	border-color: #408aff;
+}
+
+.choose-form > .options > input:checked ~ span {
+	border-color: #408aff;
+}
+
+.choose-form > .options > .option > span:after {
+	content: "";
+	display: none;
+	position: relative;
+	top: 2px;
+	left: 2px;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background-color: #408aff;
+}
+
+.choose-form > .options > .option > input:checked ~ span:after {
+	display: block;
+}
+
+.choose-form > .options > .option > input:checked ~ span {
+	border-color: #408aff;
+}
+
+.information {
+	margin-left: 2rem;
+	margin-top: 2.45rem;
+	width: 30%;
+	font-size: 0.9rem;
+}
+
+.information > .address,
+.information > .bill {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #e5e5e5;
+	padding: 1rem;
+	padding-top: 0.55rem;
+	margin-top: 1rem;
+	width: 100%;
+}
+
+.information > .address .btn,
+.information > .bill > .btn {
+	font-size: 0.8rem;
+}
+
+.information > .bill > .book > .book-price {
+	white-space: nowrap;
+	margin-left: 1rem;
+}
