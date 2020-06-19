@@ -17,3 +17,82 @@
 <div class="progress mx-1 mb-3">
     <div class="progress-bar background-primary w-100"></div>
 </div>
+
+<div class="d-flex">
+    <div class="choose-form">
+        <div class="payment-title">1. Delivery method</div>
+        <div class="options">
+            <label class="option">
+                <input type="radio" name="delivery-method" value="standard">
+                <span></span>
+                <div class="m-0 ml-2">Standard Delivery</div>
+            </label>
+            <label class="option">
+                <input type="radio" name="delivery-method" value="fast">
+                <span></span>
+                <div class="m-0 ml-2">Fast Delivery</div>
+            </label>
+        </div>
+        <div class="payment-title">2. Payment method</div>
+        <div class="options">
+            <label class="option">
+                <input type="radio" name="delivery-method" value="cash" checked>
+                <span></span>
+                <div class="m-0 ml-2">By Cash</div>
+            </label>
+            <label class="option">
+                <input type="radio" name="delivery-method" value="visa">
+                <span></span>
+                <div class="m-0 ml-2" for="visa">By Visa, Master, JCB</div>
+            </label>
+        </div>
+    </div>
+
+    <div class="information">
+        <div class="address">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>Delivering address</div>
+                <a href="/checkout/shipping" class="btn btn-outline-secondary">Edit</a>
+            </div>
+            <div class=" dropdown-divider"></div>
+            <div style="font-size: 1rem; margin-bottom: 0.5rem;"><b>Hoang-Vu Le</b></div>
+            <div><b>Address:</b> 49A Hung Vuong, Ward 4, District 5, Ho Chi Minh City</div>
+            <div><b>Phone number:</b> (+84) 979 134 464
+            </div>
+        </div>
+        <div class="bill">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>Bill</div>
+                <a href="/checkout/shipping" class="btn btn-outline-secondary">Edit</a>
+            </div>
+            <div class=" dropdown-divider"></div>
+            <div class="book d-flex justify-content-between">
+                <div class="book-info">
+                    <div class="book-name"><b>1x</b><a class="ml-3" href="#">What do I say about happiness What do I say
+                            about happiness</a></div>
+                    <div class="book-provider">Provide by <b>Some provider</b></div>
+                </div>
+                <div class="book-price">12 USD</div>
+            </div>
+            <div class=" dropdown-divider"></div>
+            <div class="d-flex justify-content-between mt-2">
+                <div>Books</div>
+                <div>12 USD</div>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <div>VAT</div>
+                <div>1 USD</div>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <div>Discount</div>
+                <div>10 USD</div>
+            </div>
+            <div style="border-width: 3px" class="dropdown-divider"></div>
+            <div class="d-flex justify-content-between">
+                <div><b>Total</b></div>
+                <div style="font-size: 1.3rem; color: red"><b>123 USD</b></div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-danger mt-3 w-100">Order</a>
+    </div>
+</div>
