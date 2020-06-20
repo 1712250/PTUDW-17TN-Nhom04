@@ -122,7 +122,7 @@
 }
 
 .information > .address .btn,
-.information > .bill > .btn {
+.information > .bill .btn {
 	font-size: 0.8rem;
 }
 
