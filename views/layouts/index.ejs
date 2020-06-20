@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/header_footer.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
     <link rel="icon" href="/images/favicon.png">
     <title><%= title %></title>
     <%- style %>
@@ -197,26 +198,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row ml-1">
-                                    <label class="col-3 col-form-label mt-2 justify-content-left px-0 mx-0">Day of
+                                <div class="form-group row ml-1 mt-2">
+                                    <label class="col-3 col-form-label justify-content-left px-0 mx-0">Day of
                                         Birth</label>
-                                    <div class="form-group col-3">
-                                        <select class="form-control font-size-small">
-                                            <option selected>Day</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <select class="form-control font-size-small">
-                                            <option selected>Month</option>
-                                            <option>...</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-3">
-                                        <select class="form-control font-size-small">
-                                            <option selected>Year</option>
-                                            <option>...</option>
-                                        </select>
+                                    <div class="col-9">
+                                        <div class="input-group date" data-provide="datepicker">
+                                            <input type="text" class="form-control">
+                                            <div class="input-group-append">
+                                                <div
+                                                    class="btn btn-secondary input-group-addon d-flex align-items-center">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -350,6 +344,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <script src="/js/bootstrap-datepicker.min.js"></script>
     <script src="/js/auth.js"></script>
     <%- script %>
 </body>
