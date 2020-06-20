@@ -1,70 +1,59 @@
-.body
-{
-    margin-right: 1em;
-    margin-left: 1em;
-    height: 100%;
-    margin-bottom: 50px;
+.body {
+	margin-right: 1em;
+	margin-left: 1em;
+	height: 100%;
+	margin-bottom: 50px;
 }
-#sidebar{
-    margin-right: 5px;
+#sidebar {
+	margin-right: 5px;
 }
- .sidebar-header .user-pic {
-   float: left;
-   width: 100%;
-   margin-right: 0.5em;
-   overflow: auto;
- }
-
-.sidebar-header .user-pic img {
-   object-fit: cover;
-   height: 100%;
-   width: 100%;
- }
-
- .user-name
- {
-     font-size: 15px;
-     font-weight: bold;
-
- }
- .user-email
- {
-     font-size: 10px;
-     color: gray;
-
- }
- .row
- {
-     height: 100%
- }
- #sidebar
- {
-     color: gray;
- }
- .sidebar-menu
- {
-     margin-top: 1em;
- }
-  .fa
- {
-   padding: 10px;
- }
-.hovergrey:hover
-{
-   border-radius: 10px;
-   background-color: lightgray;
+#sidebar .sidebar-header .user-pic {
+	float: left;
+	max-width: 60px;
+	max-height: 60px;
+	margin-right: 0.5em;
+	overflow: auto;
 }
-.hovergrey
-{
-   margin-bottom: 3px;
-}
-a:hover
-{
-    text-decoration: none;
-}
-.active 
-{
-   border-radius: 10px;
-   background-color: lightgray;
 
+#sidebar .sidebar-header .user-pic img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+#sidebar .user-name {
+	font-size: 15px;
+	font-weight: bold;
+}
+#sidebar .user-email {
+	font-size: 10px;
+	color: gray;
+}
+#sidebar .row {
+	height: 100%;
+}
+#sidebar {
+	color: gray;
+}
+#sidebar .sidebar-menu {
+	margin-top: 1em;
+}
+#sidebar .sidebar-menu > li {
+	border-radius: 5px;
+	cursor: pointer;
+}
+#sidebar .fa {
+	padding: 10px;
+}
+#sidebar .hovergrey:hover {
+	background-color: lightgray;
+}
+#sidebar .hovergrey {
+	margin-bottom: 3px;
+}
+#sidebar a:hover {
+	text-decoration: none;
+}
+#sidebar .active {
+	background-color: lightgray;
 }

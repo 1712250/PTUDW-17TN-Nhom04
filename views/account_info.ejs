@@ -3,14 +3,14 @@
 
 <!--Sidebar-->
 <div class="row mt-3 justify-content-center">
-    <nav id="sidebar" class="sidebar-wrapper col-2 border shadow rounded-lg ">
+    <nav id="sidebar" class="sidebar-wrapper col-3 border shadow rounded-lg p-3">
         <!--Sidebar Header -->
-        <div class="sidebar-header m-2 d-flex">
+        <div class="sidebar-header d-flex align-items-center">
             <div class="user-pic rounded-circle">
-                <img class="img-responsive img-rounded" src="/images/account_icon.jpg" />
+                <img class="img-rounded" src="/images/account_icon.jpg" />
             </div>
 
-            <div class="user-info mt-3">
+            <div class="user-info">
                 <div class="user-name align-bottom text-dark">Lê Hoàng Vũ</div>
                 <div class="user-email align-middle">lhvubtqn@gmail.com</div>
             </div>
@@ -40,53 +40,55 @@
     </nav>
 
     <!--Account Info -->
-    <div class="content border col-8 shadow rounded-lg" id="content-data">
-        <div class="ml-3 mt-5 mb-5 font-weight-bold">ACCOUNT INFORMATION</div>
-        <form>
+    <div class="pb-4 content border col-8 shadow rounded-lg" id="content-data">
+        <div class="mx-3 mt-4 mb-5 font-weight-bold">ACCOUNT INFORMATION</div>
+        <form class="mx-3">
             <div class="form-group row ml-1">
-                <label for="fullName" class="col-sm-2 col-form-labe mt-2 justify-content-left">Full Name </label>
-                <div class="col-sm-9">
+                <label for="fullName" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Full
+                    Name </label>
+                <div class="col-10">
                     <input type="text" class="form-control" id="fullName" placeholder="Le Hoang Vu">
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label for="phoneNumber" class="col-sm-2 col-form-labe mt-2 justify-content-left">Phone
+                <label for="phoneNumber" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Phone
                     Number</label>
-                <div class="input-group col-sm-9">
-                    <input type="text" class="form-control" id="phoneNumber"
-                        placeholder="Type your phone number here for better security">
+                <div class="input-group col-10">
+                    <input type="text" class="form-control my-auto" id="phoneNumber"
+                        placeholder="Type your phone number">
                     <div class="input-group-append">
-                        <button class="btn btn-warning">Get activation code</button>
+                        <button type="submit" class="btn my-1 background-secondary button-hover">Send
+                            activation code</button>
                     </div>
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label for="activeCode" class="col-sm-2 col-form-labe mt-2 justify-content-left">Activation
+                <label for="activeCode" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Activation
                     Code</label>
-                <div class="col-sm-9">
+                <div class="col-10">
                     <input type="text" class="form-control" id="activeCode"
-                        placeholder="Type yout activation code sent to the phone number above">
+                        placeholder="Type your activation code sent to the phone number above">
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label for="email" class="col-sm-2 col-form-labe mt-2 justify-content-left">Email</label>
-                <div class="col-sm-9">
+                <label for="email" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Email</label>
+                <div class="col-10">
                     <input type="email" class="form-control" id="email" placeholder="lhvubtqn@gmail.com">
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label class="col-sm-2 col-form-label mt-2 justify-content-left">Gender</label>
-                <div class="col-sm-9">
+                <label class="col-2 col-form-label mt-2 justify-content-left px-0 mx-0">Gender</label>
+                <div class="col-10">
                     <div class="form-check form-check-inline mt-3 justify-between-center">
                         <input class="form-check-input" name="gender" type="radio" id="Male" value="Male">
                         <label class="form-check-label" for="Male">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="gender" type="radio" id="Female" value="Female">
+                        <input class="form-check-input name=" gender" type="radio" id="Female" value="Female">
                         <label class="form-check-label" for="Female">Female</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -96,46 +98,33 @@
                 </div>
             </div>
 
-            <div class="form-group row ml-1">
-                <label class="col-sm-2 col-form-label mt-2 justify-content-left">Day of Birth</label>
-                <div class="form-group col-sm-2">
-                    <select id="inputState" class="form-control">
-                        <option selected>Day</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-2">
-                    <select id="inputState" class="form-control">
-                        <option selected>Month</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-sm-2">
-                    <select id="inputState" class="form-control">
-                        <option selected>Year</option>
-                        <option>...</option>
-                    </select>
+            <div class="form-group row ml-1 mt-2">
+                <label class="col-2 col-form-label justify-content-left px-0 mx-0">Day
+                    of
+                    Birth</label>
+                <div class="col-10">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                        <div class="input-group-append">
+                            <div class="btn btn-secondary input-group-addon d-flex align-items-center">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label for="oldPass" class="col-sm-2 col-form-labe mt-2 justify-content-left">Old Password</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="oldPass" placeholder="Your old password">
-                </div>
-            </div>
-
-            <div class="form-group row ml-1">
-                <label for="newPass" class="col-sm-2 col-form-labe mt-2 justify-content-left">New Password</label>
-                <div class="col-sm-9">
-                    <input type="password" class="form-control" id="newPass"
+                <label for="password" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Password</label>
+                <div class="col-10">
+                    <input type="password" class="form-control" id="password"
                         placeholder="Password length from 6 to 32 characters">
                 </div>
             </div>
 
             <div class="form-group row ml-1">
-                <label for="retype" class="col-sm-2 col-form-labe mt-2 justify-content-left">Retype</label>
-                <div class="col-sm-9">
+                <label for="retype" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Retype</label>
+                <div class="col-10">
                     <input type="password" class="form-control" id="retype" placeholder="Retype your new password">
                 </div>
             </div>
@@ -143,7 +132,7 @@
             <div class="form-group row ml-1">
                 <label class="col-sm-2 col-form-labe mt-2 justify-content-left"> </label>
                 <div class="col-sm-9">
-                    <button type="submit" class="btn btn-warning">Update Information</button>
+                    <button type="submit" class="btn background-secondary button-hover">Update Information</button>
                 </div>
             </div>
         </form>
