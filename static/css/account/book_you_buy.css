@@ -1,0 +1,48 @@
+.list-books .book {
+	cursor: pointer;
+}
+
+.list-books .card {
+	display: block;
+	border: none;
+}
+
+.list-books .card:hover {
+	box-shadow: 0px 0px 5px #c4c4c4;
+}
+
+.list-books > a:hover {
+	text-decoration: none;
+}
+
+.list-books .card img {
+	height: 15rem;
+}
+
+.list-books .card .book-name {
+	font-size: 1rem;
+	font-weight: 500;
+	color: #0000ff;
+	height: 1.4rem;
+	margin-bottom: 0.5rem;
+}
+
+.list-books .card:hover .book-name {
+	text-decoration: underline;
+}
+
+.list-books .card .btn {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ffc354;
+	background-color: white;
+	color: black;
+	font-size: 0.8rem;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.list-books .card .btn:hover {
+	background-color: #ffc354;
+	color: black;
+}

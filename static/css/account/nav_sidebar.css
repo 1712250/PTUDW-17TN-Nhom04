@@ -38,8 +38,8 @@
 #sidebar .sidebar-menu {
 	margin-top: 1em;
 }
-#sidebar .sidebar-menu > li {
-	border-radius: 5px;
+#sidebar .sidebar-menu li {
+	border-radius: 3px;
 	cursor: pointer;
 }
 #sidebar .fa {

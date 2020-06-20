@@ -1,42 +1,7 @@
-<link rel="stylesheet" href="/css/nav_sidebar.css">
-<link rel="stylesheet" href="/css/orders.css">
+<link rel="stylesheet" href="/css/account/orders.css">
 
 <div class="row mt-3 justify-content-center">
-    <nav id="sidebar" class="sidebar-wrapper col-2 border shadow rounded-lg ">
-        <!--Sidebar Header -->
-        <div class="sidebar-header m-2 d-flex">
-            <div class="user-pic rounded-circle">
-                <img class="img-responsive img-rounded" src="/images/account_icon.jpg" />
-            </div>
-
-            <div class="user-info mt-3">
-                <div class="user-name align-bottom text-dark">Lê Hoàng Vũ</div>
-                <div class="user-email align-middle">lhvubtqn@gmail.com</div>
-            </div>
-        </div>
-        <!--Sidebar Menu -->
-        <ul class="sidebar-menu list-unstyled">
-            <li class="sidebar-account hovergrey active">
-                <a href="#">
-                    <i class="fa fa-user text-dark "></i>
-                    <span class="text-dark">Account infomation</span>
-                </a>
-            </li>
-            <li class="sidebar-orders hovergrey">
-                <a href="#">
-                    <i class="fa fa-book text-dark"></i>
-                    <span class="text-dark ">Orders</span>
-                </a>
-            </li>
-            <li class="sidebar-bookyoubuy hovergrey">
-                <a href="#">
-                    <i class="fa fa-shopping-cart text-dark "></i>
-                    <span class="text-dark">Books You Buy</span>
-                </a>
-            </li>
-
-        </ul>
-    </nav>
+    <%- include("nav_sidebar"); %>
 
     <!--Orders Info -->
     <div class="content border col-8 shadow rounded-lg" id="content-data">

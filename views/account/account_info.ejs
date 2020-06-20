@@ -3,41 +3,7 @@
 
 <!--Sidebar-->
 <div class="row mt-3 justify-content-center">
-    <nav id="sidebar" class="sidebar-wrapper col-3 border shadow rounded-lg p-3">
-        <!--Sidebar Header -->
-        <div class="sidebar-header d-flex align-items-center">
-            <div class="user-pic rounded-circle">
-                <img class="img-rounded" src="/images/account_icon.jpg" />
-            </div>
-
-            <div class="user-info">
-                <div class="user-name align-bottom text-dark">Lê Hoàng Vũ</div>
-                <div class="user-email align-middle">lhvubtqn@gmail.com</div>
-            </div>
-        </div>
-        <!--Sidebar Menu -->
-        <ul class="sidebar-menu list-unstyled">
-            <li class="sidebar-account hovergrey active">
-                <a href="#">
-                    <i class="fa fa-user text-dark "></i>
-                    <span class="text-dark">Account infomation</span>
-                </a>
-            </li>
-            <li class="sidebar-orders hovergrey">
-                <a href="#">
-                    <i class="fa fa-book text-dark"></i>
-                    <span class="text-dark ">Orders</span>
-                </a>
-            </li>
-            <li class="sidebar-bookyoubuy hovergrey">
-                <a href="#">
-                    <i class="fa fa-shopping-cart text-dark "></i>
-                    <span class="text-dark">Books You Buy</span>
-                </a>
-            </li>
-
-        </ul>
-    </nav>
+    <%- include("nav_sidebar"); %>
 
     <!--Account Info -->
     <div class="pb-4 content border col-8 shadow rounded-lg" id="content-data">

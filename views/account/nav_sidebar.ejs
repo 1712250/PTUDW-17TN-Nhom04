@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="/css/account/nav_sidebar.css">
+
+<nav id="sidebar" class="sidebar-wrapper col-3 border shadow rounded-lg p-3">
+    <!--Sidebar Header -->
+    <div class="sidebar-header d-flex align-items-center">
+        <div class="user-pic rounded-circle">
+            <img class="img-rounded" src="/images/account_icon.jpg" />
+        </div>
+
+        <div class="user-info">
+            <div class="user-name align-bottom text-dark">Lê Hoàng Vũ</div>
+            <div class="user-email align-middle">lhvubtqn@gmail.com</div>
+        </div>
+    </div>
+    <!--Sidebar Menu -->
+    <ul class="sidebar-menu list-unstyled">
+        <a href="/account/">
+            <li class="sidebar-account hovergrey <%= title === 'Your Account' ? 'active' : '' %>">
+                <i class="fa fa-user text-dark "></i>
+                <span class="text-dark">Account infomation</span>
+            </li>
+        </a>
+        <a href="/account/books">
+            <li class="sidebar-bookyoubuy hovergrey <%= title === 'Your Books' ? 'active' : '' %>">
+
+                <i class="fa fa-shopping-cart text-dark "></i>
+                <span class="text-dark">Books You Buy</span>
+
+            </li>
+        </a>
+        <a href="/account/orders">
+            <li class="sidebar-orders hovergrey <%= title === 'Your Orders' ? 'active' : '' %>">
+                <i class="fa fa-book text-dark"></i>
+                <span class="text-dark ">Orders</span>
+            </li>
+        </a>
+    </ul>
+</nav>
