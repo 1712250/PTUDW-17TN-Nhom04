@@ -9,6 +9,11 @@
                     <p class="label">Genre</p>
                     <select class="select-genres px-2 py-1 w-100">
                         <option value="all genres">All genres</option>
+                        <% genres.forEach(function(genre){ %>
+                        <option <%= genre.name === selectedGenre ? 'selected' : '' %> value="<%= genre.name %>">
+                            <%= genre.name %>
+                        </option>
+                        <% }); %>
                     </select>
                 </div>
                 <div class="tags-container mt-3"></div>
@@ -173,6 +178,23 @@
         </ul>
         <div class="dropdown-divider"></div>
         <div class="list-books row mt-2 text-wrap">
+            <% bookInstances.forEach(bookInstance => { %>
+            <div class="book col-12 col-sm-6 col-lg-4 col-xl-3"
+                onclick="location.href='/browse/book?id=<%= bookInstance.book._id %>'">
+                <div class="card my-2 pt-3">
+                    <div class="book-cover"><img src="<%= bookInstance.book.image_url %>" class="card-img-top"></div>
+                    <div class="card-body">
+                        <div class="book-name"><%= bookInstance.book.title %></div>
+                        <a class="d-block book-author text-truncate"
+                            href="/browse/author?id=<%= bookInstance.book.author._id %>">
+                            <%= bookInstance.book.author.name %>
+                        </a>
+                        <p class="book-price">$<%= bookInstance.price %></p>
+                        <a href="javascript:addToCart(<%= bookInstance.book._id %>)" class="btn w-100">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
         </div>
         <ul class="pagination justify-content-end">
             <li class="page-item disabled">

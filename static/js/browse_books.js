@@ -12,57 +12,6 @@ const searchForm = document.querySelector(
 	"div.search-container > .input-group"
 );
 
-const books = [
-	{
-		id: 1,
-		authorId: 123,
-		name: "What do I talk about happiness g",
-		author: "Rosy Nguyen",
-		price: "$123",
-		img: "/images/book.svg",
-	},
-	{
-		id: 2,
-		authorId: 456,
-		name: "What do I talk",
-		author: "Rosy Nguyen Nguyen Nguyen",
-		price: "$12",
-		img: "/images/book.svg",
-	},
-	{
-		id: 3,
-		authorId: 456,
-		name:
-			"What do I talk What do I talk What do I talk What do I talk vWhat do I talk",
-		author: "Rosy",
-		price: "$12",
-		img: "/images/book.svg",
-	},
-	{
-		id: 4,
-		authorId: 456,
-		name:
-			"What do I talk What do I talk What do I talk What do I talk vWhat do I talk",
-		author: "Rosy",
-		price: "$12",
-		img: "/images/book.svg",
-	},
-];
-
-const genres = [
-	"Action and adventure",
-	"Art",
-	"Alternate history",
-	"Autobiography",
-	"Anthology",
-	"Biography",
-	"Chick lit",
-	"Book review",
-	"Children's",
-	"Cookbook",
-	"Comic books",
-];
-
 document.addEventListener("DOMContentLoaded", () => {
 	// Add event listener
 	btnPrice.addEventListener("click", btnPriceClicked);
@@ -84,31 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Render
 	renderFilter(queries);
-	renderSelect(genres);
-	renderBooks(books);
+	// renderSelect(genres);
+	// renderBooks(books);
 
 	// Return object {
 	// 	genres: [],
 	// 	totalPages: 1,
 	// 	books: []
 	// }
-
-	// fetch("/api/books", {
-	// 	method: "POST",
-	// 	headers: {
-	// 		"Content-Type": "application/json",
-	// 	},
-	// 	body: JSON.stringify(queries),
-	// })
-	// 	.then((r) => r.json())
-	// 	.then((data) => {
-	// 		renderSearch(data.genres);
-	// 		renderBooks(data.books);
-	// 		renderPagination(queries.page, data.totalPages);
-	// 	})
-	// 	.catch((error) => {
-	// 		// console.error("Error:", error);
-	// 	});
 });
 
 function parseURL() {
@@ -151,11 +83,7 @@ function addToCart(bookId) {
 
 function renderSelect(genres) {
 	const options = genres.map((genre) =>
-		createElement(
-			"option",
-			{ value: genre.toLowerCase() },
-			createText(genre)
-		)
+		createElement("option", { value: genre._id }, createText(genre.name))
 	);
 	listGenres.append(...options);
 }
@@ -305,9 +233,7 @@ function removeElement(target) {
 function updatePage(queries = {}) {
 	for (let tag of listTags.children) {
 		let key = tag.dataset.field;
-		let value = tag.children[0].innerText
-			.replace(/\s+/g, "-")
-			.toLowerCase();
+		let value = tag.children[0].innerText.replace(/\s+/g, "-");
 		if (key === "condition" || key === "language") {
 			if (!queries[key]) queries[key] = [];
 			queries[key].push(value);

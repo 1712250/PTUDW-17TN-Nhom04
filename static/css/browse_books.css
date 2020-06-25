@@ -170,12 +170,11 @@
 	background-color: #999999;
 }
 
-.list-books .book {
+.list-books > .book {
 	cursor: pointer;
 }
 
-.list-books .card {
-	display: block;
+.list-books > .book > .card {
 	border: none;
 }
 
@@ -183,25 +182,36 @@
 	box-shadow: 0px 0px 5px #c4c4c4;
 }
 
-.list-books > a:hover {
-	text-decoration: none;
+.list-books > .book > .card > .book-cover {
+	display: flex;
+	justify-content: center;
 }
 
 .list-books .card img {
+	padding-left: 20px;
+	padding-right: 20px;
 	height: 15rem;
+	width: 12rem;
 }
 
 .list-books .card .book-name {
 	font-size: 1rem;
 	font-weight: 600;
-	color: #0000ff;
-	height: 1.4rem;
-	margin-bottom: 0.5rem;
+	color: black;
+	line-height: 1.5rem;
+	height: 3rem;
+	overflow: hidden;
+	text-align: center;
+}
+
+.list-books .card .book-name:hover {
+	text-decoration: underline;
 }
 
 .list-books .card .book-author {
-	font-size: 1rem;
-	font-weight: lighter;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #9e866b;
 	height: 1.4rem;
 	margin: 0;
 }
