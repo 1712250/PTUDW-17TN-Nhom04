@@ -30,8 +30,7 @@ module.exports.getBookInstances = async ({
 			.populate({
 				path: "book",
 				populate: { path: "genre" },
-			})
-			.elemMatch("book", subQueries);
+			});
 		if (sortBy === "New") {
 			query.sort("added_date");
 		} else if (sortBy === "Best sell") {
