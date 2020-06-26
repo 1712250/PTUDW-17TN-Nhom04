@@ -6,14 +6,15 @@ router.get("/", async (req, res, next) => {
 	const queries = parseURL(req._parsedOriginalUrl.query);
 	console.log(queries);
 	const genres = await getGenre(queries.category);
-	const bookInstances = await getBookInstances(queries);
+	const { bookInstances, pages } = await getBookInstances(queries);
 
-	console.log(bookInstances);
 	res.render("browse_books", {
 		title: "Browse",
 		genres: genres,
 		selectedGenre: queries.genre,
 		bookInstances: bookInstances,
+		page: queries.page,
+		pages: pages,
 	});
 });
 

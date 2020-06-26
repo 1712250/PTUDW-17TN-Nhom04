@@ -20,17 +20,10 @@ module.exports.getBookInstances = async ({
 	if (rating) subQueries.rating = parseInt(rating.slice(0, 1));
 
 	try {
-		const query = Model.find(queries)
-			.skip((page - 1) * 20)
-			.limit(20)
-			.populate({
-				path: "book",
-				populate: { path: "author" },
-			})
-			.populate({
-				path: "book",
-				populate: { path: "genre" },
-			});
+		const query = Model.find(queries).populate({
+			path: "book",
+			populate: [{ path: "author" }, { path: "genres" }],
+		});
 		if (sortBy === "New") {
 			query.sort("added_date");
 		} else if (sortBy === "Best sell") {
@@ -42,11 +35,47 @@ module.exports.getBookInstances = async ({
 		} else if (sortBy === "Price ascending") {
 			query.sort("price");
 		}
-		return await query.exec();
+
+		let bookInstances = [];
+		let pages = 0;
+
+		if (subQueries.genre || subQueries.rating) {
+			bookInstances = (await query.exec()).filter((doc) =>
+				isValid(doc, subQueries)
+			);
+			pages = bookInstances.length;
+			bookInstances = bookInstances.splice((page - 1) * 20, 20);
+		} else {
+			bookInstances = await query
+				.skip((page - 1) * 20)
+				.limit(20)
+				.exec();
+			pages = Math.ceil((await query.countDocuments()) / 20);
+		}
+		return {
+			bookInstances,
+			pages,
+		};
 	} catch (err) {
 		console.log(
 			"Error while retrieving book instances! Error: " + err.message
 		);
-		return [];
+		return { bookInstances: [], pages: 0 };
 	}
 };
+
+function isValid(bookInstance, queries) {
+	if (queries.genre) {
+		let containsGenre = false;
+		for (let i = 0; i < bookInstance.book.genres.length; i++) {
+			if (bookInstance.book.genres[i].name === queries.genre) {
+				containsGenre = true;
+				break;
+			}
+		}
+		if (!containsGenre) return false;
+	}
+	if (queries.rating && bookInstance.book.rating < queries.rating)
+		return false;
+	return true;
+}
