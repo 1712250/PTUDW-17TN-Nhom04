@@ -187,7 +187,7 @@
                         <div class="book-name"><%= bookInstance.book.title %></div>
                         <a class="d-block book-author text-truncate"
                             href="/browse/author?id=<%= bookInstance.book.author._id %>">
-                            <%= bookInstance.book.author.name %>
+                            <%= bookInstance.book.author[0].name %>
                         </a>
                         <p class="book-price">$<%= bookInstance.price %></p>
                         <a href="javascript:addToCart(<%= bookInstance.book._id %>)" class="btn w-100">Add to cart</a>

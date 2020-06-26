@@ -231,6 +231,19 @@ function removeElement(target) {
 }
 
 function updatePage(queries = {}) {
+	const minPrice = parseFloat(
+		document.querySelector(".price-input.min").value
+	);
+	const maxPrice = parseFloat(
+		document.querySelector(".price-input.max").value
+	);
+	if (minPrice) {
+		queries.minPrice = minPrice;
+	}
+	if (maxPrice) {
+		queries.maxPrice = maxPrice;
+	}
+
 	for (let tag of listTags.children) {
 		let key = tag.dataset.field;
 		let value = tag.children[0].innerText.replace(/\s+/g, "-");
