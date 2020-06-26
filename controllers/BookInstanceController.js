@@ -6,8 +6,30 @@ const AuthorModel = require("../models/Author");
 require("../models/Book");
 require("../models/Author");
 
-module.exports.getBookInstances = async ({
-	page,
+module.exports.getBookInstances = async (queries) => {
+	try {
+		const totalDocuments = (
+			await buildQuery(queries).count("totalDocuments").exec()
+		)[0].totalDocuments;
+		const totalPages = Math.ceil(totalDocuments / 20);
+		const limit = Math.min(totalDocuments - (queries.page - 1) * 20, 20);
+
+		return {
+			bookInstances: await buildQuery(queries)
+				.skip((queries.page - 1) * 20)
+				.limit(limit)
+				.exec(),
+			totalPages: totalPages,
+		};
+	} catch (err) {
+		console.log(
+			"Error while retrieving book instances! Error: " + err.message
+		);
+		return { bookInstances: [], pages: 0 };
+	}
+};
+
+function buildQuery({
 	sortBy,
 	category,
 	genre,
@@ -16,7 +38,8 @@ module.exports.getBookInstances = async ({
 	language,
 	minPrice,
 	maxPrice,
-}) => {
+	search,
+}) {
 	const queries = {};
 	if (condition) queries.status = { $in: condition };
 	if (language) queries.language = { $in: language };
@@ -34,88 +57,76 @@ module.exports.getBookInstances = async ({
 		sortQuery.price = 1;
 	}
 
-	try {
-		const aggregate = Model.aggregate([
-			{
-				$lookup: {
-					from: BookModel.collection.name,
-					localField: "book",
-					foreignField: "_id",
-					as: "book",
-				},
+	const aggregate = Model.aggregate([
+		{
+			$lookup: {
+				from: BookModel.collection.name,
+				localField: "book",
+				foreignField: "_id",
+				as: "book",
 			},
-			{ $unwind: "$book" },
-			{
-				$lookup: {
-					from: AuthorModel.collection.name,
-					localField: "book.author",
-					foreignField: "_id",
-					as: "book.author",
-				},
+		},
+		{ $unwind: "$book" },
+		{
+			$lookup: {
+				from: AuthorModel.collection.name,
+				localField: "book.author",
+				foreignField: "_id",
+				as: "book.author",
 			},
-			{
-				$lookup: {
-					from: GenreModel.collection.name,
-					localField: "book.genres",
-					foreignField: "_id",
-					as: "book.genres",
-				},
+		},
+		{
+			$lookup: {
+				from: GenreModel.collection.name,
+				localField: "book.genres",
+				foreignField: "_id",
+				as: "book.genres",
 			},
-		]);
+		},
+	]);
 
-		if (Object.keys(sortQuery).length > 0) {
-			aggregate.sort(sortQuery);
-		}
-		if (rating) {
-			aggregate.match({
-				"book.rating": { $gte: parseInt(rating.slice(0, 1)) },
-			});
-		}
-		if (category) {
-			aggregate.match({
-				"book.genres": { $elemMatch: { category: category } },
-			});
-		}
-		if (genre) {
-			aggregate.match({
-				"book.genres": await GenreModel.findOne({ name: genre }).exec(),
-			});
-		}
-		if (minPrice) {
-			aggregate.match({
-				price: { $gte: parseInt(minPrice) },
-			});
-		}
-		if (maxPrice) {
-			aggregate.match({
-				price: { $lte: parseInt(maxPrice) },
-			});
-		}
-		const docs = await aggregate
-			.skip((page - 1) * 20)
-			.limit(20)
-			.exec();
-		return { bookInstances: docs, pages: 0 };
-	} catch (err) {
-		console.log(
-			"Error while retrieving book instances! Error: " + err.message
-		);
-		return { bookInstances: [], pages: 0 };
+	if (Object.keys(sortQuery).length > 0) {
+		aggregate.sort(sortQuery);
 	}
-};
-
-function isValid(bookInstance, queries) {
-	if (queries.genre) {
-		let containsGenre = false;
-		for (let i = 0; i < bookInstance.book.genres.length; i++) {
-			if (bookInstance.book.genres[i].name === queries.genre) {
-				containsGenre = true;
-				break;
-			}
-		}
-		if (!containsGenre) return false;
+	if (rating) {
+		aggregate.match({
+			"book.rating": { $gte: parseInt(rating.slice(0, 1)) },
+		});
 	}
-	if (queries.rating && bookInstance.book.rating < queries.rating)
-		return false;
-	return true;
+	if (category) {
+		aggregate.match({
+			"book.genres": { $elemMatch: { category: category } },
+		});
+	}
+	if (genre && genre != "All genres") {
+		aggregate.match({
+			"book.genres": { $elemMatch: { name: genre } },
+		});
+	}
+	if (minPrice) {
+		aggregate.match({
+			price: { $gte: parseInt(minPrice) },
+		});
+	}
+	if (maxPrice) {
+		aggregate.match({
+			price: { $lte: parseInt(maxPrice) },
+		});
+	}
+	if (condition) {
+		aggregate.match({
+			status: { $in: condition },
+		});
+	}
+	if (language) {
+		aggregate.match({
+			language: { $in: language },
+		});
+	}
+	if (search) {
+		aggregate.match({
+			"book.title": { $regex: new RegExp(search), $options: "i" },
+		});
+	}
+	return aggregate;
 }

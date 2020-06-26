@@ -1,6 +1,5 @@
 const listBooks = document.querySelector(".list-books");
 const cartBadge = document.querySelector(".cart-badge");
-const pagination = document.querySelector(".pagination");
 const listGenres = document.querySelector(".books-filter .select-genres");
 const listTags = document.querySelector(".tags-container");
 const listConditions = document.querySelector(".list-conditions");
@@ -8,9 +7,7 @@ const listLanguages = document.querySelector(".list-languages");
 const btnPrice = document.querySelector(".price-btn");
 const btnCondition = document.querySelector(".list-conditions button");
 const btnLanguage = document.querySelector(".list-languages button");
-const searchForm = document.querySelector(
-	"div.search-container > .input-group"
-);
+const searchForm = document.querySelector(".search-container > .input-group");
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Add event listener
@@ -148,6 +145,7 @@ function renderFilter(queries) {
 	for (let [key, value] of Object.entries(queries)) {
 		if (key === "sortBy") {
 		} else if (key === "search") {
+			searchForm.querySelector("input").value = value.replace("-", " ");
 		} else if (key === "page") {
 		} else if (key === "minPrice") {
 			document.querySelector(".price-input.min").value = value;
@@ -231,12 +229,11 @@ function removeElement(target) {
 }
 
 function updatePage(queries = {}) {
-	const minPrice = parseFloat(
-		document.querySelector(".price-input.min").value
-	);
-	const maxPrice = parseFloat(
-		document.querySelector(".price-input.max").value
-	);
+	const { minPrice, maxPrice } = getPriceInterval();
+	if (minPrice && maxPrice && minPrice > maxPrice) {
+		showSnackbar("Min price must be less than or equal to max price!");
+		return;
+	}
 	if (minPrice) {
 		queries.minPrice = minPrice;
 	}
@@ -269,19 +266,13 @@ function updatePage(queries = {}) {
 	location.href = url + "page_y=" + page_y;
 }
 
-function btnPriceClicked(e) {
-	e.preventDefault();
+function getPriceInterval() {
 	const minPrice = parseFloat(
 		document.querySelector(".price-input.min").value
 	);
 	const maxPrice = parseFloat(
 		document.querySelector(".price-input.max").value
 	);
-
-	if (!minPrice && !maxPrice) {
-		showSnackbar("Please type min price or max price!");
-		return;
-	}
 
 	queries = {};
 	if (minPrice) {
@@ -290,7 +281,11 @@ function btnPriceClicked(e) {
 	if (maxPrice) {
 		queries.maxPrice = maxPrice;
 	}
-	updatePage(queries);
+	return queries;
+}
+function btnPriceClicked(e) {
+	e.preventDefault();
+	updatePage();
 }
 
 function btnConditionClicked(e) {
@@ -334,4 +329,20 @@ function onRatingClicked(rating) {
 
 function onGenreSelected(e) {
 	updatePage({ genre: e.target.value.replace(/\s+/g, "-") });
+}
+
+function onPaginationClicked(target) {
+	const currentPage = parseInt(
+		document.querySelector(
+			".list-books-container > .pagination > .page-item.active > a"
+		).innerText
+	);
+
+	if (target === "Previous") {
+		updatePage({ page: currentPage - 1 });
+	} else if (target === "Next") {
+		updatePage({ page: currentPage + 1 });
+	} else {
+		updatePage({ page: parseInt(target) });
+	}
 }

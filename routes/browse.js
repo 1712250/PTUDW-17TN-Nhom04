@@ -4,17 +4,35 @@ const { getBookInstances } = require("../controllers/BookInstanceController");
 
 router.get("/", async (req, res, next) => {
 	const queries = parseURL(req._parsedOriginalUrl.query);
-	console.log(queries);
 	const genres = await getGenre(queries.category);
-	const { bookInstances, pages } = await getBookInstances(queries);
+	const { bookInstances, totalPages } = await getBookInstances(queries);
+
+	let selectedPage = parseInt(queries.page);
+	const renderedPages = [];
+
+	if (selectedPage < 1) selectedPage = 1;
+	else if (selectedPage > totalPages) selectedPage = totalPages;
+
+	if (selectedPage == 1) {
+		renderedPages.push(1);
+		if (totalPages > 1) renderedPages.push(2);
+		if (totalPages > 2) renderedPages.push(3);
+	} else if (selectedPage == totalPages) {
+		if (totalPages > 2) renderedPages.push(totalPages - 2);
+		if (totalPages > 1) renderedPages.push(totalPages - 1);
+		renderedPages.push(totalPages);
+	} else {
+		renderedPages = [selectedPage - 1, selectedPage, selectedPage + 1];
+	}
 
 	res.render("browse_books", {
 		title: "Browse",
 		genres: genres,
 		selectedGenre: queries.genre,
 		bookInstances: bookInstances,
-		page: queries.page,
-		pages: pages,
+		renderedPages: renderedPages,
+		selectedPage: selectedPage,
+		totalPages: totalPages,
 	});
 });
 
