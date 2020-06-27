@@ -22,7 +22,9 @@ router.get("/", async (req, res, next) => {
 		if (totalPages > 1) renderedPages.push(totalPages - 1);
 		renderedPages.push(totalPages);
 	} else {
-		renderedPages = [selectedPage - 1, selectedPage, selectedPage + 1];
+		renderedPages.push(selectedPage - 1);
+		renderedPages.push(selectedPage);
+		renderedPages.push(selectedPage + 1);
 	}
 
 	res.render("browse_books", {

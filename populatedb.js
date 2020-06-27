@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
+const axios = require("axios");
 const Book = require("./models/Book");
 const Author = require("./models/Author");
 const BookInstance = require("./models/BookInstance");
@@ -153,13 +154,21 @@ async function createBook(
 	genres,
 	image_url
 ) {
-	let book = new Book({
-		title: title,
-		description: description,
-		author: author,
-		rating: rating,
-		genres: genres,
-		image_url: image_url,
+	const filename = image_url.substr(image_url.lastIndexOf("/") + 1);
+	downloadCoverImage(image_url, filename, (err) => {
+		if (err) {
+			console.log("Error while downloading cover image of: " + title);
+		}
+		console.log("Downloaded image cover of: " + title);
+	});
+
+	const book = new Book({
+		title,
+		description,
+		author,
+		rating,
+		genres,
+		image_url: filename,
 	});
 	try {
 		await book.save();
@@ -192,4 +201,20 @@ async function createBookInstance(book) {
 			"Error while saving book instance (err: " + err.message + ")"
 		);
 	}
+}
+
+function downloadCoverImage(url, filename, callback) {
+	axios({
+		method: "get",
+		url,
+		responseType: "stream",
+	})
+		.then(function (response) {
+			response.data
+				.pipe(fs.createWriteStream("./static/images/" + filename))
+				.on("close", callback(null));
+		})
+		.catch(function (error) {
+			callback(error);
+		});
 }
