@@ -4,6 +4,7 @@ const account = require("./account");
 const browse = require("./browse");
 
 router.get("/", (req, res, next) => {
+	console.log(req.session);
 	res.render("homepage", { title: "Obooks" });
 });
 

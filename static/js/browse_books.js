@@ -30,14 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Render
 	renderFilter(queries);
-	// renderSelect(genres);
-	// renderBooks(books);
-
-	// Return object {
-	// 	genres: [],
-	// 	totalPages: 1,
-	// 	books: []
-	// }
 });
 
 function parseURL() {
@@ -76,13 +68,6 @@ function createElement(tag, attributes, ...children) {
 
 function addToCart(bookId) {
 	cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
-}
-
-function renderSelect(genres) {
-	const options = genres.map((genre) =>
-		createElement("option", { value: genre._id }, createText(genre.name))
-	);
-	listGenres.append(...options);
 }
 
 function toggleTag(field, tag, replaceSameField) {
@@ -165,62 +150,6 @@ function renderFilter(queries) {
 			}
 		}
 	}
-}
-
-function renderPagination(currentPage, totalPages) {}
-
-function renderBooks(books) {
-	const bookElements = books.map((book) =>
-		createElement(
-			"a",
-			{
-				class: "d-block col-12 col-sm-6 col-lg-4 col-xl-3",
-				href: "/browse/book?id=" + book.id,
-			},
-			createElement(
-				"div",
-				{ class: "card my-2 pt-3" },
-				createElement("img", {
-					src: book.img,
-					class: "card-img-top",
-				}),
-				createElement(
-					"div",
-					{ class: "card-body" },
-					createElement(
-						"p",
-						{ class: "book-name text-truncate" },
-						createText(book.name)
-					),
-					createElement(
-						"a",
-						{
-							href: "/browse/author?id=" + book.authorId,
-						},
-						createElement(
-							"p",
-							{ class: "book-author text-truncate" },
-							createText(book.author)
-						)
-					),
-					createElement(
-						"p",
-						{ class: "book-price" },
-						createText(book.price)
-					),
-					createElement(
-						"a",
-						{
-							class: "btn w-100",
-							href: `javascript:addToCart(${book.id})`,
-						},
-						createText("Add to cart")
-					)
-				)
-			)
-		)
-	);
-	listBooks.append(...bookElements);
 }
 
 function removeElement(target) {

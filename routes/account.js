@@ -1,6 +1,10 @@
+const { isAuthenticated } = require("../utils/authmiddleware");
+
 const router = require("express").Router();
 
-router.get("/", (req, res, next) => {
+router.use(isAuthenticated);
+
+router.get("/", (req, res) => {
 	res.render("account/account_info", { title: "Your Account" });
 });
 

@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <% if (loggedIn) { %>
+                <% if (user != null) { %>
                 <%-     include("account"); %>
                 <% } else { %>
                 <%-     include("login"); %>
@@ -108,23 +108,22 @@
                             <form>
                                 <div class="form-group row justify-content-center">
                                     <label class="font-size-small col-2 text-align-left align-self-center p-0 m-0"
-                                        for="exampleInputEmail1">Email
+                                        for="login-email">Email
                                         address</label>
-                                    <input type="email" class="form-control font-size-small col-9"
-                                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <input type="email" class="form-control font-size-small col-9" id="login-email"
+                                        aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                                 <div class="form-group row justify-content-center">
                                     <label class="font-size-small col-2 text-align-left align-self-center p-0 m-0"
-                                        for="exampleInputPassword1">Password</label>
+                                        for="login-password">Password</label>
                                     <input type="password" class="form-control font-size-small col-9"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                        id="login-password" placeholder="Password">
                                 </div>
                                 <div class="font-size-small mb-3 d-flex justify-content-center">
                                     <div>Forget password? <a href="#">Click here</a></div>
                                 </div>
                                 <button type="submit"
-                                    class="btn my-1 background-secondary button-hover w-100 font-size-small"
-                                    onclick="doLogin()">Login</button>
+                                    class="btn my-1 background-secondary button-hover w-100 font-size-small">Login</button>
                                 <button type="submit"
                                     class="btn my-1 button-facebook button-hover w-100 text-white font-size-small"><i
                                         class="fab fa-facebook-f"></i> Login with Facebook</button>
@@ -141,7 +140,7 @@
                                         Name </label>
                                     <div class="col-9">
                                         <input type="text" class="form-control font-size-small font-size-small"
-                                            id="fullName" placeholder="Le Hoang Vu">
+                                            id="fullName" placeholder="Le Hoang Vu" required>
                                     </div>
                                 </div>
 
@@ -149,24 +148,9 @@
                                     <label for="phoneNumber"
                                         class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Phone
                                         Number</label>
-                                    <div class="input-group col-9">
-                                        <input type="text" class="form-control font-size-small my-auto" id="phoneNumber"
-                                            placeholder="Type your phone number">
-                                        <div class="input-group-append">
-                                            <button type="submit"
-                                                class="btn my-1 background-secondary button-hover font-size-small">Send
-                                                activation code</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row ml-1">
-                                    <label for="activeCode"
-                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Activation
-                                        Code</label>
                                     <div class="col-9">
-                                        <input type="text" class="form-control font-size-small" id="activeCode"
-                                            placeholder="Type your activation code sent to the phone number above">
+                                        <input type="tel" class="form-control font-size-small my-auto" id="phoneNumber"
+                                            pattern='^0\d+' placeholder="Type your phone number" required>
                                     </div>
                                 </div>
 
@@ -175,21 +159,21 @@
                                         class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Email</label>
                                     <div class="col-9">
                                         <input type="email" class="form-control font-size-small" id="email"
-                                            placeholder="lhvubtqn@gmail.com">
+                                            placeholder="lhvubtqn@gmail.com" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row ml-1">
                                     <label
                                         class="col-3 col-form-label mt-2 justify-content-left px-0 mx-0 font-size-small">Gender</label>
-                                    <div class="col-9">
+                                    <div id="gender" class="col-9">
                                         <div class="form-check form-check-inline mt-3 justify-between-center">
                                             <input class="form-check-input" name="gender" type="radio" id="Male"
-                                                value="Male">
+                                                value="Male" required>
                                             <label class="form-check-label font-size-small" for="Male">Male</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input name=" gender" type="radio" id="Female"
+                                            <input class="form-check-input" name="gender" type="radio" id="Female"
                                                 value="Female">
                                             <label class="form-check-label font-size-small" for="Female">Female</label>
                                         </div>
@@ -209,8 +193,8 @@
                                         Birth</label>
                                     <div class="col-9">
                                         <div class="input-group date" data-provide="datepicker">
-                                            <input type="text" class="form-control font-size-small"
-                                                placeholder="mm/dd/yyyy">
+                                            <input id="date-of-birth" type="text" class="form-control font-size-small"
+                                                placeholder="mm/dd/yyyy" required>
                                             <div class="input-group-append">
                                                 <div
                                                     class="btn btn-secondary input-group-addon d-flex align-items-center">
@@ -226,7 +210,8 @@
                                         class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Password</label>
                                     <div class="col-9">
                                         <input type="password" class="form-control font-size-small" id="password"
-                                            placeholder="Password length from 6 to 32 characters">
+                                            minlength="6" placeholder="Password length from 6 to 32 characters"
+                                            required>
                                     </div>
                                 </div>
 
@@ -235,7 +220,7 @@
                                         class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Retype</label>
                                     <div class="col-9">
                                         <input type="password" class="form-control font-size-small" id="retype"
-                                            placeholder="Retype your new password">
+                                            placeholder="Retype your new password" required>
                                     </div>
                                 </div>
 

@@ -28,6 +28,7 @@ const genres_map = new Map();
 const saved_books = [];
 
 const fs = require("fs");
+const User = require("./models/User");
 const authorsJSON = JSON.parse(fs.readFileSync("./static/mockup/authors.json"));
 const fictionJSON = JSON.parse(
 	fs.readFileSync("./static/mockup/fiction.json")
@@ -63,6 +64,14 @@ async function connectDB() {
 	} catch (err) {
 		console.log("Cannot connect to database: " + err.message);
 	}
+}
+
+function saveUsers(usersJSON) {
+	return Promise.all(
+		usersJSON.map((user) =>
+			createUser(user.email, user.password, user.name)
+		)
+	);
 }
 
 function saveAuthors(authorsJSON) {
@@ -122,6 +131,20 @@ function saveBookInstances(books) {
 	return Promise.all(books.map((book) => createBookInstance(book)));
 }
 
+async function createUser(email, password, name) {
+	const user = new User({ email, password, name });
+	try {
+		await user.save();
+		console.log("Save user with email: " + email);
+	} catch (err) {
+		console.log(
+			"Error while saving user with email: " +
+				email +
+				" --> " +
+				err.message
+		);
+	}
+}
 async function createAuthor(name) {
 	let author = new Author({ name: name });
 	try {
