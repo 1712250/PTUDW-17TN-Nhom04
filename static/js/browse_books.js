@@ -9,29 +9,28 @@ const btnCondition = document.querySelector(".list-conditions button");
 const btnLanguage = document.querySelector(".list-languages button");
 const searchForm = document.querySelector(".search-container > .input-group");
 
-document.addEventListener("DOMContentLoaded", () => {
-	// Add event listener
-	btnPrice.addEventListener("click", btnPriceClicked);
-	btnCondition.addEventListener("click", btnConditionClicked);
-	btnLanguage.addEventListener("click", btnLanguageClicked);
-	searchForm
-		.querySelector("div > button")
-		.addEventListener("click", onSearchSubmit);
-	listGenres.addEventListener("click", onGenreSelected);
+// Add event listener
+btnPrice.addEventListener("click", btnPriceClicked);
+btnCondition.addEventListener("click", btnConditionClicked);
+btnLanguage.addEventListener("click", btnLanguageClicked);
+searchForm
+	.querySelector("div > button")
+	.addEventListener("click", onSearchSubmit);
+listGenres.addEventListener("click", onGenreSelected);
 
-	// Parse URL
-	const queries = parseURL();
+// Parse URL
+const queries = parseURL();
 
-	// Keep scroll
-	if (location.href.indexOf("page_y") != -1) {
-		document.getElementsByTagName("html")[0].scrollTop = queries.page_y - 1;
-		delete queries.page_y;
-	}
+// Keep scroll
+if (location.href.indexOf("page_y") != -1) {
+	document.getElementsByTagName("html")[0].scrollTop = queries.page_y - 1;
+	delete queries.page_y;
+}
 
-	// Render
-	renderFilter(queries);
-});
+// Render
+renderFilter(queries);
 
+// functions implementation
 function parseURL() {
 	const queries = {};
 	// if (location.search.length > 0) queries = {};
@@ -67,7 +66,24 @@ function createElement(tag, attributes, ...children) {
 }
 
 function addToCart(bookId) {
-	cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
+	fetch("/api/checkout/cart/add", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ bookId: bookId }),
+	}).then((res) => {
+		console.log(typeof res.status);
+		if (res.status == 200) {
+			cartBadge.classList.remove("d-none");
+			cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
+			showSnackbar("Added!");
+		} else if (res.status == 409) {
+			showSnackbar("Already added!");
+		} else if (res.status == 401) {
+			$("#loginModal").modal({ show: true });
+		}
+	});
 }
 
 function toggleTag(field, tag, replaceSameField) {
@@ -225,15 +241,6 @@ function btnConditionClicked(e) {
 function btnLanguageClicked(e) {
 	e.preventDefault();
 	updatePage();
-}
-
-function showSnackbar(msg) {
-	let snackbar = document.getElementById("snackbar");
-	snackbar.innerText = msg;
-	snackbar.className = "show";
-	setTimeout(function () {
-		snackbar.className = snackbar.className.replace("show", "");
-	}, 2000);
 }
 
 function toggleCondition(target) {

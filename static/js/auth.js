@@ -1,16 +1,12 @@
 const loginForm = document.getElementById("login-form");
 const signUpForm = document.getElementById("sign-up-form");
 
-document.addEventListener("DOMContentLoaded", () => {
-	loginForm.addEventListener("submit", doLogin);
-	signUpForm.addEventListener("submit", doSignUp);
-	signUpForm
-		.querySelector("#password")
-		.addEventListener("change", validatePassword);
-	signUpForm
-		.querySelector("#retype")
-		.addEventListener("keyup", validatePassword);
-});
+loginForm.addEventListener("submit", doLogin);
+signUpForm.addEventListener("submit", doSignUp);
+signUpForm
+	.querySelector("#password")
+	.addEventListener("change", validatePassword);
+signUpForm.querySelector("#retype").addEventListener("keyup", validatePassword);
 
 function doLogin(e) {
 	e.preventDefault();
@@ -25,8 +21,10 @@ function doLogin(e) {
 		}),
 	}).then((res) => {
 		if (res.ok) {
+			showSnackbar("Login successfully!");
 			location.reload();
 		} else {
+			showSnackbar("Wrong email address or password!");
 		}
 	});
 }
@@ -49,8 +47,10 @@ function doSignUp(e) {
 		}),
 	}).then((res) => {
 		if (res.ok) {
+			showSnackbar("Sign up successfully!");
 			location.reload();
 		} else {
+			showSnackbar("Email address already exist!");
 		}
 	});
 }
@@ -63,6 +63,7 @@ function doLogout() {
 		},
 	}).then((res) => {
 		if (res.ok) {
+			showSnackbar("Log out successfully! Redirect...");
 			location.href = "/";
 		} else {
 		}

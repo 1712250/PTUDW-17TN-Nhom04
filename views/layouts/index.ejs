@@ -23,7 +23,7 @@
             <img src="/images/logo-inline.svg" alt="Logo">
         </a>
         <ul class="ml-auto mr-2 mr-lg-2 order-lg-12" id="account">
-            <li class="nav-item">
+            <li class="nav-item <%= (user == null) ? 'd-none' : '' %>">
                 <a class="nav-link" href="/checkout/cart">
                     <svg class="cart" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -33,7 +33,10 @@
                         <path
                             d="M21.2109 25.5469C21.2109 27.0007 22.3938 28.1836 23.8477 28.1836C25.3015 28.1836 26.4844 27.0007 26.4844 25.5469C26.4844 24.093 25.3015 22.9102 23.8477 22.9102C22.3938 22.9102 21.2109 24.093 21.2109 25.5469ZM23.8477 24.668C24.3322 24.668 24.7266 25.0623 24.7266 25.5469C24.7266 26.0314 24.3322 26.4258 23.8477 26.4258C23.3631 26.4258 22.9687 26.0314 22.9687 25.5469C22.9687 25.0623 23.3631 24.668 23.8477 24.668Z" />
                     </svg>
-                    <div class="cart-badge badge badge-pill badge-danger">1</div>
+                    <div
+                        class="cart-badge badge badge-pill badge-danger <%= (user == null || user.cart.length == 0) ? 'd-none' : '' %>">
+                        <%= (user != null) ? user.cart.length : 0 %>
+                    </div>
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -87,9 +90,9 @@
     </div>
     <!-- !Body -->
 
-    <!-- Modal -->
+    <!-- Modals -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document" style="max-width: 50vw">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 50vw">
             <div class="modal-content">
                 <div class="modal-body mx-3">
                     <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
@@ -156,7 +159,8 @@
 
                                 <div class="form-group row ml-1">
                                     <label for="email"
-                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Email</label>
+                                        class="col-3 col-form-labe mt-2 justify-content-left px-0 mx-0 font-size-small">Email
+                                        Address</label>
                                     <div class="col-9">
                                         <input type="email" class="form-control font-size-small" id="email"
                                             placeholder="lhvubtqn@gmail.com" required>
@@ -165,9 +169,9 @@
 
                                 <div class="form-group row ml-1">
                                     <label
-                                        class="col-3 col-form-label mt-2 justify-content-left px-0 mx-0 font-size-small">Gender</label>
-                                    <div id="gender" class="col-9">
-                                        <div class="form-check form-check-inline mt-3 justify-between-center">
+                                        class="col-3 col-form-label justify-content-left px-0 mx-0 font-size-small">Gender</label>
+                                    <div id="gender" class="col-9 d-flex justify-content-around align-items-center">
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" name="gender" type="radio" id="Male"
                                                 value="Male" required>
                                             <label class="form-check-label font-size-small" for="Male">Male</label>
@@ -234,7 +238,31 @@
             </div>
         </div>
     </div>
-    <!-- !Modal -->
+
+    <div class="modal fade" id="question-modal" tabindex="-1" role="dialog" aria-labelledby="question-modal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- !Modals -->
+
+    <!-- Snackbar -->
+    <div id="snackbar">Some text some message..</div>
+    <!-- !Snackbar -->
 
     <!-- Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -339,7 +367,7 @@
         crossorigin="anonymous"></script>
     <script src="/js/bootstrap-datepicker.min.js"></script>
     <script src="/js/auth.js"></script>
-    <script src="/js/header_search.js"></script>
+    <script src="/js/header_footer.js"></script>
     <%- script %>
 </body>
 

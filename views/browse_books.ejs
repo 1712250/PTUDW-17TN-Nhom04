@@ -191,7 +191,7 @@
                             <%= bookInstance.book.author[0].name %>
                         </a>
                         <p class="book-price">$<%= bookInstance.price %></p>
-                        <button onclick="event.stopPropagation(); addToCart('<%= bookInstance.book._id %>')"
+                        <button onclick="event.stopPropagation(); addToCart('<%= bookInstance._id %>')"
                             class="btn w-100">Add to
                             cart</button>
                     </div>
@@ -215,7 +215,3 @@
         </ul>
     </div>
 </div>
-
-<!-- Snackbar -->
-<div id="snackbar">Some text some message..</div>
-<!-- !Snackbar -->

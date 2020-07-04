@@ -9,9 +9,6 @@ const PORT = process.env.PORT || 5000;
 // Body-parser
 app.use(express.json());
 
-// authentication
-require("./config/authentication")(app);
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.set("layout", "layouts/index");
@@ -20,6 +17,9 @@ app.set("layout extractStyles", true);
 
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "static")));
+
+// authentication
+require("./config/authentication")(app);
 
 // database
 require("./config/database");

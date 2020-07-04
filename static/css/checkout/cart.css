@@ -6,9 +6,9 @@
 }
 
 .item-list .item .item-preview {
-	width: 10rem;
 	height: 10rem;
-	padding: 1rem;
+	width: 7rem;
+	margin: 1rem;
 }
 
 .item-list .item .page-link {
@@ -17,6 +17,15 @@
 	width: 2rem;
 	height: 2rem;
 	text-align: center;
+}
+
+.item-list .item .page-item:focus,
+.item-list .item .page-link:focus {
+	outline: none;
+}
+
+.item-list .item .page-item.disabled .page-link {
+	background-color: #dddddd;
 }
 
 .item-list .item .item-count-control {

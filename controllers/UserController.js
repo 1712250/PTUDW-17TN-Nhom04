@@ -8,7 +8,6 @@ module.exports.signUp = (req, res) => {
 	user_info.password = genPassword(user_info.password);
 	this.createUser(user_info)
 		.then((user) => {
-			console.log(user);
 			res.status(200).send("OK");
 		})
 		.catch((err) => {
@@ -42,6 +41,12 @@ module.exports.createUser = (user_info) => {
 
 module.exports.getUser = (email) => {
 	return User.findOne({ email }).catch((err) =>
+		console.log("Error while retrieving user: " + err.message)
+	);
+};
+
+module.exports.getUserById = (userId) => {
+	return User.findById(userId).catch((err) =>
 		console.log("Error while retrieving user: " + err.message)
 	);
 };

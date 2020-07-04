@@ -2,21 +2,9 @@ const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local").Strategy;
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
 const MongoStore = require("connect-mongo")(session);
 const User = require("../models/User");
 const { validPassword } = require("../utils/hashing");
-
-const jwtStrategy = new JwtStrategy(
-	{
-		secretOrKey: process.env.SECRET,
-		jwtFromRequest: ExtractJwt.fromHeader("ETag"),
-	},
-	function (jwt_payload, done) {
-		console.log(jwt_payload);
-	}
-);
 
 const localStrategy = new LocalStrategy(
 	{
@@ -61,7 +49,6 @@ module.exports = function (app) {
 		})
 	);
 	passport.use(localStrategy);
-	passport.use(jwtStrategy);
 	passport.serializeUser((user, done) => {
 		done(null, user._id);
 	});
@@ -77,6 +64,14 @@ module.exports = function (app) {
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use("/", (req, res, next) => {
+		if (!req.session.visit) {
+			req.session.visit = 1;
+		} else {
+			req.session.visit += 1;
+		}
+		console.log(
+			`User ${req.user.email} has visit ${req.session.visit} times!`
+		);
 		res.locals.user = req.user;
 		next();
 	});
