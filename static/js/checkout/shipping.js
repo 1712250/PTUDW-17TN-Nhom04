@@ -95,3 +95,23 @@ async function editAddress(address) {
 		$("#addressEditing").collapse("show");
 	}
 }
+
+function deleteAddress(addressId) {
+	console.log(addressId);
+	fetch("/api/checkout/shipping/address/delete/", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			addressId,
+		}),
+	})
+		.then((res) => res.json())
+		.then((body) => {
+			if (body.status == 200) {
+				showSnackbar("Deleted!");
+				location.reload();
+			}
+		});
+}

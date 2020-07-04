@@ -27,8 +27,9 @@
         <div class="address choose">
             <i style="font-size: 0.8rem; color: green;">Default</i>
             <div style="font-weight: bold;"><%= default_address.receiver %></div>
-            <div style=" font-size: 0.9rem;">
-                <span style="font-weight: bold;">Address:</span> <%= default_address.address %>
+            <div style="font-size: 0.9rem;">
+                <span style="font-weight: bold;">Address:</span>
+                <%= default_address.address %>
             </div>
             <div style="font-size: 0.9rem;">
                 <span style="font-weight: bold;">Phone number:</span> <%= default_address.phone_number %>
@@ -37,7 +38,8 @@
                 <a href="/checkout/payment/<%= default_address._id %>" class="btn btn-success">Choose this address</a>
                 <button onclick="editAddress('<%= JSON.stringify(default_address) %>');"
                     class="ml-2 btn btn-outline-secondary">Edit</button>
-                <a class="ml-2 btn btn-outline-danger">Delete</a>
+                <button onclick="deleteAddress('<%= default_address._id %>')"
+                    class="ml-2 btn btn-outline-danger">Delete</button>
             </div>
         </div>
     </div>
@@ -48,7 +50,7 @@
         <div class="address <%= (default_address && default_address == JSON.stringify(address._id)) ? 'choose' : '' %>">
             <i style="font-size: 0.8rem; color: green;">Default</i>
             <div style="font-weight: bold;"><%= address.receiver %></div>
-            <div style=" font-size: 0.9rem;">
+            <div style="font-size: 0.9rem;">
                 <span style="font-weight: bold;">Address:</span> <%= address.address %>
             </div>
             <div style="font-size: 0.9rem;">
@@ -56,9 +58,10 @@
             </div>
             <div class="d-flex mt-2">
                 <a href="/checkout/payment/<%= address._id %>" class="btn btn-success">Choose this address</a>
-                <button onclick="editAddress('<%= JSON.stringify(address) %>');"
+                <button onclick="editAddress('<%= JSON.stringify(address) %>')"
                     class="ml-2 btn btn-outline-secondary">Edit</button>
-                <a class="ml-2 btn btn-outline-danger">Delete</a>
+                <button onclick="deleteAddress('<%= address._id %>')"
+                    class="ml-2 btn btn-outline-danger">Delete</button>
             </div>
         </div>
     </div>

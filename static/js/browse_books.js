@@ -72,17 +72,21 @@ function addToCart(bookId) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ bookId: bookId }),
-	}).then((res) => {
-		if (res.status == 200) {
-			cartBadge.classList.remove("d-none");
-			cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
-			showSnackbar("Added!");
-		} else if (res.status == 409) {
-			showSnackbar("Already added!");
-		} else if (res.status == 401) {
-			$("#loginModal").modal({ show: true });
-		}
-	});
+	})
+		.then((res) => res.json())
+		.then((body) => {
+			if (body.status == 200) {
+				cartBadge.classList.remove("d-none");
+				if (body.count == 1) {
+					cartBadge.innerText = parseInt(cartBadge.innerText) + 1;
+				}
+				showSnackbar(
+					`Added! ${body.count} of this book is currently in cart`
+				);
+			} else if (body.status == 401) {
+				$("#loginModal").modal({ show: true });
+			}
+		});
 }
 
 function toggleTag(field, tag, replaceSameField) {

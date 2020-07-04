@@ -51,7 +51,7 @@
     <div class="information">
         <div class="address">
             <div class="d-flex justify-content-between align-items-center">
-                <div>Delivering address</div>
+                <div style="color: green"><b>Delivering address</b></div>
                 <a href="/checkout/shipping" class="btn btn-outline-secondary">Edit</a>
             </div>
             <div class=" dropdown-divider"></div>
@@ -62,35 +62,46 @@
         </div>
         <div class="bill">
             <div class="d-flex justify-content-between align-items-center">
-                <div>Bill</div>
+                <div style="color: green"><b>Bill</b></div>
                 <a href="/checkout/cart" class="btn btn-outline-secondary">Edit</a>
             </div>
             <div class=" dropdown-divider"></div>
+            <% let total = 0; %>
+            <% cart.forEach((item) => { %>
+            <% const price = Math.ceil(item.book.price * item.book.discount / 10) / 10; %>
+            <% total += price; %>
             <div class="book d-flex justify-content-between">
                 <div class="book-info">
-                    <div class="book-name"><b>1x</b><a class="ml-3" href="#">What do I say about happiness What do I say
-                            about happiness</a></div>
-                    <div class="book-provider">Provide by <b>Some provider</b></div>
+                    <div class="book-name"><b><%= item.count %>x</b><a class="ml-3"
+                            href="http://localhost:5000/browse/<%= item.book.book._id %>"><%= item.book.book.title %></a>
+                    </div>
+                    <div class="book-provider">Written by <b><%= item.book.book.author.name %></b></div>
                 </div>
-                <div class="book-price">12 USD</div>
+                <div class="book-price"><%= price %> USD</div>
             </div>
             <div class=" dropdown-divider"></div>
+            <% }); %>
+
+            <% total = Math.ceil(total * 10) / 10; %>
+            <% const vat = Math.ceil(total / 10) / 10; %>
+            <% const coupon = 10; %>
+            <% const actual = Math.ceil((total + vat - coupon) * 10) / 10; %>
             <div class="d-flex justify-content-between mt-2">
-                <div>Books</div>
-                <div>12 USD</div>
+                <div>Total</div>
+                <div><%= total %> USD</div>
             </div>
             <div class="d-flex justify-content-between mt-2">
                 <div>VAT</div>
-                <div>1 USD</div>
+                <div><%= vat %> USD</div>
             </div>
             <div class="d-flex justify-content-between mt-2">
-                <div>Discount</div>
-                <div>10 USD</div>
+                <div>Coupon</div>
+                <div><%= coupon %> USD</div>
             </div>
             <div style="border-width: 3px" class="dropdown-divider"></div>
             <div class="d-flex justify-content-between">
-                <div><b>Total</b></div>
-                <div style="font-size: 1.3rem; color: red"><b>123 USD</b></div>
+                <div><b>Actual</b></div>
+                <div style="font-size: 1.3rem; color: red"><b><%= actual %> USD</b></div>
             </div>
         </div>
         <a href="#" class="btn btn-danger mt-3 w-100">Order</a>

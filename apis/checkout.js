@@ -5,22 +5,23 @@ const AddressController = require("../controllers/AddressController");
 
 router.use(isAuthenticated);
 router.post("/cart/add", (req, res) => {
-	const added = JSON.stringify(req.user.cart.addToSet(req.body.bookId)[0]);
-	const bookId = JSON.stringify(req.body.bookId);
-	if (added === bookId) {
-		req.user.save().then((user) => {
-			res.status(200).send("OK");
+	req.user.addToCart(req.body.bookId).then((count) => {
+		res.status(200).send({
+			status: 200,
+			count: count,
 		});
-	} else {
-		res.status(409).send("Already added");
-	}
+	});
 });
 
 router.post("/cart/remove", (req, res) => {
-	req.user.cart.pull(req.body.bookId);
-	req.user.save().then((user) => {
-		res.status(200).send("OK");
-	});
+	req.user
+		.removeFromCart(req.body.bookId, req.body.remove_all)
+		.then((count) => {
+			res.status(200).send({
+				status: 200,
+				count: count,
+			});
+		});
 });
 
 router.post("/shipping/address/get", (req, res) => {
@@ -60,6 +61,14 @@ router.post("/shipping/address/edit", (req, res) => {
 		} else {
 			res.status(404).send({ status: 404, message: "Address not found" });
 		}
+	});
+});
+
+router.post("/shipping/address/delete", (req, res) => {
+	AddressController.removeAddress(req.body.addressId).then(() => {
+		req.user.removeAddress(req.body.addressId).then(() => {
+			res.status(200).send({ status: 200, message: "Deleted" });
+		});
 	});
 });
 

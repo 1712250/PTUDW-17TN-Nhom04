@@ -1,4 +1,5 @@
 const Model = require("../models/Address");
+const mongoose = require("mongoose");
 
 // address: Object{receiver, phone_number, address}
 module.exports.newAddress = function (address) {
@@ -52,4 +53,17 @@ module.exports.getById = function (addressId) {
 			return res;
 		}
 	});
+};
+
+module.exports.removeAddress = function (addressId) {
+	return Model.deleteOne(
+		{ _id: mongoose.Types.ObjectId(addressId) },
+		(err, res) => {
+			if (err) {
+				console.log("Error while removing address: " + err.message);
+			} else {
+				return res;
+			}
+		}
+	);
 };

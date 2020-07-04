@@ -6,7 +6,13 @@ router.use(isAuthenticated);
 
 router.get("/cart", (req, res, next) => {
 	req.user.populate(
-		{ path: "cart", populate: { path: "book", populate: "author" } },
+		{
+			path: "cart",
+			populate: {
+				path: "book",
+				populate: { path: "book", populate: "author" },
+			},
+		},
 		(err, user) => {
 			let cart = [];
 			if (err) {
@@ -38,7 +44,28 @@ router.get("/shipping", (req, res, next) => {
 
 router.get("/payment/:addressId", (req, res, next) => {
 	AddressController.getById(req.params.addressId).then((address) => {
-		res.render("checkout/payment", { title: "Payment", address: address });
+		req.user.populate(
+			{
+				path: "cart",
+				populate: {
+					path: "book",
+					populate: { path: "book", populate: "author" },
+				},
+			},
+			(err, user) => {
+				let cart = [];
+				if (err) {
+					console.log("Error while populate user");
+				} else {
+					cart = user.cart;
+				}
+				res.render("checkout/payment", {
+					title: "Payment",
+					address: address,
+					cart: cart,
+				});
+			}
+		);
 	});
 });
 module.exports = router;
