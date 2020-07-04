@@ -324,14 +324,21 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="col col-lg-6 offset-lg-0">
                         <div class="row justify-content-center">
                             <ul class="nav-footer-links">
                                 ACCOUNT
-                                <li><a href="#" class="nav-footer-link">Logout</a></li>
-                                <li><a href="#" class="nav-footer-link">Past Orders</a></li>
-                                <li><a href="#" class="nav-footer-link">Edit Profile</a></li>
-                                <li><a href="#" class="nav-footer-link">Shop</a></li>
+                                <% if (user != null) { %>
+                                <li><a href="javascript:doLogout()" class="nav-footer-link">Logout</a></li>
+                                <li><a href="/account/orders" class="nav-footer-link">Past Orders</a></li>
+                                <li><a href="/account" class="nav-footer-link">Edit Profile</a></li>
+                                <% }  else { %>
+                                <li><a href="javascript:$('#loginModal').modal({show:true}); $('#login-tab').tab('show');"
+                                        class="nav-footer-link">Login</a></li>
+                                <li><a href="javascript:$('#loginModal').modal({show:true}); $('#sign-up-tab').tab('show');"
+                                        class="nav-footer-link">Sign up</a></li>
+                                <% } %>
                             </ul>
                         </div>
                     </div>

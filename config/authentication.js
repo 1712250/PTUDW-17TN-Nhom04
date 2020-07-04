@@ -69,9 +69,7 @@ module.exports = function (app) {
 		} else {
 			req.session.visit += 1;
 		}
-		console.log(
-			`User ${req.user.email} has visit ${req.session.visit} times!`
-		);
+		console.log(`User has visit ${req.session.visit} times!`);
 		res.locals.user = req.user;
 		next();
 	});

@@ -73,7 +73,6 @@ function addToCart(bookId) {
 		},
 		body: JSON.stringify({ bookId: bookId }),
 	}).then((res) => {
-		console.log(typeof res.status);
 		if (res.status == 200) {
 			cartBadge.classList.remove("d-none");
 			cartBadge.innerText = parseInt(cartBadge.innerText) + 1;

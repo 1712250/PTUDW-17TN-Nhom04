@@ -1,4 +1,7 @@
 const router = require("express").Router();
+const { isAuthenticated } = require("../utils/authmiddleware");
+
+router.use(isAuthenticated);
 
 router.get("/cart", (req, res, next) => {
 	req.user.populate(
