@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/checkout/shipping.css">
+<script src="/js/checkout/shipping.js"></script>
 
 <div class="d-flex justify-content-between">
     <div class="login">
@@ -17,83 +18,103 @@
 <div class="progress mx-1 mb-3">
     <div class="progress-bar background-primary w-50"></div>
 </div>
+
+<% if (addresses.length > 0) { %>
 <div class="addresses-title">Choose your address:</div>
 <div class="addresses row">
+    <% if (default_address) { %>
     <div class="col-12 col-md-6 my-3">
         <div class="address choose">
-            <i class="float-right" style="font-size: 0.8rem; color: green;">Default</i>
-            <div style="font-weight: bold;">Hoang-Vu Le</div>
-            <div style="font-size: 0.9rem;">
-                <span style="font-weight: bold;">Address:</span> 49A Hung Vuong, Ward 4, District 5, Ho Chi Minh City
+            <i style="font-size: 0.8rem; color: green;">Default</i>
+            <div style="font-weight: bold;"><%= default_address.receiver %></div>
+            <div style=" font-size: 0.9rem;">
+                <span style="font-weight: bold;">Address:</span> <%= default_address.address %>
             </div>
             <div style="font-size: 0.9rem;">
-                <span style="font-weight: bold;">Phone number:</span> (+84) 979 134 464
+                <span style="font-weight: bold;">Phone number:</span> <%= default_address.phone_number %>
             </div>
             <div class="d-flex mt-2">
-                <a href="/checkout/payment" class="btn btn-success">Choose this address</a>
-                <a class="ml-2 btn btn-outline-secondary">Edit</a>
+                <a href="/checkout/payment/<%= default_address._id %>" class="btn btn-success">Choose this address</a>
+                <button onclick="editAddress('<%= JSON.stringify(default_address) %>');"
+                    class="ml-2 btn btn-outline-secondary">Edit</button>
                 <a class="ml-2 btn btn-outline-danger">Delete</a>
             </div>
         </div>
     </div>
+    <% } %>
+    <% addresses.forEach((address) => { %>
+    <% if (JSON.stringify(address._id) != JSON.stringify(default_address._id)) { %>
     <div class="col-12 col-md-6 my-3">
-        <div class="address">
-            <div style="font-weight: bold;">Hoang-Vu Le</div>
-            <div style="font-size: 0.9rem;"><span style="font-weight: bold;">Address:</span> 49A Hung Vuong, Ward 4,
-                District
-                5, Ho Chi Minh City</div>
-            <div style="font-size: 0.9rem;"><span style="font-weight: bold;">Phone number:</span> (+84) 979 134 464
+        <div class="address <%= (default_address && default_address == JSON.stringify(address._id)) ? 'choose' : '' %>">
+            <i style="font-size: 0.8rem; color: green;">Default</i>
+            <div style="font-weight: bold;"><%= address.receiver %></div>
+            <div style=" font-size: 0.9rem;">
+                <span style="font-weight: bold;">Address:</span> <%= address.address %>
+            </div>
+            <div style="font-size: 0.9rem;">
+                <span style="font-weight: bold;">Phone number:</span> <%= address.phone_number %>
             </div>
             <div class="d-flex mt-2">
-                <a href="/checkout/payment" class="btn btn-outline-success">Choose this address</a>
-                <a class="ml-2 btn btn-outline-secondary">Edit</a>
+                <a href="/checkout/payment/<%= address._id %>" class="btn btn-success">Choose this address</a>
+                <button onclick="editAddress('<%= JSON.stringify(address) %>');"
+                    class="ml-2 btn btn-outline-secondary">Edit</button>
                 <a class="ml-2 btn btn-outline-danger">Delete</a>
             </div>
         </div>
     </div>
+    <% } %>
+    <% }); %>
 </div>
-<button style="font-size: 0.9rem" class="mb-3 btn btn-outline-primary float-right" type="button" data-toggle="collapse"
-    data-target="#addressAdding" aria-expanded="false" aria-controls="addressAdding">Add another address</button>
-<div class="collapse" id="addressAdding">
-    <div class="address-form m-auto">
+
+<button id="addressAddingControl" style="font-size: 0.9rem" class="mb-3 btn btn-outline-primary float-right">Add another
+    address</button>
+<% } %>
+<div class="<%= addresses.length == 0 ? 'mt-0' : 'collapse' %>" id="addressAdding">
+    <form class="address-form m-auto">
         <div class="address-line">
             <div>Full name</div>
-            <input type="text" class="form-control" placeholder="Type yor full name">
+            <input type="text" class="form-control full-name" placeholder="Type yor full name" required>
         </div>
         <div class="address-line">
             <div>Phone number</div>
-            <input type="text" class="form-control" placeholder="Type your phone number">
-        </div>
-        <div class="address-line">
-            <div>Province/City</div>
-            <select class="pl-2 form-control">
-                <option value="" disabled selected>Choose Province/City</option>
-            </select>
-        </div>
-        <div class="address-line">
-            <div>District</div>
-            <select class="pl-2 form-control">
-                <option value="" disabled selected>Choose District</option>
-            </select>
-        </div>
-        <div class="address-line">
-            <div>Ward</div>
-            <select class="pl-2 form-control">
-                <option value="" disabled selected>Choose Ward</option>
-            </select>
+            <input type="text" class="form-control phone-number" placeholder="Type your phone number" required>
         </div>
         <div class="address-line">
             <div>Address</div>
-            <textarea class="form-control" placeholder="Type your address"></textarea>
+            <textarea class="form-control address" placeholder="Type your address" required></textarea>
         </div>
         <div class="d-flex align-items-center address-set-default">
-            <i class="far fa-square"></i>
-            <i class="d-none fas fa-check-square"></i>
-            <span>Set this address as default</span>
+            <input type="checkbox">
+            <label for="set-default"> Set this address as default</label>
         </div>
         <div class="address-buttons">
-            <a href="/checkout/payment" class="btn btn-outline-success">Deliver to this address</a>
-            <a class="btn btn-outline-secondary">Cancel</a>
+            <button type="submit" class="btn btn-outline-success">Deliver to this address</button>
+            <a class="btn btn-outline-secondary" data-toggle="collapse" data-target="#addressAdding">Cancel</a>
         </div>
-    </div>
+    </form>
+</div>
+
+<div class="collapse" id="addressEditing">
+    <form class="address-form m-auto">
+        <div class="address-line">
+            <div>Full name</div>
+            <input type="text" class="form-control full-name" placeholder="Type yor full name" required>
+        </div>
+        <div class="address-line">
+            <div>Phone number</div>
+            <input type="text" class="form-control phone-number" placeholder="Type your phone number" required>
+        </div>
+        <div class="address-line">
+            <div>Address</div>
+            <textarea class="form-control address" placeholder="Type your address" required></textarea>
+        </div>
+        <div class="d-flex align-items-center address-set-default">
+            <input type="checkbox">
+            <label for="set-default"> Set this address as default</label>
+        </div>
+        <div class="address-buttons">
+            <button type="submit" class="btn btn-outline-success">Update this address</button>
+            <a class="btn btn-outline-secondary" data-toggle="collapse" data-target="#addressEditing">Cancel</a>
+        </div>
+    </form>
 </div>

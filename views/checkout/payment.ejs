@@ -23,7 +23,7 @@
         <div class="payment-title">1. Delivery method</div>
         <div class="options">
             <label class="option">
-                <input type="radio" name="delivery-method" value="standard">
+                <input type="radio" name="delivery-method" value="standard" checked>
                 <span></span>
                 <div class="m-0 ml-2">Standard Delivery</div>
             </label>
@@ -36,12 +36,12 @@
         <div class="payment-title">2. Payment method</div>
         <div class="options">
             <label class="option">
-                <input type="radio" name="delivery-method" value="cash" checked>
+                <input type="radio" name="payment-method" value="cash" checked>
                 <span></span>
                 <div class="m-0 ml-2">By Cash</div>
             </label>
             <label class="option">
-                <input type="radio" name="delivery-method" value="visa">
+                <input type="radio" name="payment-method" value="visa">
                 <span></span>
                 <div class="m-0 ml-2" for="visa">By Visa, Master, JCB</div>
             </label>
@@ -55,9 +55,9 @@
                 <a href="/checkout/shipping" class="btn btn-outline-secondary">Edit</a>
             </div>
             <div class=" dropdown-divider"></div>
-            <div style="font-size: 1rem; margin-bottom: 0.5rem;"><b>Hoang-Vu Le</b></div>
-            <div><b>Address:</b> 49A Hung Vuong, Ward 4, District 5, Ho Chi Minh City</div>
-            <div><b>Phone number:</b> (+84) 979 134 464
+            <div style="font-size: 1rem; margin-bottom: 0.5rem;"><b><%= address.receiver %></b></div>
+            <div><b>Address:</b> <%= address.address %></div>
+            <div><b>Phone number:</b> <%= address.phone_number %>
             </div>
         </div>
         <div class="bill">

@@ -218,7 +218,7 @@ function getPriceInterval() {
 		document.querySelector(".price-input.max").value
 	);
 
-	queries = {};
+	const queries = {};
 	if (minPrice) {
 		queries.minPrice = minPrice;
 	}
