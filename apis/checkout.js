@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 const { isAuthenticated } = require("../utils/authmiddleware");
 const AddressController = require("../controllers/AddressController");
 

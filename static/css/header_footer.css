@@ -198,21 +198,20 @@
 
 #snackbar {
 	visibility: hidden;
-	min-width: 250px;
-	margin-left: -125px;
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	border-radius: 2px;
-	padding: 16px;
 	position: fixed;
-	z-index: 1;
-	left: 50%;
+	z-index: 1000000;
 	bottom: 30px;
 }
 
+#snackbar > div {
+	min-width: 250px;
+	background-color: #333;
+	color: #fff;
+	border-radius: 2px;
+	padding: 16px;
+}
+
 #snackbar.show {
-	z-index: 1000000;
 	visibility: visible;
 	/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
 	However, delay the fade out process for 2.5 seconds */

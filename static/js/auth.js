@@ -10,7 +10,7 @@ signUpForm.querySelector("#retype").addEventListener("keyup", validatePassword);
 
 function doLogin(e) {
 	e.preventDefault();
-	fetch("/api/login/", {
+	fetch("/api/auth/login/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -31,7 +31,7 @@ function doLogin(e) {
 
 function doSignUp(e) {
 	e.preventDefault();
-	fetch("/api/signup/", {
+	fetch("/api/auth/signup/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -47,8 +47,12 @@ function doSignUp(e) {
 		}),
 	}).then((res) => {
 		if (res.ok) {
-			showSnackbar("Sign up successfully!");
-			location.reload();
+			showSnackbar(
+				"Sign up successfully, please check your email for activation link!"
+			);
+			setTimeout(() => {
+				location.reload();
+			}, 1000);
 		} else {
 			showSnackbar("Email address already exist!");
 		}
@@ -56,7 +60,7 @@ function doSignUp(e) {
 }
 
 function doLogout() {
-	fetch("/api/logout/", {
+	fetch("/api/auth/logout/", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

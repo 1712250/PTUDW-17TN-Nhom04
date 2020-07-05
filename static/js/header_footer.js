@@ -22,9 +22,9 @@ function showQuestionModal(title, message, cb) {
 
 function showSnackbar(msg) {
 	let snackbar = document.getElementById("snackbar");
-	snackbar.innerText = msg;
-	snackbar.className = "show";
+	snackbar.querySelector("div").innerText = msg;
+	snackbar.classList.add("show");
 	setTimeout(function () {
-		snackbar.className = snackbar.className.replace("show", "");
+		snackbar.classList.remove("show");
 	}, 2000);
 }

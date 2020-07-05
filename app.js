@@ -18,11 +18,10 @@ app.set("layout extractStyles", true);
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "static")));
 
-// authentication
+// config authentication, database, mailing
 require("./config/authentication")(app);
-
-// database
 require("./config/database");
+require("./config/mail");
 
 // routers
 const ApiRouter = require("./apis/index");

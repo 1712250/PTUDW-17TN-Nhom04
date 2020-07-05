@@ -1,0 +1,19 @@
+<div class="d-flex flex-column justify-content-center align-items-center" style="height: 20rem;">
+    <div>
+        <%= message %> Redirect to homepage in <span class="mx-1" id="timer">5</span>
+        second...
+    </div>
+    <a href="/">Or now</a>
+</div>
+
+<script>
+    let timer = 5;
+    let countdown = setInterval(function () {
+        timer--;
+        document.getElementById("timer").innerText = timer;
+        if (timer <= 0) {
+            clearInterval(countdown);
+            location.href = "/";
+        }
+    }, 1000);
+</script>
