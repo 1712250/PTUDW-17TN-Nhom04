@@ -5,7 +5,7 @@ const UserController = require("../controllers/UserController");
 const TempUserController = require("../controllers/TempUserController");
 const MailController = require("../utils/MailController");
 
-const { genPassword } = require("../utils/hashing");
+const { genPassword, randomPassword } = require("../utils/hashing");
 const { isAuthenticated } = require("../utils/authmiddleware");
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
@@ -13,12 +13,21 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 });
 
 router.post("/forgetpassword", (req, res) => {
-	MailController.sendMail(
-		"lhvubtqn@gmail.com",
-		"Obooks: Hello there",
-		"Some content"
-	);
-	res.status(200).send({ status: 200, message: "OK" });
+	UserController.getUser(req.body.email).then((user) => {
+		const randPass = randomPassword();
+		user.password = genPassword(randPass);
+		user.save()
+			.then((user) => {
+				MailController.sendResetPassword(randPass, user);
+				res.status(200).send({
+					status: 200,
+					message: "Sent",
+				});
+			})
+			.catch((err) =>
+				res.status(500).send({ status: 500, message: "Server is busy" })
+			);
+	});
 });
 
 router.post("/signup", (req, res) => {

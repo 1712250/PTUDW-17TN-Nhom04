@@ -1,8 +1,16 @@
 const loginForm = document.getElementById("login-form");
 const signUpForm = document.getElementById("sign-up-form");
+const forgetPassForm = document.querySelector("#forgetPasswordModal form");
 
 loginForm.addEventListener("submit", doLogin);
 signUpForm.addEventListener("submit", doSignUp);
+forgetPassForm.addEventListener("submit", doForgetPassword);
+document.getElementById("hrefForgetPass").addEventListener("click", (e) => {
+	e.preventDefault();
+	$("#loginModal").modal("hide");
+	$("#forgetPasswordModal").modal("show");
+});
+
 signUpForm
 	.querySelector("#password")
 	.addEventListener("change", validatePassword);
@@ -50,12 +58,10 @@ function doSignUp(e) {
 			showSnackbar(
 				"Sign up successfully, please check your email for activation link!"
 			);
-			setTimeout(() => {
-				location.reload();
-			}, 1000);
 		} else {
 			showSnackbar("Email address already exist!");
 		}
+		setTimeout(() => $("#loginModal").modal("hide"), 1000);
 	});
 }
 
@@ -70,6 +76,8 @@ function doLogout() {
 			showSnackbar("Log out successfully! Redirect...");
 			location.href = "/";
 		} else {
+			showSnackbar("Server is busy...");
+			location.href = "/";
 		}
 	});
 }
@@ -83,4 +91,24 @@ function validatePassword() {
 	} else {
 		password_retype.setCustomValidity("");
 	}
+}
+
+function doForgetPassword(e) {
+	e.preventDefault();
+	fetch("/api/auth/forgetpassword", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			email: forgetPassForm.querySelector("input").value,
+		}),
+	}).then((res) => {
+		if (res.ok) {
+			showSnackbar("Sent! Check your email");
+		} else {
+			showSnackbar("Server is busy...");
+		}
+		setTimeout(() => $("#forgetPasswordModal").modal("hide"), 1000);
+	});
 }
