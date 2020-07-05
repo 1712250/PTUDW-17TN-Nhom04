@@ -17,6 +17,10 @@ If you already have node, clone this repository, then open terminal in the repos
     npm start
 ```
 
+## Database
+
+![Database Diagram](/static/images/obooks_database_diagram.png)
+
 ## Quick links
 
 -   [Docs and ideas (Google drive)](https://drive.google.com/drive/u/1/folders/1qNk034u6YUHCkENeit7SQz4PYsQLEzVh)
