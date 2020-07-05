@@ -19,7 +19,11 @@ If you already have node, clone this repository, then open terminal in the repos
 
 ## Database
 
+Diagram:
+
 ![Database Diagram](/static/images/obooks_database_diagram.png)
+
+Implement this diagram into models, using mongoose can be found [here](/model/).
 
 ## Quick links
 
