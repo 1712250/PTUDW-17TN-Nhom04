@@ -75,13 +75,7 @@ function updateAddress(e) {
 }
 
 // address: object
-async function editAddress(address) {
-	const addr = JSON.parse(address);
-	addressEditing.querySelector("form").value = addr._id;
-	addressEditing.querySelector(".full-name").value = addr.receiver;
-	addressEditing.querySelector(".phone-number").value = addr.phone_number;
-	addressEditing.querySelector(".address").value = addr.address;
-
+async function editAddress(addressId, isDefault) {
 	if (
 		$("#addressAdding").is(":visible") ||
 		$("#addressEditing").is(":visible")
@@ -89,29 +83,46 @@ async function editAddress(address) {
 		$("#addressAdding").collapse("hide");
 		$("#addressEditing").collapse("hide");
 		setTimeout(() => {
-			$("#addressEditing").collapse("show");
+			showAddressEditing(addressId, isDefault);
 		}, 500);
 	} else {
-		$("#addressEditing").collapse("show");
+		showAddressEditing(addressId, isDefault);
 	}
 }
 
+function showAddressEditing(addressId, isDefault) {
+	const address = document.getElementById(addressId);
+	addressEditing.querySelector("form").value = addressId;
+	addressEditing.querySelector(".full-name").value = address.querySelector(
+		"div > div:nth-child(2)"
+	).innerText;
+	addressEditing.querySelector(".phone-number").value = address.querySelector(
+		"div > div:nth-child(4) > span"
+	).innerText;
+	addressEditing.querySelector(".address").value = address.querySelector(
+		"div > div:nth-child(3) > span"
+	).innerText;
+	addressEditing.querySelector("input[type=checkbox]").checked = isDefault;
+	$("#addressEditing").collapse("show");
+}
+
 function deleteAddress(addressId) {
-	console.log(addressId);
-	fetch("/api/checkout/shipping/address/delete/", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			addressId,
-		}),
-	})
-		.then((res) => res.json())
-		.then((body) => {
-			if (body.status == 200) {
-				showSnackbar("Deleted!");
-				location.reload();
-			}
-		});
+	showQuestionModal("Information", "Delete this address?", () => {
+		fetch("/api/checkout/shipping/address/delete/", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				addressId,
+			}),
+		})
+			.then((res) => res.json())
+			.then((body) => {
+				if (body.status == 200) {
+					showSnackbar("Deleted!");
+					location.reload();
+				}
+			});
+	});
 }

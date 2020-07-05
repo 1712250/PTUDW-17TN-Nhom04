@@ -35,6 +35,7 @@ router.post("/shipping/address/get", (req, res) => {
 });
 
 router.post("/shipping/address/add", (req, res) => {
+	req.body.address.user = req.user._id;
 	req.user
 		.addAddress(req.body.address, req.body.is_default)
 		.then((address) => {
@@ -72,4 +73,22 @@ router.post("/shipping/address/delete", (req, res) => {
 	});
 });
 
+router.post("/payment", (req, res) => {
+	req.user
+		.addOrder(
+			req.body.delivery_method,
+			req.body.payment_method,
+			req.body.address_id
+		)
+		.then((user) => {
+			if (user) {
+				res.status(200).send({ status: 200, message: "Success" });
+			} else {
+				res.status(500).send({
+					status: 500,
+					message: "Internal server error...",
+				});
+			}
+		});
+});
 module.exports = router;

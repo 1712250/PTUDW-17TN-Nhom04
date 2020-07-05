@@ -1,11 +1,12 @@
 const Model = require("../models/Address");
 const mongoose = require("mongoose");
 
-// address: Object{receiver, phone_number, address}
+// address: Object{user, receiver, phone_number, address}
 module.exports.newAddress = function (address) {
 	return this.getByName(address.address).then((res) => {
 		if (
 			res &&
+			res.user.equals(address.user) &&
 			res.receiver == address.receiver &&
 			res.phone_number == address.phone_number
 		) {

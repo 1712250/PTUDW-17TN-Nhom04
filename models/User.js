@@ -18,6 +18,14 @@ const orderSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Address",
 	},
+	delivery_method: {
+		type: String,
+		enum: ["standard", "fast"],
+	},
+	payment_method: {
+		type: String,
+		enum: ["cash", "visa/master/jcb"],
+	},
 	status: {
 		type: String,
 		enum: ["delivered", "arriving"],
@@ -86,6 +94,7 @@ userSchema.methods.addAddress = function (address, setDefault) {
 	return AddressController.newAddress(address)
 		.then((newAddr) => {
 			this.addresses.addToSet(newAddr._id);
+			console.log(this.default_address);
 			if (setDefault || !this.default_address) {
 				this.default_address = newAddr._id;
 			}
@@ -104,11 +113,11 @@ userSchema.methods.addAddress = function (address, setDefault) {
 
 userSchema.methods.removeAddress = function (addressId) {
 	this.addresses.pull(addressId);
-	if (JSON.stringify(this.default_address) === JSON.stringify(addressId)) {
+	if (this.default_address.equals(addressId)) {
 		if (this.addresses.length > 0) {
 			this.default_address = this.addresses[0];
 		} else {
-			delete this.default_address;
+			this.default_address = undefined;
 		}
 	}
 	return this.save();
@@ -174,6 +183,29 @@ userSchema.methods.removeFromCart = function (bookId, removeAll) {
 		})
 		.catch((err) => {
 			console.log("Error while removing book from cart: " + err.message);
+		});
+};
+
+userSchema.methods.addOrder = function (
+	delivery_method,
+	payment_method,
+	delivery_address
+) {
+	this.orders.push({
+		books: this.cart,
+		delivery_method,
+		payment_method,
+		delivery_address,
+		status: "arriving",
+	});
+	this.cart = [];
+	return this.save()
+		.then((user) => {
+			return user;
+		})
+		.catch((err) => {
+			console.log("Error while saving order: " + err.message);
+			return null;
 		});
 };
 
