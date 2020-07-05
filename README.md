@@ -23,7 +23,7 @@ Diagram:
 
 ![Database Diagram](/static/images/obooks_database_diagram.png)
 
-Implement this diagram into models, using mongoose can be found [here](/models/).
+Implement this diagram into models (using [mongoose](https://mongoosejs.com/)) can be found [here](/models/).
 
 ## Quick links
 
