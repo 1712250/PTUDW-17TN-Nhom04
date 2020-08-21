@@ -180,7 +180,7 @@
         <div class="list-books row mt-2 text-wrap">
             <% bookInstances.forEach(bookInstance => { %>
             <div class="book col-12 col-sm-6 col-lg-4 col-xl-3"
-                onclick="location.href='/browse/book?id=<%= bookInstance.book._id %>'">
+                onclick="location.href='/browse/book?id=<%= bookInstance._id %>'">
                 <div class="card my-2 pt-3">
                     <div class="book-cover"><img src="/images/<%= bookInstance.book.image_url %>" class="card-img-top">
                     </div>
