@@ -6,29 +6,29 @@ const browse = require("./browse");
 const { getBookInstances } = require("../controllers/BookInstanceController");
 
 router.get("/", async (req, res, next) => {
-	const bestSell = await getBookInstances({
-		page: 1,
-		category: "Fiction",
-		sortBy: "Best sell",
-	});
-	const newBooks = await getBookInstances({ page: 1, sortBy: "New" });
-	const vietnamese = await getBookInstances({
-		page: 1,
-		language: ["Vietnamese"],
-		sortBy: "Best sell",
-	});
-	const mystery = await getBookInstances({
-		page: 1,
-		genre: "Crime, Thrillers and Mystery",
-	});
+  const bestSell = await getBookInstances({
+    page: 1,
+    category: "Fiction",
+    sortBy: "Best sell",
+  });
+  const newBooks = await getBookInstances({ page: 1, sortBy: "New" });
+  const vietnamese = await getBookInstances({
+    page: 1,
+    language: ["Vietnamese"],
+    sortBy: "Best sell",
+  });
+  const mystery = await getBookInstances({
+    page: 1,
+    genre: "Crime, Thrillers and Mystery",
+  });
 
-	res.render("homepage", {
-		title: "Obooks",
-		bestSell,
-		newBooks,
-		vietnamese,
-		mystery,
-	});
+  res.render("homepage", {
+    title: "Obooks",
+    bestSell,
+    newBooks,
+    vietnamese,
+    mystery,
+  });
 });
 
 router.use("/browse", browse);

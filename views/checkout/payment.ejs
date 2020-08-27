@@ -82,7 +82,7 @@
         <a href="/checkout/cart" class="btn btn-outline-secondary">Edit</a>
       </div>
       <div class="dropdown-divider"></div>
-      <% let total = 0; %> <% cart.forEach((item) => { %> <% const price =
+      <% let total = 0; %> <% user.cart.forEach((item) => { %> <% const price =
       Math.ceil(item.book.price * item.book.discount / 10) / 10; %> <% total +=
       price; %>
       <div class="book d-flex justify-content-between">
