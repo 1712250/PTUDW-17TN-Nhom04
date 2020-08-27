@@ -33,7 +33,6 @@ renderFilter(queries);
 // functions implementation
 function parseURL() {
   const queries = {};
-  // if (location.search.length > 0) queries = {};
   location.search
     .slice(1)
     .split("&")
@@ -176,32 +175,35 @@ function removeElement(target) {
   updatePage();
 }
 
-function updatePage(queries = {}) {
+function updatePage(newQueries = {}) {
   const { minPrice, maxPrice } = getPriceInterval();
   if (minPrice && maxPrice && minPrice > maxPrice) {
     showSnackbar("Min price must be less than or equal to max price!");
     return;
   }
   if (minPrice) {
-    queries.minPrice = minPrice;
+    newQueries.minPrice = minPrice;
   }
   if (maxPrice) {
-    queries.maxPrice = maxPrice;
+    newQueries.maxPrice = maxPrice;
+  }
+  if (!newQueries.search) {
+    newQueries.search = queries.search;
   }
 
   for (let tag of listTags.children) {
     let key = tag.dataset.field;
     let value = tag.children[0].innerText.replace(/\s+/g, "-");
     if (key === "condition" || key === "language") {
-      if (!queries[key]) queries[key] = [];
-      queries[key].push(value);
+      if (!newQueries[key]) newQueries[key] = [];
+      newQueries[key].push(value);
     } else {
-      if (!queries[key]) queries[key] = value;
+      if (!newQueries[key]) newQueries[key] = value;
     }
   }
 
   let url = location.origin + location.pathname + "?";
-  for (let [key, value] of Object.entries(queries)) {
+  for (let [key, value] of Object.entries(newQueries)) {
     if (Array.isArray(value)) {
       key = key + "[]";
       value.forEach((param) => (url = url + key + "=" + param + "&"));
@@ -253,9 +255,8 @@ function sortByClicked(sortOrder) {
 function onSearchSubmit(e) {
   e.preventDefault();
   const input = searchForm.querySelector("input");
-  updatePage({
-    search: input.value.trim().split(/\s+/).join("-").toLowerCase(),
-  });
+  location.href =
+    "/browse?search=" + input.value.trim().split(/\s+/).join("-").toLowerCase();
 }
 
 function onRatingClicked(rating) {
