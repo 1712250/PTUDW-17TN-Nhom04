@@ -10,7 +10,7 @@ import (
 
 //Mongo for MongoDB
 type Mongo struct {
-	Db *mongo.Client
+	Db *mongo.Database
 }
 
 //Connect for connect to db
@@ -28,7 +28,7 @@ func (a *Mongo) Connect() error {
 
 	// Check the connection
 	err = client.Ping(context.TODO(), nil)
-
+	a.Db = client.Database("Obooks")
 	if err != nil {
 		fmt.Println(err)
 		return err
