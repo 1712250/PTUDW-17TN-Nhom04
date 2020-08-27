@@ -16,7 +16,7 @@ type Mongo struct {
 //Connect for connect to db
 func (a *Mongo) Connect() error {
 	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb+srv://lhvubtqn@freecluster-dhj34.mongodb.net/Obooks?replicaSet=FreeCluster-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1&3t.uriVersion=3&3t.connection.name=FreeCluster-shard-0&3t.databases=Obooks,admin")
+	clientOptions := options.Client().ApplyURI("mongodb+srv://lhvubtqn:Deofp5EEzxjTyfMs@freecluster-dhj34.mongodb.net/Obooks?retryWrites=true&w=majority")
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
