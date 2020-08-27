@@ -1,122 +1,204 @@
-<link rel="stylesheet" href="/css/checkout/shipping.css">
+<link rel="stylesheet" href="/css/checkout/shipping.css" />
 <script src="/js/checkout/shipping.js"></script>
 
 <div class="d-flex justify-content-between">
-    <div class="login">
-        <div class="phase-title">Login</div>
-        <div class="phase background-primary"><span class="phase-text p-0 m-0">1</span></div>
+  <div class="login">
+    <div class="phase-title">Cart</div>
+    <div
+      class="phase background-primary"
+      style="cursor: pointer;"
+      onclick="location.href='/checkout/cart'"
+    >
+      <span class="phase-text p-0 m-0">1</span>
     </div>
-    <div class="shipping ml-4">
-        <div class="phase-title">Shipping</div>
-        <div class="phase background-primary m-auto"><span class="phase-text p-0 m-0">2</span></div>
+  </div>
+  <div class="shipping ml-4">
+    <div class="phase-title">Shipping</div>
+    <div class="phase background-primary m-auto">
+      <span class="phase-text p-0 m-0">2</span>
     </div>
-    <div class="payment">
-        <div class="phase-title">Payment</div>
-        <div class="phase background-primary float-right"><span class="phase-text p-0 m-0">3</span></div>
+  </div>
+  <div class="payment">
+    <div class="phase-title">Payment</div>
+    <div class="phase background-primary float-right">
+      <span class="phase-text p-0 m-0">3</span>
     </div>
+  </div>
 </div>
 <div class="progress mx-1 mb-3">
-    <div class="progress-bar background-primary w-50"></div>
+  <div class="progress-bar background-primary w-50"></div>
 </div>
 
 <% if (addresses.length > 0) { %>
 <div class="addresses-title">Choose your address:</div>
 <div class="addresses row">
-    <% if (default_address) { %>
-    <div class="col-12 col-md-6 my-3" id="<%= default_address._id %>">
-        <div class="address choose">
-            <i style="font-size: 0.8rem; color: green;">Default</i>
-            <div style="font-weight: bold;"><%= default_address.receiver %></div>
-            <div style="font-size: 0.9rem;">
-                <b>Address: </b><span><%= default_address.address %></span>
-            </div>
-            <div style="font-size: 0.9rem;">
-                <b>Phone number: </b><span><%= default_address.phone_number %></span>
-            </div>
-            <div class="d-flex mt-2">
-                <a href="/checkout/payment/<%= default_address._id %>" class="btn btn-success">Choose this address</a>
-                <button onclick="editAddress('<%= default_address._id %>', true);"
-                    class="ml-2 btn btn-outline-secondary">Edit</button>
-                <button onclick="deleteAddress('<%= default_address._id %>')"
-                    class="ml-2 btn btn-outline-danger">Delete</button>
-            </div>
-        </div>
+  <% if (default_address) { %>
+  <div class="col-12 col-md-6 my-3" id="<%= default_address._id %>">
+    <div class="address choose">
+      <i style="font-size: 0.8rem; color: green;">Default</i>
+      <div style="font-weight: bold;"><%= default_address.receiver %></div>
+      <div style="font-size: 0.9rem;">
+        <b>Address: </b><span><%= default_address.address %></span>
+      </div>
+      <div style="font-size: 0.9rem;">
+        <b>Phone number: </b><span><%= default_address.phone_number %></span>
+      </div>
+      <div class="d-flex mt-2">
+        <a
+          href="/checkout/payment/<%= default_address._id %>"
+          class="btn btn-success"
+          >Choose this address</a
+        >
+        <button
+          onclick="editAddress('<%= default_address._id %>', true);"
+          class="ml-2 btn btn-outline-secondary"
+        >
+          Edit
+        </button>
+        <button
+          onclick="deleteAddress('<%= default_address._id %>')"
+          class="ml-2 btn btn-outline-danger"
+        >
+          Delete
+        </button>
+      </div>
     </div>
-    <% } %>
-    <% addresses.forEach((address) => { %>
-    <% if (!default_address || !address._id.equals(default_address._id)) { %>
-    <div class="col-12 col-md-6 my-3" id="<%= address._id %>">
-        <div class="address <%= (default_address && default_address == JSON.stringify(address._id)) ? 'choose' : '' %>">
-            <i style="font-size: 0.8rem; color: green;">Default</i>
-            <div style="font-weight: bold;"><%= address.receiver %></div>
-            <div style="font-size: 0.9rem;">
-                <b>Address: </b><span><%= address.address %></span>
-            </div>
-            <div style="font-size: 0.9rem;">
-                <b>Phone number: </b><span><%= address.phone_number %></span>
-            </div>
-            <div class="d-flex mt-2">
-                <a href="/checkout/payment/<%= address._id %>" class="btn btn-success">Choose this address</a>
-                <button onclick="editAddress('<%= address._id %>', false)"
-                    class="ml-2 btn btn-outline-secondary">Edit</button>
-                <button onclick="deleteAddress('<%= address._id %>')"
-                    class="ml-2 btn btn-outline-danger">Delete</button>
-            </div>
-        </div>
+  </div>
+  <% } %> <% addresses.forEach((address) => { %> <% if (!default_address ||
+  !address._id.equals(default_address._id)) { %>
+  <div class="col-12 col-md-6 my-3" id="<%= address._id %>">
+    <div
+      class="address <%= (default_address && default_address == JSON.stringify(address._id)) ? 'choose' : '' %>"
+    >
+      <i style="font-size: 0.8rem; color: green;">Default</i>
+      <div style="font-weight: bold;"><%= address.receiver %></div>
+      <div style="font-size: 0.9rem;">
+        <b>Address: </b><span><%= address.address %></span>
+      </div>
+      <div style="font-size: 0.9rem;">
+        <b>Phone number: </b><span><%= address.phone_number %></span>
+      </div>
+      <div class="d-flex mt-2">
+        <a href="/checkout/payment/<%= address._id %>" class="btn btn-success"
+          >Choose this address</a
+        >
+        <button
+          onclick="editAddress('<%= address._id %>', false)"
+          class="ml-2 btn btn-outline-secondary"
+        >
+          Edit
+        </button>
+        <button
+          onclick="deleteAddress('<%= address._id %>')"
+          class="ml-2 btn btn-outline-danger"
+        >
+          Delete
+        </button>
+      </div>
     </div>
-    <% } %>
-    <% }); %>
+  </div>
+  <% } %> <% }); %>
 </div>
 
-<button id="addressAddingControl" style="font-size: 0.9rem" class="mb-3 btn btn-outline-primary float-right">Add another
-    address</button>
+<button
+  id="addressAddingControl"
+  style="font-size: 0.9rem;"
+  class="mb-3 btn btn-outline-primary float-right"
+>
+  Add another address
+</button>
 <% } %>
-<div class="<%= addresses.length == 0 ? 'mt-0' : 'collapse' %>" id="addressAdding">
-    <form class="address-form m-auto">
-        <div class="address-line">
-            <div>Full name</div>
-            <input type="text" class="form-control full-name" placeholder="Type yor full name" required>
-        </div>
-        <div class="address-line">
-            <div>Phone number</div>
-            <input type="text" class="form-control phone-number" placeholder="Type your phone number" required>
-        </div>
-        <div class="address-line">
-            <div>Address</div>
-            <textarea class="form-control address" placeholder="Type your address" required></textarea>
-        </div>
-        <div class="d-flex align-items-center address-set-default">
-            <input id="add-set-default" type="checkbox">
-            <label for="add-set-default"> Set this address as default</label>
-        </div>
-        <div class="address-buttons">
-            <button type="submit" class="btn btn-outline-success">Deliver to this address</button>
-            <a class="btn btn-outline-secondary" data-toggle="collapse" data-target="#addressAdding">Cancel</a>
-        </div>
-    </form>
+<div
+  class="<%= addresses.length == 0 ? 'mt-0' : 'collapse' %>"
+  id="addressAdding"
+>
+  <form class="address-form m-auto">
+    <div class="address-line">
+      <div>Full name</div>
+      <input
+        type="text"
+        class="form-control full-name"
+        placeholder="Type yor full name"
+        required
+      />
+    </div>
+    <div class="address-line">
+      <div>Phone number</div>
+      <input
+        type="text"
+        class="form-control phone-number"
+        placeholder="Type your phone number"
+        required
+      />
+    </div>
+    <div class="address-line">
+      <div>Address</div>
+      <textarea
+        class="form-control address"
+        placeholder="Type your address"
+        required
+      ></textarea>
+    </div>
+    <div class="d-flex align-items-center address-set-default">
+      <input id="add-set-default" type="checkbox" />
+      <label for="add-set-default"> Set this address as default</label>
+    </div>
+    <div class="address-buttons">
+      <button type="submit" class="btn btn-outline-success">
+        Deliver to this address
+      </button>
+      <a
+        class="btn btn-outline-secondary"
+        data-toggle="collapse"
+        data-target="#addressAdding"
+        >Cancel</a
+      >
+    </div>
+  </form>
 </div>
 
 <div class="collapse" id="addressEditing">
-    <form class="address-form m-auto">
-        <div class="address-line">
-            <div>Full name</div>
-            <input type="text" class="form-control full-name" placeholder="Type yor full name" required>
-        </div>
-        <div class="address-line">
-            <div>Phone number</div>
-            <input type="text" class="form-control phone-number" placeholder="Type your phone number" required>
-        </div>
-        <div class="address-line">
-            <div>Address</div>
-            <textarea class="form-control address" placeholder="Type your address" required></textarea>
-        </div>
-        <div class="d-flex align-items-center address-set-default">
-            <input type="checkbox" id="edit-set-default">
-            <label for="edit-set-default"> Set this address as default</label>
-        </div>
-        <div class="address-buttons">
-            <button type="submit" class="btn btn-outline-success">Update this address</button>
-            <a class="btn btn-outline-secondary" data-toggle="collapse" data-target="#addressEditing">Cancel</a>
-        </div>
-    </form>
+  <form class="address-form m-auto">
+    <div class="address-line">
+      <div>Full name</div>
+      <input
+        type="text"
+        class="form-control full-name"
+        placeholder="Type yor full name"
+        required
+      />
+    </div>
+    <div class="address-line">
+      <div>Phone number</div>
+      <input
+        type="text"
+        class="form-control phone-number"
+        placeholder="Type your phone number"
+        required
+      />
+    </div>
+    <div class="address-line">
+      <div>Address</div>
+      <textarea
+        class="form-control address"
+        placeholder="Type your address"
+        required
+      ></textarea>
+    </div>
+    <div class="d-flex align-items-center address-set-default">
+      <input type="checkbox" id="edit-set-default" />
+      <label for="edit-set-default"> Set this address as default</label>
+    </div>
+    <div class="address-buttons">
+      <button type="submit" class="btn btn-outline-success">
+        Update this address
+      </button>
+      <a
+        class="btn btn-outline-secondary"
+        data-toggle="collapse"
+        data-target="#addressEditing"
+        >Cancel</a
+      >
+    </div>
+  </form>
 </div>

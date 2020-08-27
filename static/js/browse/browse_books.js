@@ -76,6 +76,7 @@ function addToCart(bookId) {
   })
     .then((res) => res.json())
     .then((body) => {
+      console.log(body.status);
       if (body.status == 200) {
         cartBadge.classList.remove("d-none");
         if (body.count == 1) {

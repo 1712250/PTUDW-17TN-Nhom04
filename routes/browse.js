@@ -6,7 +6,7 @@ const {
 } = require("../controllers/BookInstanceController");
 
 router.get("/", async (req, res, next) => {
-  const queries = parseURL(decodeURIComponent(req._parsedOriginalUrl.query));
+  const queries = parseURL(req._parsedOriginalUrl.query);
   const genres = await getGenre(queries.category);
   const { bookInstances, totalPages } = await getBookInstances(queries);
 
@@ -44,8 +44,18 @@ router.get("/", async (req, res, next) => {
 router.get("/book", async (req, res, next) => {
   const id = req._parsedOriginalUrl.query.split("=")[1];
   const bookInstance = await getBookInstance(id);
+  const relatedBooks = await getBookInstances({
+    page: 1,
+    genre: bookInstance.book.genres[0].name,
+    sortBy: "New",
+  });
+
   if (bookInstance)
-    res.render("book_detail", { title: "Book Detail", bookInstance });
+    res.render("book_detail", {
+      title: "Book Detail",
+      bookInstance,
+      relatedBooks: relatedBooks.bookInstances.slice(1, 6),
+    });
   else res.render("error/404.ejs", { layout: false, title: "Book Detail" });
 });
 
@@ -55,7 +65,7 @@ function parseURL(urlQuery) {
   if (!urlQuery) return { page: 1 };
 
   const queries = { page: 1 };
-  urlQuery
+  decodeURIComponent(urlQuery)
     .split("&")
     .map((u) => u.split("="))
     .forEach(([key, value]) => {

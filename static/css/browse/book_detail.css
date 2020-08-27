@@ -1,0 +1,191 @@
+.book-detail .card {
+  border-width: 1px;
+  border-color: transparent;
+  width: 20em;
+  height: 30em;
+  margin-left: 10px;
+}
+.book-detail .card:hover {
+  border-width: 1px;
+  border-color: black;
+}
+.book-detail .icon-img {
+  width: 100%;
+  height: 25em;
+}
+.book-detail .img-book {
+  position: relative;
+}
+.book-detail .top-right-mark {
+  display: block;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  border-top: solid 50px red;
+  border-right: solid 50px red;
+  border-left: solid 50px transparent;
+  border-bottom: solid 50px transparent;
+  text-align: center;
+}
+.book-detail .text {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-size: 25px;
+}
+.book-detail .text-float {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  display: inline;
+  padding: 2px;
+  bottom: 5%;
+  right: 5%;
+  justify-content: center;
+}
+.book-detail .text-price {
+  text-align: center;
+  margin-left: 5px;
+  font-size: 14px;
+}
+.book-detail .text-underline {
+  text-decoration: line-through;
+  margin-left: 5px;
+  color: grey;
+}
+.book-detail .title-book {
+  font-weight: bold;
+  margin-top: 5px;
+}
+.book-detail .star-line {
+  margin-top: 5px;
+}
+.book-detail .txt-related {
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+  font-weight: bold;
+}
+.book-detail .btn-product-tag {
+  font-size: 20px;
+  background-color: #e0e0e0;
+}
+.book-detail .infor-book {
+  margin-top: 3rem;
+}
+#namebook {
+  font-weight: bold;
+  font-size: 28px;
+}
+.book-detail .count-reviews {
+  border-right: 1px solid black;
+
+  font-size: 18px;
+}
+.book-detail .addreview {
+  font-size: 18px;
+}
+.book-detail .addreview:hover {
+  color: blue;
+}
+.book-detail .price {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+}
+.book-detail .price::before {
+  content: "$";
+}
+.book-detail .btn-color {
+  height: 1.5rem;
+  width: 2rem;
+}
+.book-detail .add-form {
+  height: 2em;
+}
+.book-detail .input-group {
+  width: 8rem;
+  height: 2.5rem;
+}
+.book-detail .count-books {
+  width: 2rem;
+}
+.book-detail .btn-add-cart {
+  border-radius: 30px;
+  font-size: 12px;
+  height: 2.5rem;
+}
+.book-detail .btn-circle {
+  width: 2rem;
+  height: 2rem;
+  padding: 6px 0px;
+  border-radius: 5rem;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.42857;
+  border-color: black;
+}
+.book-detail .btn-heart i:hover,
+.book-detail .btn-heart:hover {
+  color: red;
+  border-color: red;
+}
+.book-detail .btn-reload i:hover,
+.book-detail .btn-reload:hover {
+  color: green;
+  border-color: green;
+}
+.book-detail .btn-contact i:hover,
+.book-detail .btn-contact:hover {
+  color: blue;
+  border-color: blue;
+}
+#myCarousel {
+  border-radius: 10px;
+  width: 90%;
+  position: relative;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+
+  margin-left: 5%;
+  margin-right: 0%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+.book-detail .carousel-item .img-fluid {
+  height: 35rem;
+  width: 100rem;
+}
+.book-detail .carousel-selector-img {
+  height: 3rem;
+  width: 50rem;
+  background-color: black;
+}
+#myCarousel .list-inline {
+  white-space: nowrap;
+  overflow-x: auto;
+  width: 100%;
+  height: 100%;
+}
+
+#myCarousel .carousel-indicators {
+  position: static;
+  left: initial;
+  width: initial;
+  margin-left: initial;
+}
+
+#myCarousel .carousel-indicators > li {
+  width: initial;
+  height: initial;
+  text-indent: initial;
+}
+
+#myCarousel .carousel-indicators > li.active img {
+  opacity: 0.7;
+}

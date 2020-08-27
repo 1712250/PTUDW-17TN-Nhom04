@@ -1,215 +1,241 @@
-<link rel="stylesheet" href="/css/book_detail.css" />
+<link rel="stylesheet" href="/css/browse/book_detail.css" />
 <script src="/js/jssor.slider-28.0.0.min.js"></script>
+<script src="/js/browse/book_detail.js"></script>
 
-<div class="infor-book row">
-  <!--Slide Book Review-->
-  <div class="col-4 d-flex justify-content-center align-items-center">
-    <div class="h-100">
-      <img
-        style="min-height: 100%; width: auto;"
-        src="/images/<%= bookInstance.book.image_url %>"
-      />
-    </div>
-  </div>
-
-  <!--Information book -->
-  <div class="detail-book col-8">
-    <div id="namebook"><%= bookInstance.book.title %></div>
-    <div class="d-flex available flex-row mt-1">
-      <div class="mr-1">Availability:</div>
-      <div class="text-danger mr-5">
-        <%= (bookInstance.count > 0) ? 'In Stock' : 'Out Of Stock' %>
-      </div>
-      <div class="text-danger mr-5"></div>
-      <div class="mr-1">SKU:</div>
-      <div class="text-danger mr-5">MH01</div>
-    </div>
-    <div class="review_book d-flex flex-row">
-      <div class="star-line mr-1">
-        <i
-          class="fas fa-star <%= (bookInstance.book.rating >= 1) ? 'text-warning' : 'text-black-50' %>"
-        ></i>
-        <i
-          class="fas fa-star <%= (bookInstance.book.rating >= 2) ? 'text-warning' : 'text-black-50' %>"
-        ></i>
-        <i
-          class="fas fa-star <%= (bookInstance.book.rating >= 3) ? 'text-warning' : 'text-black-50' %>"
-        ></i>
-        <i
-          class="fas fa-star <%= (bookInstance.book.rating >= 4) ? 'text-warning' : 'text-black-50' %>"
-        ></i>
-        <i
-          class="fas fa-star <%= (bookInstance.book.rating >= 5) ? 'text-warning' : 'text-black-50' %>"
-        ></i>
-      </div>
-      <div class="count-reviews pr-2 mt-1 mr-2">(1 Review)</div>
-      <div class="addreview mt-1" style="cursor: pointer;">Add Your Review</div>
-    </div>
-    <div class="price mt-1"><%= bookInstance.price %></div>
-    <div class="add-form mt-3 d-flex flex-row">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button">-</button>
-        </div>
-        <input
-          class="count-books text-center"
-          type="text"
-          class="form-control"
-          placeholder="1"
-          aria-label=""
-          aria-describedby="basic-addon1"
-          readonly
+<div class="book-detail">
+  <div class="infor-book row">
+    <!--Slide Book Review-->
+    <div class="col-4 d-flex justify-content-center align-items-center">
+      <div class="h-100">
+        <img
+          style="min-height: 100%; width: auto;"
+          src="/images/<%= bookInstance.book.image_url %>"
         />
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">+</button>
-        </div>
-      </div>
-      <!--Group button -->
-      <div class="btn btn-dark btn-add-cart mr-2">
-        <i class="fas fa-shopping-bag mr-2 mt-2"></i> ADD TO CART
-      </div>
-      <div class="btn btn-dark btn-add-cart">
-        <i class="far fa-list-alt mr-2 mt-2"> </i>ORDERS
       </div>
     </div>
-    <!--Group icon-->
-    <div class="group-icon d-flex flex-row mt-5">
-      <button type="button" class="btn btn-default btn-circle btn-heart mr-2">
-        <i class="fas fa-heart"></i>
-      </button>
-      <button type="button" class="btn btn-default btn-circle btn-reload mr-2">
-        <i class="fas fa-sync"></i>
-      </button>
-      <button type="button" class="btn btn-default btn-circle btn-contact mr-2">
-        <i class="fas fa-envelope"></i>
-      </button>
-    </div>
-    <hr />
-    <!--Description-->
-    <div class="description d-flex flex-column">
-      <div class="mt-2">
-        <%= bookInstance.book.description %>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!--!Information book -->
-<div class="detail-review mt-3">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" href="#!">DETAIL</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#!">REVIEW</a>
-    </li>
-  </ul>
-  <div id="iframeContent" dir="auto" class="mt-3">
-    <b>MAN BOOKER PRIZE FINALIST</b><br /><b
-      >A <i>New York Times</i>,<i> The Washington Post,</i> NPR,&nbsp;<i
-        >Financial Times</i
-      >, <i>Southern Living</i>, <i>The Guardian</i>, and
-      <i>Kirkus Reviews</i>&nbsp;Best Book of the Year</b
-    ><br /><b>Long-listed for the Gordon Burn Prize</b><br /><br />Autumn.
-    Season of mists and mellow fruitfulness. That's what it felt like for Keats
-    in 1819. How about Autumn 2016? Daniel is a century old. Elisabeth, born in
-    1984, has her eye on the future. The United Kingdom is in pieces, divided by
-    a historic, once-in-a-generation summer. Love is won, love is lost. Hope is
-    hand-in-hand with hopelessness. The seasons roll round, as ever.
-    <br /><br />Ali Smith's new novel is a meditation on a world growing ever
-    more bordered and exclusive, on what richness and worth are, on what harvest
-    means. It is the first installment of her <i>Seasonal </i>quartet—four
-    stand-alone books, separate yet interconnected and cyclical (as the seasons
-    are)—and it casts an eye over our own time. Who are we? What are we made
-    of?&nbsp;Shakespearean jeu d’esprit, Keatsian melancholy, the sheer bright
-    energy of 1960s pop art: the centuries cast their eyes over our own history
-    making. <br />
-    &nbsp;<br />
-    Here’s where we’re living. Here’s time at its most contemporaneous and its
-    most cyclic.&nbsp;<br /><br />From the imagination of the peerless Ali Smith
-    comes a shape-shifting series, wide-ranging in time-scale and light-footed
-    through histories, a story about aging and time and love and stories
-    themselves.
-  </div>
-</div>
-<div class="related-product">
-  <div class="row">
-    <div class="col-12 txt-related">RELATED PRODUCT</div>
-    <a class="card col" href="#">
-      <div class="img-book">
-        <img class="icon-img" src="/images/08BOOKSMITH-superJumbo.jpg" />
-        <div class="top-right-mark"></div>
-        <div class="text">NEW</div>
-        <div class="text-float">
-          <span class="text-price">$97.00</span>
-          <span class="text-price text-underline">$100.00</span>
+    <!--Information book -->
+    <div class="detail-book col-8">
+      <div id="namebook"><%= bookInstance.book.title %></div>
+      <div class="d-flex available flex-row mt-1">
+        <div class="mr-1">Availability:</div>
+        <div class="text-danger mr-5">
+          <%= (bookInstance.count > 0) ? 'In Stock' : 'Out Of Stock' %>
+        </div>
+        <div class="text-danger mr-5"></div>
+        <div class="mr-1">SKU:</div>
+        <div class="text-danger mr-5">MH01</div>
+      </div>
+      <div class="review_book d-flex flex-row">
+        <div class="star-line mr-1">
+          <i
+            class="fas fa-star <%= (bookInstance.book.rating >= 1) ? 'text-warning' : 'text-black-50' %>"
+          ></i>
+          <i
+            class="fas fa-star <%= (bookInstance.book.rating >= 2) ? 'text-warning' : 'text-black-50' %>"
+          ></i>
+          <i
+            class="fas fa-star <%= (bookInstance.book.rating >= 3) ? 'text-warning' : 'text-black-50' %>"
+          ></i>
+          <i
+            class="fas fa-star <%= (bookInstance.book.rating >= 4) ? 'text-warning' : 'text-black-50' %>"
+          ></i>
+          <i
+            class="fas fa-star <%= (bookInstance.book.rating >= 5) ? 'text-warning' : 'text-black-50' %>"
+          ></i>
+        </div>
+        <div class="count-reviews pr-2 mt-1 mr-2">(1 Review)</div>
+        <div class="addreview mt-1" style="cursor: pointer;">
+          Add Your Review
         </div>
       </div>
-      <div class="title-book ml-2">Autumn a novel</div>
-      <div class="star-line ml-2">
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-black-50"></i>
-      </div>
-    </a>
-    <a class="card col" href="#">
-      <div class="img-book">
-        <img class="icon-img" src="/images/BloodintheWaterCover.png" />
-        <div class="top-right-mark"></div>
-        <div class="text">NEW</div>
-        <div class="text-float">
-          <span class="text-price">$90.00</span>
-          <span class="text-price text-underline">$94.00</span>
+      <div class="d-flex">
+        <div class="price mt-1 mr-2">
+          <%= Math.ceil(bookInstance.price * bookInstance.discount / 10) / 10 %>
+        </div>
+        <div
+          class="price mt-1 ml-2"
+          style="color: grey; text-decoration: line-through;"
+        >
+          <%= bookInstance.price %>
         </div>
       </div>
-      <div class="title-book ml-2">Blood in the Water</div>
-      <div class="star-line ml-2">
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-black-50"></i>
-      </div>
-    </a>
-    <a class="card col" href="#">
-      <div class="img-book">
-        <img class="icon-img" src="/images/71D4oR4TpaL.jpg" />
-        <div class="top-right-mark"></div>
-        <div class="text">NEW</div>
-        <div class="text-float">
-          <span class="text-price">$97.00</span>
-          <span class="text-price text-underline">$100.00</span>
+      <div class="add-form mt-3 d-flex flex-row">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              onclick="decreaseNumber()"
+            >
+              -
+            </button>
+          </div>
+          <input
+            class="count-books text-center"
+            value="1"
+            aria-label=""
+            aria-describedby="basic-addon1"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              onclick="increaseNumber()"
+            >
+              +
+            </button>
+          </div>
+        </div>
+        <!--Group button -->
+        <div
+          class="btn btn-dark btn-add-cart mr-2"
+          onclick="addToCart('<%= bookInstance._id %>')"
+        >
+          <i class="fas fa-shopping-bag mr-2 mt-2"></i> ADD TO CART
+        </div>
+        <div class="btn btn-dark btn-add-cart">
+          <i class="far fa-list-alt mr-2 mt-2"> </i>ORDERS
         </div>
       </div>
-      <div class="title-book ml-2">MADNESS OVERRATED</div>
-      <div class="star-line ml-2">
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-warning"></i>
-        <i class="fas fa-star text-black-50"></i>
+      <!--Group icon-->
+      <div class="group-icon d-flex flex-row mt-5">
+        <button type="button" class="btn btn-default btn-circle btn-heart mr-2">
+          <i class="fas fa-heart"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-default btn-circle btn-reload mr-2"
+        >
+          <i class="fas fa-sync"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-default btn-circle btn-contact mr-2"
+        >
+          <i class="fas fa-envelope"></i>
+        </button>
       </div>
-    </a>
-  </div>
-  <div class="tag-product">
-    <div style="font-size: 40px; font-weight: bolder; margin: 5px;">
-      PRODUCT TAGS
+      <hr />
+      <!--Description-->
+      <div class="description d-flex flex-column">
+        <div class="mt-2">
+          <%= bookInstance.book.description %>
+        </div>
+      </div>
     </div>
-    <% bookInstance.book.genres.forEach(genre => { %>
-    <a
-      class="btn btn-product-tag"
-      type="button"
-      href="/browse?genre=<%= genre.name.replace(/\s/g, '-') %>"
-      ><%= genre.name %></a
-    >
-    <% }); %>
   </div>
-  <!-- BROWSE MORE -->
-  <div class="col-12 mt-5 justify-content-center text-center">
-    <a class="justify-content-center text-center" href="#">
-      NOT WHAT YOU LOOKING FOR? BROWSE MORE>></a
-    >
+
+  <!--!Information book -->
+  <div class="detail-review mt-3">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          data-toggle="tab"
+          href="#iframeContent"
+          role="tab"
+          aria-controls="iframeContent"
+          aria-selected="false"
+          >DETAIL</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-toggle="tab"
+          href="#iframeContent"
+          role="tab"
+          aria-controls="iframeContent"
+          aria-selected="false"
+          >REVIEW</a
+        >
+      </li>
+    </ul>
+    <div id="iframeContent" dir="auto" class="mt-3">
+      <b>MAN BOOKER PRIZE FINALIST</b><br /><b
+        >A <i>New York Times</i>,<i> The Washington Post,</i> NPR,&nbsp;<i
+          >Financial Times</i
+        >, <i>Southern Living</i>, <i>The Guardian</i>, and
+        <i>Kirkus Reviews</i>&nbsp;Best Book of the Year</b
+      ><br /><b>Long-listed for the Gordon Burn Prize</b><br /><br />Autumn.
+      Season of mists and mellow fruitfulness. That's what it felt like for
+      Keats in 1819. How about Autumn 2016? Daniel is a century old. Elisabeth,
+      born in 1984, has her eye on the future. The United Kingdom is in pieces,
+      divided by a historic, once-in-a-generation summer. Love is won, love is
+      lost. Hope is hand-in-hand with hopelessness. The seasons roll round, as
+      ever. <br /><br />Ali Smith's new novel is a meditation on a world growing
+      ever more bordered and exclusive, on what richness and worth are, on what
+      harvest means. It is the first installment of her
+      <i>Seasonal </i>quartet—four stand-alone books, separate yet
+      interconnected and cyclical (as the seasons are)—and it casts an eye over
+      our own time. Who are we? What are we made of?&nbsp;Shakespearean jeu
+      d’esprit, Keatsian melancholy, the sheer bright energy of 1960s pop art:
+      the centuries cast their eyes over our own history making. <br />
+      &nbsp;<br />
+      Here’s where we’re living. Here’s time at its most contemporaneous and its
+      most cyclic.&nbsp;<br /><br />From the imagination of the peerless Ali
+      Smith comes a shape-shifting series, wide-ranging in time-scale and
+      light-footed through histories, a story about aging and time and love and
+      stories themselves.
+    </div>
+  </div>
+
+  <div class="related-product">
+    <div class="txt-related">RELATED PRODUCT</div>
+    <div class="d-flex justify-content-between align-items-center">
+      <% relatedBooks.forEach(bookInstance => { %>
+      <div
+        class="card"
+        style="cursor: pointer;"
+        onclick="location.href='/browse/book?id=<%= bookInstance._id %>'"
+      >
+        <div class="img-book">
+          <img
+            class="icon-img"
+            src="/images/<%= bookInstance.book.image_url %>"
+          />
+          <div class="top-right-mark"></div>
+          <div class="text">NEW</div>
+          <div class="text-float">
+            <span class="text-price"
+              >$<%= Math.ceil(bookInstance.price * bookInstance.discount / 10) /
+              10 %></span
+            >
+            <span class="text-price text-underline"
+              >$<%= bookInstance.price %></span
+            >
+          </div>
+        </div>
+        <div class="title-book ml-2"><%= bookInstance.book.title %></div>
+        <div class="star-line ml-2">
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-warning"></i>
+          <i class="fas fa-star text-black-50"></i>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+    <div class="tag-product">
+      <div style="font-size: 40px; font-weight: bolder; margin: 5px;">
+        PRODUCT TAGS
+      </div>
+      <% bookInstance.book.genres.forEach(genre => { %>
+      <a
+        class="btn btn-product-tag"
+        type="button"
+        href="/browse?genre=<%= genre.name.replace(/\s/g, '-') %>"
+        ><%= genre.name %></a
+      >
+      <% }); %>
+    </div>
+    <!-- BROWSE MORE -->
+    <div class="col-12 mt-5 justify-content-center text-center">
+      <a class="justify-content-center text-center" href="#">
+        NOT WHAT YOU LOOKING FOR? BROWSE MORE>></a
+      >
+    </div>
   </div>
 </div>

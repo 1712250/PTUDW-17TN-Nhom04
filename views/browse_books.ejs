@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/css/browse_books.css">
-<script src="/js/browse_books.js"></script>
+<link rel="stylesheet" href="/css/browse/browse_books.css">
+<script src="/js/browse/browse_books.js"></script>
 
 <div class="row m-0">
     <div class="books-filter-container col-3 px-0">
@@ -186,11 +186,14 @@
                     </div>
                     <div class="card-body">
                         <div class="book-name"><%= bookInstance.book.title %></div>
-                        <a class="d-block book-author text-truncate"
+                        <a class="d-block book-author text-truncate text-center"
                             href="/browse/author?id=<%= bookInstance.book.author[0]._id %>">
                             <%= bookInstance.book.author[0].name %>
                         </a>
-                        <p class="book-price">$<%= bookInstance.price %></p>
+                        <div class="mb-2">
+                            <span class="book-price mr-2">$<%= bookInstance.price %></span>
+                            <span style="color: grey; text-decoration: line-through;">$<%= Math.ceil(bookInstance.price * bookInstance.discount / 10) / 10 %></span>
+                        </div>
                         <button onclick="event.stopPropagation(); addToCart('<%= bookInstance._id %>')"
                             class="btn w-100">Add to
                             cart</button>
