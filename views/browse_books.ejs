@@ -190,9 +190,28 @@
                             href="/browse/author?id=<%= bookInstance.book.author[0]._id %>">
                             <%= bookInstance.book.author[0].name %>
                         </a>
-                        <div class="mb-2">
-                            <span class="book-price mr-2">$<%= bookInstance.price %></span>
-                            <span style="color: grey; text-decoration: line-through;">$<%= Math.ceil(bookInstance.price * bookInstance.discount / 10) / 10 %></span>
+                        <div class="d-flex mb-2 justify-content-between">
+                            <div>
+                                <span class="book-price mr-2">$<%= bookInstance.price %></span>
+                                <span style="color: grey; text-decoration: line-through;">$<%= Math.ceil(bookInstance.price * bookInstance.discount / 10) / 10 %></span>
+                            </div>
+                            <div class="star-line mr-1">
+                                <i
+                                  class="fas fa-star <%= (bookInstance.book.rating >= 1) ? 'text-warning' : 'text-black-50' %>"
+                                ></i>
+                                <i
+                                  class="fas fa-star <%= (bookInstance.book.rating >= 2) ? 'text-warning' : 'text-black-50' %>"
+                                ></i>
+                                <i
+                                  class="fas fa-star <%= (bookInstance.book.rating >= 3) ? 'text-warning' : 'text-black-50' %>"
+                                ></i>
+                                <i
+                                  class="fas fa-star <%= (bookInstance.book.rating >= 4) ? 'text-warning' : 'text-black-50' %>"
+                                ></i>
+                                <i
+                                  class="fas fa-star <%= (bookInstance.book.rating >= 5) ? 'text-warning' : 'text-black-50' %>"
+                                ></i>
+                              </div>
                         </div>
                         <button onclick="event.stopPropagation(); addToCart('<%= bookInstance._id %>')"
                             class="btn w-100">Add to
