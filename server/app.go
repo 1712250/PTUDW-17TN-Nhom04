@@ -39,6 +39,8 @@ func (a *App) setRouter() {
 	a.book.Init(a.user, a.mongo)
 	a.router.GET("/book", a.book.Get)
 	a.router.GET("/book/:bookID", a.book.GetDetail)
+	a.router.PUT("/book/:bookID", a.book.Update)
+	a.router.POST("/book", a.book.Create)
 }
 
 //Run for start server
