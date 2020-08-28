@@ -11,6 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 //User for manage user
@@ -44,7 +45,10 @@ func (a *User) Login(r *gin.Context) {
 		r.String(http.StatusUnauthorized, "Wrong username or password")
 		return
 	}
+
 	uid = fmt.Sprintf("%v", result["_id"])
+	uid = uid[10 : len(uid)-2]
+	fmt.Println(uid)
 	jwt, err := a.authorization.NewJWT(uid)
 	if err != nil {
 		fmt.Println("JWT err ", err)
@@ -76,9 +80,11 @@ func (a *User) Authentication(r *gin.Context) (bool, string) {
 		r.Status(http.StatusUnauthorized)
 		return false, ""
 	}
+	fmt.Println(uid)
 	collection := a.db.Db.Collection("admin")
 	var result bson.M
-	err = collection.FindOne(context.TODO(), bson.M{"_id": uid}).Decode(&result)
+	id, err := primitive.ObjectIDFromHex(uid)
+	err = collection.FindOne(context.TODO(), bson.M{"_id": id}).Decode(&result)
 	if err != nil {
 		fmt.Println("Authentication check user is exist ", err)
 		r.Status(http.StatusForbidden)
