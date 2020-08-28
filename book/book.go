@@ -262,5 +262,44 @@ func (a *Book) Create(r *gin.Context) {
 	}
 	r.Header("Authorization", "bearer "+jwt)
 	r.JSON(200, gin.H{"bookID": newID})
+}
+
+//Delete for menthod get all
+func (a *Book) Delete(r *gin.Context) {
+	//check authentication
+	check, uid := a.User.Authentication(r)
+	if !check {
+		return
+	}
+	id := r.Param("bookID")
+	//collection := a.Db.Db.Collection("books")
+
+	idhex, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		r.Status(http.StatusInternalServerError)
+		fmt.Println(err)
+		return
+	}
+	_, err = a.Db.Db.Collection("bookinstances").DeleteOne(context.TODO(), bson.M{"book": idhex})
+	if err != nil {
+		r.Status(http.StatusInternalServerError)
+		fmt.Println(err)
+		return
+	}
+	_, err = a.Db.Db.Collection("books").DeleteOne(context.TODO(), bson.M{"_id": idhex})
+	if err != nil {
+		r.Status(http.StatusInternalServerError)
+		fmt.Println(err)
+		return
+	}
+	//refesh token
+	jwt, err := a.User.NewJWT(uid)
+	if err != nil {
+		fmt.Println("JWT err ", err)
+		r.String(http.StatusInternalServerError, "")
+		return
+	}
+	r.Header("Authorization", "bearer "+jwt)
+	r.Status(200)
 
 }

@@ -41,6 +41,7 @@ func (a *App) setRouter() {
 	a.router.GET("/book/:bookID", a.book.GetDetail)
 	a.router.PUT("/book/:bookID", a.book.Update)
 	a.router.POST("/book", a.book.Create)
+	a.router.DELETE("/book/:bookID", a.book.Delete)
 }
 
 //Run for start server
