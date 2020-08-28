@@ -28,7 +28,6 @@
 }
 #account .shopping-cart-container {
   display: none;
-  margin-top: 0.5rem;
   position: absolute;
   right: 0;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -71,7 +70,6 @@
   margin-bottom: 18px;
 }
 #account .shopping-cart-container .shopping-cart .shopping-cart-items img {
-  float: left;
   margin-right: 12px;
   width: 70px;
   height: auto;
@@ -85,6 +83,9 @@
   display: block;
   padding-top: 10px;
   font-size: 16px;
+}
+#account .item-name:hover {
+  text-decoration: underline;
 }
 #account
   .shopping-cart-container
@@ -139,7 +140,6 @@
   display: table;
   clear: both;
 }
-
 #account .cart-control:hover .shopping-cart-container {
   display: block;
 }

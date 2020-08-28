@@ -158,7 +158,7 @@ userSchema.methods.addToCart = function (bookId, numberToAdd = 1) {
 userSchema.methods.getIndexInCart = function (bookId) {
   if (this.cart.length == 0) return -1;
   for (let i = 0; i < this.cart.length; ++i) {
-    if (JSON.stringify(this.cart[i].book) === JSON.stringify(bookId)) {
+    if (JSON.stringify(this.cart[i].book._id) === JSON.stringify(bookId)) {
       return i;
     }
   }

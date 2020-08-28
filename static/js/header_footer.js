@@ -35,3 +35,23 @@ function showSnackbar(msg) {
     snackbar.classList.remove("show");
   }, 2000);
 }
+
+function removeFromCart(bookId) {
+  showQuestionModal(
+    "Information",
+    "Do you want to remove this book from cart?",
+    () => {
+      fetch("/api/checkout/cart/remove", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookId: bookId, remove_all: true }),
+      }).then((res) => {
+        if (res.ok) {
+          location.reload();
+        }
+      });
+    }
+  );
+}

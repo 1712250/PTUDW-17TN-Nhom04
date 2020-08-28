@@ -71,15 +71,16 @@ module.exports = function (app) {
     }
     console.log(`User has visit ${req.session.visit} times!`);
     try {
-      req.user = await req.user
-        .populate({
-          path: "cart",
-          populate: {
-            path: "book",
-            populate: { path: "book", populate: "author" },
-          },
-        })
-        .execPopulate();
+      if (req.user)
+        req.user = await req.user
+          .populate({
+            path: "cart",
+            populate: {
+              path: "book",
+              populate: { path: "book", populate: "author" },
+            },
+          })
+          .execPopulate();
       res.locals.user = req.user;
     } catch (err) {
       console.log("Error while populate cart! Error: " + err.message);

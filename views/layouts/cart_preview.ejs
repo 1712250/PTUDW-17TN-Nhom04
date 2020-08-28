@@ -1,0 +1,37 @@
+<% let total = 0; %>
+<% user.cart.forEach(item => { %>
+<% total += Math.ceil(item.book.price * item.book.discount / 10) / 10 %>
+<% }); %>
+<div class="shopping-cart-container">
+  <div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i><span class="badge"
+        style="background-color: #dc3545"><%= (user != null) ? user.cart.length : 0 %></span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total:</span>
+        <span class="main-color-text">$<%= total %></span>
+      </div>
+    </div>
+    <ul class="shopping-cart-items">
+      <% user.cart.forEach(item => { %>
+      <% const price = Math.ceil(item.book.price * item.book.discount / 10) / 10 %>
+      <li class="clearfix d-flex align-items-center">
+        <img src="/images/<%= item.book.book.image_url %>" />
+        <div>
+          <div class="item-name pt-0" style="width: 198px; overflow: hidden; text-overflow: ellipsis; cursor: pointer;"
+            onclick="location.href='/browse/book?id=<%= item.book._id %>'">
+            <%= item.book.book.title %>
+          </div>
+          <div class="item-price">$<%= price %></div>
+          <div class="item-quantity">Quantity: <%= item.count %></div>
+          <button class="btn btn-danger float-right mt-2 px-2 py-0" onclick="removeFromCart('<%= item.book._id %>')">
+            <i class="fas fa-trash-alt font-size-small"></i>
+          </button>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+    <a href="/checkout/cart" class="button mb-0"
+      style="color: #fff; background-color: #dc3545; border-color: #dc3545;">Checkout</a>
+  </div>
+</div>
