@@ -13,7 +13,7 @@
                 <label for="fullName" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Full
                     Name </label>
                 <div class="col-10">
-                    <input type="text" class="form-control" id="fullName" placeholder="Le Hoang Vu">
+                    <input type="text" class="form-control" id="fullName" value="<%= user.name %>">
                 </div>
             </div>
 
@@ -21,8 +21,7 @@
                 <label for="phoneNumber" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Phone
                     Number</label>
                 <div class="input-group col-10">
-                    <input type="text" class="form-control my-auto" id="phoneNumber"
-                        placeholder="Type your phone number">
+                    <input type="text" class="form-control my-auto" id="phoneNumber" value="<%= user.phone_number %>">
                     <div class="input-group-append">
                         <button type="submit" class="btn my-1 background-secondary button-hover">Send
                             activation code</button>
@@ -42,7 +41,7 @@
             <div class="form-group row ml-1">
                 <label for="email" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Email</label>
                 <div class="col-10">
-                    <input type="email" class="form-control" id="email" placeholder="lhvubtqn@gmail.com">
+                    <input type="email" class="form-control" id="email" value="<%= user.email %>">
                 </div>
             </div>
 
@@ -50,27 +49,30 @@
                 <label class="col-2 col-form-label mt-2 justify-content-left px-0 mx-0">Gender</label>
                 <div class="col-10">
                     <div class="form-check form-check-inline mt-3 justify-between-center">
-                        <input class="form-check-input" name="gender" type="radio" id="Male" value="Male">
+                        <input class="form-check-input" name="gender" type="radio" id="Male" value="Male"
+                            <%= user.gender === 'Male' ? 'checked' : '' %>>
                         <label class="form-check-label" for="Male">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input name=" gender" type="radio" id="Female" value="Female">
+                        <input class="form-check-input" name="gender" type="radio" id="Female" value="Female"
+                            <%= user.gender === 'Female' ? 'checked' : '' %>>
                         <label class="form-check-label" for="Female">Female</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" name="gender" type="radio" id="Another" value="Another">
+                        <input class="form-check-input" name="gender" type="radio" id="Another" value="Another"
+                            <%= user.gender === 'Another' ? 'checked' : '' %>>
                         <label class="form-check-label" for="Another">Another</label>
                     </div>
                 </div>
             </div>
 
             <div class="form-group row ml-1 mt-2">
-                <label class="col-2 col-form-label justify-content-left px-0 mx-0">Day
-                    of
-                    Birth</label>
+                <label class="col-2 col-form-label justify-content-left px-0 mx-0">Date of Birth</label>
                 <div class="col-10">
                     <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control" placeholder="mm/dd/yyyy">
+                        <% const date = new Date(user.date_of_birth); %>
+                        <% const dateOfBirth = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() +1 )).slice(-2) + '/' + date.getFullYear(); %>
+                        <input type="text" class="form-control" value="<%= dateOfBirth %>">
                         <div class="input-group-append">
                             <div class="btn btn-secondary input-group-addon d-flex align-items-center">
                                 <i class="fas fa-calendar-alt"></i>
