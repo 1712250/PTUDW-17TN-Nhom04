@@ -29,7 +29,12 @@ const ViewRouter = require("./routes/index");
 app.use("/", ViewRouter);
 app.use("/api", ApiRouter);
 
+app.use((req, res, next) => {
+  res.status(404);
+  res.render("error/404.ejs", { layout: false });
+});
+
 // start app
 app.listen(PORT, () => {
-	console.log(`Server is up and running at port ${PORT}!`);
+  console.log(`Server is up and running at port ${PORT}!`);
 });

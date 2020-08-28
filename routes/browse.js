@@ -44,19 +44,18 @@ router.get("/", async (req, res, next) => {
 router.get("/book", async (req, res, next) => {
   const id = req._parsedOriginalUrl.query.split("=")[1];
   const bookInstance = await getBookInstance(id);
-  const relatedBooks = await getBookInstances({
-    page: 1,
-    genre: bookInstance.book.genres[0].name,
-    sortBy: "New",
-  });
-
-  if (bookInstance)
+  if (bookInstance) {
+    const relatedBooks = await getBookInstances({
+      page: 1,
+      genre: bookInstance.book.genres[0].name,
+      sortBy: "New",
+    });
     res.render("book_detail", {
       title: "Book Detail",
       bookInstance,
       relatedBooks: relatedBooks.bookInstances.slice(1, 6),
     });
-  else res.render("error/404.ejs", { layout: false, title: "Book Detail" });
+  } else next();
 });
 
 module.exports = router;
