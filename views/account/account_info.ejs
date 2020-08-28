@@ -21,7 +21,8 @@
                 <label for="phoneNumber" class="col-2 col-form-labe mt-2 justify-content-left px-0 mx-0">Phone
                     Number</label>
                 <div class="input-group col-10">
-                    <input type="text" class="form-control my-auto" id="phoneNumber" value="<%= user.phone_number %>">
+                    <input type="text" class="form-control my-auto" id="phoneNumber"
+                        placeholder="Type your phone number" value="<%= user.phone_number %>">
                     <div class="input-group-append">
                         <button type="submit" class="btn my-1 background-secondary button-hover">Send
                             activation code</button>
@@ -72,7 +73,8 @@
                     <div class="input-group date" data-provide="datepicker">
                         <% const date = new Date(user.date_of_birth); %>
                         <% const dateOfBirth = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() +1 )).slice(-2) + '/' + date.getFullYear(); %>
-                        <input type="text" class="form-control" value="<%= dateOfBirth %>">
+                        <input type="text" class="form-control" placeholder="mm/dd/yy"
+                            value="<%= (user.date_of_birth) ? dateOfBirth : '' %>">
                         <div class="input-group-append">
                             <div class="btn btn-secondary input-group-addon d-flex align-items-center">
                                 <i class="fas fa-calendar-alt"></i>

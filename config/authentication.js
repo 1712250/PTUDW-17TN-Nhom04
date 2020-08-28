@@ -2,9 +2,14 @@ const passport = require("passport");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const LocalStrategy = require("passport-local").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const MongoStore = require("connect-mongo")(session);
 const User = require("../models/User");
-const { validPassword } = require("../utils/hashing");
+const {
+  validPassword,
+  genPassword,
+  randomPassword,
+} = require("../utils/hashing");
 
 const localStrategy = new LocalStrategy(
   {
@@ -33,6 +38,41 @@ const localStrategy = new LocalStrategy(
   }
 );
 
+const facebookStrategy = new FacebookStrategy(
+  {
+    clientID: process.env.FB_CLIENT_ID,
+    clientSecret: process.env.FB_CLIENT_SECRET,
+    callbackURL: process.env.FB_CALLBACK_URL,
+    profileFields: ["email", "displayName"],
+  },
+  function (accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    const { email, name } = profile._json;
+    const password = genPassword(randomPassword());
+    User.findOne({ email })
+      .then((user) => {
+        if (user) {
+          done(null, user);
+        } else {
+          const newUser = new User({ email, password, name });
+          newUser
+            .save()
+            .then((user) => {
+              done(null, user);
+            })
+            .catch((err) => {
+              console.log("Error while saving user! Error: " + err);
+              done(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log("Error while retrieving user! Error: " + err);
+        done(err);
+      });
+  }
+);
+
 module.exports = function (app) {
   app.use(
     session({
@@ -49,6 +89,7 @@ module.exports = function (app) {
     })
   );
   passport.use(localStrategy);
+  passport.use(facebookStrategy);
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
