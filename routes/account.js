@@ -9,8 +9,10 @@ router.get("/", isAuthenticated, (req, res) => {
 	res.render("account/account_info", { title: "Your Account" });
 });
 
-router.get("/orders", isAuthenticated, (req, res, next) => {
-	res.render("account/orders", { title: "Your Orders" });
+router.get("/orders", isAuthenticated, async (req, res, next) => {
+	await req.user.populate({path: 'orders.books.book', populate: 'book'}).execPopulate();
+	console.log(req.user.orders)
+	res.render("account/orders", { title: "Your Orders", orders: req.user.orders });
 });
 
 router.get("/books", isAuthenticated, (req, res, next) => {
