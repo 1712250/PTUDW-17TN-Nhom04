@@ -47,7 +47,6 @@ const facebookStrategy = new FacebookStrategy(
     profileFields: ["email", "displayName"],
   },
   function (accessToken, refreshToken, profile, done) {
-    console.log(profile);
     const { email, name } = profile._json;
     const password = genPassword(randomPassword());
     User.findOne({ email })

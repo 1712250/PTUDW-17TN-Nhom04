@@ -86,6 +86,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  avatar_url: {
+    type: String,
+  }
 });
 
 // add an address to user addresses, return address object if success,
