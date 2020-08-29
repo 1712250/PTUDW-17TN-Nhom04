@@ -16,7 +16,7 @@ btnLanguage.addEventListener("click", btnLanguageClicked);
 searchForm
   .querySelector("div > button")
   .addEventListener("click", onSearchSubmit);
-listGenres.addEventListener("click", onGenreSelected);
+listGenres.addEventListener("change", onGenreSelected);
 
 // Parse URL
 const queries = parseURL();
