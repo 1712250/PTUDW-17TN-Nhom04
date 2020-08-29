@@ -17,6 +17,7 @@
 
 .list-books .card img {
 	height: 15rem;
+	width: auto;
 }
 
 .list-books .card .book-name {

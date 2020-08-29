@@ -28,42 +28,29 @@
             </nav>
         </div>
         <div class="list-books row mt-2 text-wrap px-3">
-            <a class="d-block col-12 col-sm-6 col-lg-4" href="/browse/book?id=1">
-                <div class="card my-2 pt-3">
-                    <img src="/images/book.svg" class="card-img-top">
+            <% if (orders.length == 0) { %>
+            <div class="h-100 d-flex align-items-center justify-content-center pb-5">
+                There's nothing here. Go<a class="ml-1" href="/browse">buy some</a>?
+            </div>
+            <% } else { %>
+            <% const set = new Set(); %>
+            <% orders.forEach(order => { %>
+            <% order.books.forEach(item => { %>
+            <% if (!set.has(item.book._id)) { %>
+            <% set.add(item.book._id); %>
+            <a class="d-block col-12 col-sm-6 col-lg-4" href="/browse/book?id=<%= item.book._id %>">
+                <div class="card my-2 pt-3 d-flex flex-column align-items-center">
+                    <img src="/images/<%= item.book.book.image_url %>" class="card-img-top">
                     <div class="card-body">
-                        <p class="book-name text-truncate">What do I talk about happiness</p>
+                        <p class="book-name text-truncate"><%= item.book.book.title %></p>
                         <button class="btn w-100">Review</button>
                     </div>
                 </div>
             </a>
-            <a class="d-block col-12 col-sm-6 col-lg-4" href="/browse/book?id=1">
-                <div class="card my-2 pt-3">
-                    <img src="/images/book.svg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="book-name text-truncate">What do I talk about happiness</p>
-                        <button class="btn w-100">Review</button>
-                    </div>
-                </div>
-            </a>
-            <a class="d-block col-12 col-sm-6 col-lg-4" href="/browse/book?id=1">
-                <div class="card my-2 pt-3">
-                    <img src="/images/book.svg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="book-name text-truncate">What do I talk about happiness</p>
-                        <button class="btn w-100">Review</button>
-                    </div>
-                </div>
-            </a>
-            <a class="d-block col-12 col-sm-6 col-lg-4" href="/browse/book?id=1">
-                <div class="card my-2 pt-3">
-                    <img src="/images/book.svg" class="card-img-top">
-                    <div class="card-body">
-                        <p class="book-name text-truncate">What do I talk about happiness</p>
-                        <button class="btn w-100">Review</button>
-                    </div>
-                </div>
-            </a>
+            <% } %>
+            <% }); %>
+            <% }); %>
+            <% } %>
         </div>
     </div>
 </div>

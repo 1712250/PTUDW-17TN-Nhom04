@@ -11,12 +11,12 @@ router.get("/", isAuthenticated, (req, res) => {
 
 router.get("/orders", isAuthenticated, async (req, res, next) => {
 	await req.user.populate({path: 'orders.books.book', populate: 'book'}).execPopulate();
-	console.log(req.user.orders)
 	res.render("account/orders", { title: "Your Orders", orders: req.user.orders });
 });
 
-router.get("/books", isAuthenticated, (req, res, next) => {
-	res.render("account/book_you_buy", { title: "Your Books" });
+router.get("/books", isAuthenticated, async (req, res, next) => {
+	await req.user.populate({path: 'orders.books.book', populate: 'book'}).execPopulate();
+	res.render("account/book_you_buy", { title: "Your Books", orders: req.user.orders });
 });
 
 router.get("/activation/:userId", (req, res) => {
