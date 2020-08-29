@@ -26,7 +26,8 @@ require("./config/database");
 require("./config/mail");
 
 // redirect when use http
-app.use(enforce.HTTPS({ trustProtoHeader: true }))
+if (process.env.DEV != 1)
+  app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 // routers
 const ApiRouter = require("./apis/index");

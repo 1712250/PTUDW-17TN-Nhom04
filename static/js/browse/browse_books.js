@@ -187,7 +187,7 @@ function updatePage(newQueries = {}) {
   if (maxPrice) {
     newQueries.maxPrice = maxPrice;
   }
-  if (!newQueries.search) {
+  if (queries.search) {
     newQueries.search = queries.search;
   }
 
