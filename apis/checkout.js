@@ -1,15 +1,20 @@
 const router = require("express").Router();
 const { isAuthenticated } = require("../utils/authmiddleware");
 const AddressController = require("../controllers/AddressController");
+const { getBookInstance } = require("../controllers/BookInstanceController");
 
 router.use(isAuthenticated);
 router.post("/cart/add", (req, res) => {
   const numberToAdd = req.body.numberToAdd ? req.body.numberToAdd : 1;
   req.user.addToCart(req.body.bookId, numberToAdd).then((count) => {
-    res.status(200).send({
-      status: 200,
-      count: count,
-    });
+    getBookInstance(req.body.bookId).then(bookInstance => {
+      res.status(200).send({
+        status: 200,
+        title: bookInstance.book.title,
+        count: count,
+        price: Math.ceil(bookInstance.price * bookInstance.discount / 10) / 10
+      });
+    })
   });
 });
 
