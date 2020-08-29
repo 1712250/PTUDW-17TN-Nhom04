@@ -1,5 +1,6 @@
-const express = require("express");
 const path = require("path");
+const express = require("express");
+
 const expressLayouts = require("express-ejs-layouts");
 require("dotenv").config();
 
@@ -23,6 +24,14 @@ require("./config/authentication")(app);
 require("./config/database");
 require("./config/mail");
 
+// redirect when use http
+app.use("**", (req, res, next) => {
+  if (!req.secure)
+    res.redirect('https://' + req.headers.host + req.url);
+  else 
+    next();
+});
+
 // routers
 const ApiRouter = require("./apis/index");
 const ViewRouter = require("./routes/index");
@@ -34,7 +43,6 @@ app.use((req, res, next) => {
   res.render("error/404.ejs", { layout: false });
 });
 
-// start app
-app.listen(PORT, () => {
+app .listen(PORT, () => {
   console.log(`Server is up and running at port ${PORT}!`);
 });

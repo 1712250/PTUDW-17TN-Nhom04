@@ -38,11 +38,12 @@ const localStrategy = new LocalStrategy(
   }
 );
 
+const devCallbackUrl = "https://localhost:5000/api/auth/facebook/callback";
 const facebookStrategy = new FacebookStrategy(
   {
     clientID: process.env.FB_CLIENT_ID,
     clientSecret: process.env.FB_CLIENT_SECRET,
-    callbackURL: process.env.FB_CALLBACK_URL,
+    callbackURL: (process.env.DEV == 1) ? devCallbackUrl : process.env.FB_CALLBACK_URL,
     profileFields: ["email", "displayName"],
   },
   function (accessToken, refreshToken, profile, done) {
