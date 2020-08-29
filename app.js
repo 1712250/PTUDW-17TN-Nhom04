@@ -25,8 +25,8 @@ require("./config/database");
 require("./config/mail");
 
 // redirect when use http
-app.get("*", (req, res, next) => {
-  if (req.protocol === "http")
+app.use((req, res, next) => {
+  if (!req.secure)
     res.redirect(301, 'https://' + req.headers.host + req.url);
   else 
     next();
