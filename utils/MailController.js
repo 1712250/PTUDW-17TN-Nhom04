@@ -1,6 +1,6 @@
 const transporter = require("../config/mail");
 
-const baseUrl = process.env.DEV
+const baseUrl = (process.env.DEV == 1) 
 	? "http://localhost:5000"
 	: "https://obooks.herokuapp.com";
 
