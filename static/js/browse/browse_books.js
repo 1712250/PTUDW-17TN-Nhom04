@@ -190,6 +190,9 @@ function updatePage(newQueries = {}) {
   if (queries.search) {
     newQueries.search = queries.search;
   }
+  if (queries.sortBy) {
+    newQueries.sortBy = queries.sortBy;
+  }
 
   for (let tag of listTags.children) {
     let key = tag.dataset.field;
