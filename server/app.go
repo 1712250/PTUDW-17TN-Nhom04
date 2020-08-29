@@ -3,6 +3,7 @@ package server
 import (
 	"admin/authentication"
 	"admin/book"
+	"admin/category"
 	"admin/mongodb"
 	"fmt"
 	"os"
@@ -12,10 +13,11 @@ import (
 
 //App for server
 type App struct {
-	mongo  *mongodb.Mongo
-	router *gin.Engine
-	user   *authentication.User
-	book   *book.Book
+	mongo    *mongodb.Mongo
+	router   *gin.Engine
+	user     *authentication.User
+	book     *book.Book
+	category *category.Category
 }
 
 //NewApp for init server
@@ -24,6 +26,7 @@ func NewApp() *App {
 	app.mongo = new(mongodb.Mongo)
 	app.user = new(authentication.User)
 	app.book = new(book.Book)
+	app.category = new(category.Category)
 	return app
 }
 func (a *App) setRouter() {
@@ -42,6 +45,14 @@ func (a *App) setRouter() {
 	a.router.PUT("/book/:bookID", a.book.Update)
 	a.router.POST("/book", a.book.Create)
 	a.router.DELETE("/book/:bookID", a.book.Delete)
+	//category
+	a.category.Init(a.user, a.mongo)
+	a.router.GET("/category", a.category.Get)
+	a.router.GET("/category/:categoryID", a.category.GetDetail)
+	a.router.PUT("/category/:categoryID", a.category.Update)
+	a.router.POST("/category", a.category.Create)
+	a.router.DELETE("/category/:categoryID", a.category.Delete)
+
 }
 
 //Run for start server
