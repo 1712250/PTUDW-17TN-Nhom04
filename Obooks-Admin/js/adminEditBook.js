@@ -20,7 +20,8 @@ $(document).ready(function() {
 
 var book;
 var headers =new Headers();
-var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+var token =localStorage.getItem("token")
+headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
 headers.append('Access-Control-Allow-Origin', '*');
 headers.append('Access-Control-Allow-Credentials', 'true');
@@ -44,11 +45,11 @@ renderData=()=>
 }
 fetch(request)
 .then(res =>{
-    if(res,status===401)
+    if(res.status===401)
     {
         window.location.href="sign-in.html";
     }
-    else {return res.json()}})
+    else if(res.status) {return res.json()}})
 .then(async res=>
     {
         book= await res;
@@ -74,7 +75,7 @@ submitBook=()=>
     book.bookAuthor= $("#editauthor").val()
     book.bookDescription=$("#editDescription").val()
     book.bookIntances.bookPrice=parseInt($("#editPrice").val())
-    console.log(url)
+ 
     var Updaterequests = new Request(
        url,{
            body: JSON.stringify(book),
@@ -88,16 +89,16 @@ submitBook=()=>
        {
            if(res.status===200)
            {
-            console.log("BBBB"+JSON.stringify(book))
+ 
                console.log("Successfull");
-               
-               window.location.href="admin-book.html";
+               window.location.href="admin-books.html";
            }
            
            else
            {
-                console.log("AAAA"+JSON.stringify(book))
+ 
                console.log(res)
+               window.location.href="sign-in.html";
            }
            $('#exampleModal').modal('hide');
        })

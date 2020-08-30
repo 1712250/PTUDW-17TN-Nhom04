@@ -5,7 +5,7 @@
     $("#descCategory").text(desc);
     var category;
     var headers =new Headers();
-    var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+    var token =localStorage.getItem("token")
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     headers.append('Access-Control-Allow-Origin', '*');
@@ -45,7 +45,7 @@
         )
          fetch(requests).then(res=>
             {
-                if(res,status===401)
+                if(res.status===401)
                 {
                     window.location.href="sign-in.html";
                 }
@@ -58,6 +58,7 @@
                 else
                 {
                     console.log(requests)
+                    window.location.href="sign-in.html";
                 }
             })
         

@@ -13,7 +13,7 @@ $(document).ready(function() {
         categoryName:$("#descCategory").val()
       }
       var headers =new Headers();
-      var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+      var token =localStorage.getItem("token")
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
       headers.append('Access-Control-Allow-Origin', '*');
@@ -31,15 +31,18 @@ $(document).ready(function() {
       fetch(request)
       .then(res=>
         {
-            if(res,status===401)
+            if(res.status===401)
             {
                 window.location.href="sign-in.html";
             }
             if(res.status===200)
             {
-                console.log("Successfully")
                 $('#exampleModal').modal('hide');
                 window.location.href="admin-category.html";
+            }
+            else
+            {
+              window.location.href="sign-in.html";
             }
             $('#exampleModal').modal('hide');
         }

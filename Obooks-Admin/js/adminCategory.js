@@ -1,5 +1,5 @@
 var headers =new Headers();
-var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+var token =localStorage.getItem("token")
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
 headers.append('Access-Control-Allow-Origin', '*');
@@ -20,7 +20,6 @@ var request = new Request(
 renderPage= (page)=>
 {
     var pages =$(".index-page");
-    console.log(pages)
     pages.text(page)
     var parent = document.getElementById("tableCategory")
     parent.innerHTML=""
@@ -50,7 +49,7 @@ template =(element,id)=>
 fetch(url,request)
 .then(res =>
     {
-        if(res,status===401)
+        if(res.status===401)
         {
             window.location.href="sign-in.html";
         }
@@ -77,7 +76,7 @@ fetch(url,request)
 var onclickDelete=(event)=>
 {
     var node =event.target.parentNode.parentNode.parentNode.parentNode;
-    console.log(event.target.parentNode.parentNode.parentNode.parentNode);
+ 
     currentNode=node;
     $(".modal-body").text(`\"${desc=$(node).find("#nameCategory").text()}\" will be removed?`)
     $(".modal-body").attr("data-index",node.getAttribute("data-index"));
@@ -99,7 +98,7 @@ removeCategory=(event)=>
     {fetch(delRequest)
     .then(res=>
         {
-            if(res,status===401)
+            if(res.status===401)
             {
                 window.location.href="sign-in.html";
             }
@@ -107,6 +106,9 @@ removeCategory=(event)=>
             {
                 console.log("OK");
                 currentNode.remove();
+            }
+            else{
+                window.location.href="sign-in.html";
             }
         })
     }

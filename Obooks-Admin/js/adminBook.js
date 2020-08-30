@@ -1,6 +1,6 @@
  
 var headers =new Headers();
-var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+var token =localStorage.getItem("token")
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
 headers.append('Access-Control-Allow-Origin', '*');
@@ -23,7 +23,7 @@ renderData= (page)=>
     pages.text(page)
     var parent = document.getElementById("tbodyTable")
     parent.innerHTML=""
-    console.log("    "+data.length)
+ 
     for (var id=page*10; id<(page+1)*10;id++)
     {
         element=data[id]
@@ -33,7 +33,7 @@ renderData= (page)=>
 var template =(element,id)=>
 {
     var imgbook= element.bookImage.includes("data:")?element.bookImage:"images/iconBook/"+element.bookImage;
-    console.log(imgbook)
+ 
 return `
         <tr data-idbook=${element.idBook}>
         <td>${id+1}</td>
@@ -54,7 +54,7 @@ return `
 
 fetch(request)
 .then(async res => {
-    if(res,status===401)
+    if(res.status===401)
     {
         window.location.href="sign-in.html";
     }
@@ -63,6 +63,7 @@ fetch(request)
          return response
     } else {
         return Promise.reject(res.status);
+        window.location.href="sign-in.html";
     }
 })
 .then( async res=>

@@ -11,8 +11,6 @@ $(document).ready(function() {
 		! function(e) {
 			if (e.files && e.files[0]) {
                 var t = new FileReader;
-                console.log(e.files[0])
-                
 				t.onload = function(e) {
                     $(".profile-pic").attr("src", e.target.result)
                 }, t.readAsDataURL(e.files[0])
@@ -52,7 +50,7 @@ $(document).ready(function() {
     }
     console.log(JSON.stringify(book))
       var headers =new Headers();
-      var token ="bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiI1ZjQ3Y2ExNTQxZDc0ODQzNDQ2NjNlZjIiLCJleHAiOjE1OTg4NTg5MzF9.n-8EppzJVcPIyylipubsbWDV42bBTAlzuXI8Yi5pQRk"
+      var token =localStorage.getItem("token")
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
       headers.append('Access-Control-Allow-Origin', '*');
@@ -70,19 +68,20 @@ $(document).ready(function() {
       fetch(request)
       .then(res=>
         {
-            if(res,status===401)
+            if(res.status===401)
             {
                 window.location.href="sign-in.html";
             }
             if(res.status===200)
             {
-                console.log("Successfully")
+                 
                 $('#exampleModal').modal('hide');
                 window.location.href="admin-books.html";
             }
             else 
             {
                 alert("Failure")
+                window.location.href="sign-in.html";
             }
             $('#exampleModal').modal('hide');
         }
